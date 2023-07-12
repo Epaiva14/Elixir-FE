@@ -4,6 +4,10 @@ import Image from 'next/image';
 import styles from './page.module.css';
 import { useEffect, useState } from 'react';
 import setAuthToken from './utils/setAuthToken';
+import Layout from './components/layout'
+import Card from './components/card'
+import BackgroundImage from './components/backgroundImage'
+import RecipePreviewContainer from './components/recipes/recipePreviewContainer'
 
 // we are going to be fetching data from our API and displaying it on
 // the page
@@ -25,12 +29,16 @@ export default function Home() {
       });
   }, []);
 
-  if (isLoading) return <p>Loading...</p>;
-  if (!data) return <p>No data shown...</p>;
+  // if (isLoading) return <p>Loading...</p>;
+  // if (!data) return <p>No data shown...</p>;
 
   return (
-    <main className={styles.main}>
-      <p>{data.message}</p>
-    </main>
-  );
+    <>
+      <Layout />
+
+      {/* <Card /> */}
+      <RecipePreviewContainer />
+      <BackgroundImage />
+    </>
+  )
 }
