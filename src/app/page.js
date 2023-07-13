@@ -34,11 +34,12 @@ export default function Home() {
 
   return (
     <>
-      <Layout />
+      <Layout>
 
-      {/* <Card /> */}
-      <RecipePreviewContainer />
-      <BackgroundImage />
+        {/* <Card /> */}
+        <RecipePreviewContainer />
+        <BackgroundImage />
+      </Layout>
     </>
   )
 }

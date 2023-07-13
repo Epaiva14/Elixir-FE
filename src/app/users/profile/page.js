@@ -28,6 +28,7 @@ export default function Profile() {
     useEffect(() => {
         if (localStorage.getItem('jwtToken')) {
             fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/email/${localStorage.getItem('email')}`)
+                // fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/profile}`)
                 .then((res) => res.json())
                 .then((data) => {
 
