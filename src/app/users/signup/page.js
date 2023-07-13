@@ -9,27 +9,22 @@ const Signup = () => {
 
 	const [redirect, setRedirect] = useState(false);
 
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
+	const [fullName, setFullName] = useState('');
+	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [jobTitle, setJobTitle] = useState('');
-	const [number, setNumber] = useState('');
-	const [streetAddress, setStreetAddress] = useState('');
-	const [city, setCity] = useState('');
-	const [state, setState] = useState('');
-	const [zipCode, setZipCode] = useState('');
+	const [birthdate, setBirthdate] = useState('');
 	const [error, setError] = useState(false);
 
 	// create the 
-	const handleFirstName = (e) => {
+	const handleFullName = (e) => {
 		// fill in code
-		setFirstName(e.target.value);
+		setFullName(e.target.value);
 	};
 
-	const handleLastName = (e) => {
+	const handleUsername = (e) => {
 		// fill in code
-		setLastName(e.target.value);
+		setUsername(e.target.value);
 	};
 
 	const handleEmail = (e) => {
@@ -42,50 +37,19 @@ const Signup = () => {
 		setPassword(e.target.value);
 	};
 
-	const handleJobTitle = (e) => {
+	const handleBirthdate = (e) => {
 		// fill in code
-		setJobTitle(e.target.value);
-	};
-
-	const handleNumber = (e) => {
-		// fill in code
-		setNumber(e.target.value);
-	};
-
-	const handleStreetAddress = (e) => {
-		// fill in code
-		setStreetAddress(e.target.value);
-	};
-
-	const handleCity = (e) => {
-		// fill in code
-		setCity(e.target.value);
-	};
-
-	const handleState = (e) => {
-		// fill in code
-		setState(e.target.value);
-	};
-
-	const handleZipCode = (e) => {
-		// fill in code
-		setZipCode(e.target.value);
+		setBirthdate(e.target.value);
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault(); // at the beginning of a submit function
 
 		const newUser = {
-			firstName,
+			fullName,
 			lastName,
 			email,
-			jobTitle,
-			number,
-			password,
-			streetAddress,
-			city,
-			state,
-			zipCode
+			password
 		};
 		axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/signup`, newUser)
 			.then(response => {
@@ -138,43 +102,23 @@ const Signup = () => {
 									<p className="text-muted">Create an account below to get started</p>
 									<div className="input-group mb-3">
 										<span className="input-group-addon"><i className="fa fa-whatsapp"></i></span>
-										<input type="text" className="form-control" placeholder="First Name" value={firstName} onChange={handleFirstName} required/>
+										<input type="text" className="form-control" placeholder="Full Name" value={fullName} onChange={handleFullName} required />
 									</div>
 									<div className="input-group mb-3">
 										<span className="input-group-addon"><i className="fa fa-whatsapp"></i></span>
-										<input type="text" className="form-control" placeholder="Last Name" value={lastName} onChange={handleLastName} required/>
+										<input type="text" className="form-control" placeholder="Username" value={username} onChange={handleUsername} required />
 									</div>
 									<div className="input-group mb-3">
 										<span className="input-group-addon"><i className="fa fa-mail-forward" aria-hidden="true"></i></span>
-										<input type="email" className="form-control" placeholder="Email" value={email} onChange={handleEmail} required/>
+										<input type="email" className="form-control" placeholder="Email" value={email} onChange={handleEmail} required />
 									</div>
 									<div className="input-group mb-3">
 										<span className="input-group-addon"><i className="fa fa-lock"></i></span>
-										<input type="password" className="form-control" placeholder="Password" value={password} onChange={handlePassword} required/>
+										<input type="password" className="form-control" placeholder="Password" value={password} onChange={handlePassword} required />
 									</div>
 									<div className="input-group mb-3">
 										<span className="input-group-addon"><i className="fa fa-address-book"></i></span>
-										<input type="text" className="form-control" placeholder="Job Title" value={jobTitle} onChange={handleJobTitle} />
-									</div>
-									<div className="input-group mb-3">
-										<span className="input-group-addon"><i className="fa fa-address-book"></i></span>
-										<input type="text" className="form-control" placeholder="Phone Number" value={number} onChange={handleNumber} />
-									</div>
-									<div className="input-group mb-3">
-										<span className="input-group-addon"><i className="fa fa-address-book"></i></span>
-										<input type="text" className="form-control" placeholder="Street Address" value={streetAddress} onChange={handleStreetAddress} />
-									</div>
-									<div className="input-group mb-3">
-										<span className="input-group-addon"><i className="fa fa-address-book"></i></span>
-										<input type="text" className="form-control" placeholder="City" value={city} onChange={handleCity} />
-									</div>
-									<div className="input-group mb-3">
-										<span className="input-group-addon"><i className="fa fa-address-book"></i></span>
-										<input type="text" className="form-control" placeholder="State" value={state} onChange={handleState} />
-									</div>
-									<div className="input-group mb-3">
-										<span className="input-group-addon"><i className="fa fa-address-book"></i></span>
-										<input type="text" className="form-control" placeholder="Zip Code" value={zipCode} onChange={handleZipCode} />
+										<input type="date" className="form-control" placeholder="Birthdate" value={birthdate} onChange={handleBirthdate} />
 									</div>
 									<div className="row">
 										<div className="col-6">
