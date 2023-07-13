@@ -14,6 +14,7 @@ const Signup = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [birthdate, setBirthdate] = useState('');
+	const [location, setLocation] = useState('');
 	const [error, setError] = useState(false);
 
 	// create the 
@@ -42,12 +43,19 @@ const Signup = () => {
 		setBirthdate(e.target.value);
 	};
 
+	const handleLocation = (e) => {
+		// fill in code
+		setLocation(e.target.value);
+	};
+
 	const handleSubmit = (e) => {
 		e.preventDefault(); // at the beginning of a submit function
 
 		const newUser = {
 			fullName,
-			lastName,
+			username,
+			birthdate,
+			location,
 			email,
 			password
 		};
@@ -119,6 +127,10 @@ const Signup = () => {
 									<div className="input-group mb-3">
 										<span className="input-group-addon"><i className="fa fa-address-book"></i></span>
 										<input type="date" className="form-control" placeholder="Birthdate" value={birthdate} onChange={handleBirthdate} />
+									</div>
+									<div className="input-group mb-3">
+										<span className="input-group-addon"><i className="fa fa-address-book"></i></span>
+										<input type="text" className="form-control" placeholder="Location" value={location} onChange={handleLocation} />
 									</div>
 									<div className="row">
 										<div className="col-6">

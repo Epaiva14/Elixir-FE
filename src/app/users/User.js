@@ -19,7 +19,7 @@ export default function User({ user }) {
         <tr>
             <td>{user.firstName}</td>
             <td>{user.lastName}</td>
-            <td>{user.jobTitle}</td>
+            <td>{user.birthdate}</td>
             <td onClick={addUserData}>{user.email}</td>
         </tr>
     )
