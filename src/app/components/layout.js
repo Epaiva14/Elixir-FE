@@ -56,11 +56,11 @@ export default function Layout() {
                                 Trending Recipes
                             </a>
 
-                            <a className="navbar-item" href="/users" >
+                            <a className="navbar-item" href="/users/profile" >
                                 Profile
                             </a>
 
-                            <a className="navbar-item" href="/airlines" >
+                            <a className="navbar-item" href="/search" >
                                 Search
                             </a>
                         </div>
