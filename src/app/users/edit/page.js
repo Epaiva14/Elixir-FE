@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import jwtDecode from 'jwt-decode';
 import handleLogout from '@/app/utils/handleLogout';
+import setAuthToken from '@/app/utils/setAuthToken';
 
 
 export default function EditUser() {
@@ -14,15 +15,12 @@ export default function EditUser() {
 	const [redirect, setRedirect] = useState(false);
 
 	// TODO - Add state for email, number, streetAddress, city
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
-	const [jobTitle, setJobTitle] = useState('');
-	const [number, setNumber] = useState('');
-	const [streetAddress, setStreetAddress] = useState('');
-	const [city, setCity] = useState('');
-	const [state, setState] = useState('');
-	const [zipCode, setZipCode] = useState('');
+	const [fullName, setFullName] = useState('');
+	const [username, setUsername] = useState('');
+	const [location, setLocation] = useState('');
+	const [avatar, setAvatar] = useState('');
+	const [birthdate, setBirthdate] = useState('');
 
 	const expirationTime = new Date(parseInt(localStorage.getItem('expiration')) * 1000);
     let currentTime = Date.now();
@@ -34,50 +32,34 @@ export default function EditUser() {
         router.push('/users/login');
     }
 
-	// create the 
-	const handleFirstName = (e) => {
-		// fill in code
-		setFirstName(e.target.value);
-	};
-
-	const handleLastName = (e) => {
-		// fill in code
-		setLastName(e.target.value);
-	};
-
 	const handleEmail = (e) => {
 		// fill in code
 		setEmail(e.target.value);
 	};
-
-	const handleJobTitle = (e) => {
+	
+	const handleFullName = (e) => {
 		// fill in code
-		setJobTitle(e.target.value);
+		setFullName(e.target.value);
 	};
-
-	const handleNumber = (e) => {
+	
+	const handleUsername = (e) => {
 		// fill in code
-		setNumber(e.target.value);
+		setUsername(e.target.value);
 	};
-
-	const handleStreetAddress = (e) => {
+	
+	const handleLocation = (e) => {
 		// fill in code
-		setStreetAddress(e.target.value);
+		setLocation(e.target.value);
 	};
-
-	const handleCity = (e) => {
+	
+	const handleAvatar = (e) => {
 		// fill in code
-		setCity(e.target.value);
+		setAvatar(e.target.value);
 	};
-
-	const handleState = (e) => {
+	
+	const handleBirthdate = (e) => {
 		// fill in code
-		setState(e.target.value);
-	};
-
-	const handleZipCode = (e) => {
-		// fill in code
-		setZipCode(e.target.value);
+		setBirthdate(e.target.value);
 	};
 
 	const handleSubmit = (e) => {
@@ -87,15 +69,12 @@ export default function EditUser() {
 		// use axios to put to the route
 		// create an object that stores that updated changes
 		const updateUserObject = {
-			firstName,
-			lastName,
 			email,
-			number,
-			jobTitle,
-			streetAddress,
-			city,
-			state,
-			zipCode
+			fullName,
+			username,
+			location,
+			avatar,
+			birthdate
 		};
 		axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/${data._id}`, updateUserObject)
 			.then(response => {
@@ -111,35 +90,32 @@ export default function EditUser() {
 	};
 
 	useEffect(() => {
+        setAuthToken(localStorage.getItem('jwtToken'));
 		if (localStorage.getItem('jwtToken')) {
-			fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/email/${localStorage.getItem('email')}`)
-				.then((res) => res.json())
-				.then((data) => {
-					// data is an object
-					let userData = jwtDecode(localStorage.getItem('jwtToken'));
+			axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/email/${localStorage.getItem('email')}`)
+			.then((response) => {
+				// data is an object
+				let userData = jwtDecode(localStorage.getItem('jwtToken'));
 
-					if (data.user[0].email === userData.email) {
-						setData(data.user[0]);
-						setFirstName(data.user[0].firstName);
-						setLastName(data.user[0].lastName);
-						setEmail(data.user[0].email);
-						setJobTitle(data.user[0].jobTitle);
-						setNumber(data.user[0].number);
-						setStreetAddress(data.user[0].address.streetAddress);
-						setCity(data.user[0].address.city);
-						setState(data.user[0].address.state);
-						setZipCode(data.user[0].address.zipCode);
-						setLoading(false);
-					}
-				})
-				.catch((error) => {
-					console.log(error);
-					router.push('/users/login');
-				});
+				if (response.data.users[0].email === userData.email) {
+					setData(response.data.users[0]);
+					setEmail(response.data.users[0].email);
+					setFullName(response.data.users[0].fullName);
+					setUsername(response.data.users[0].username);
+					setLocation(response.data.users[0].location);
+					setAvatar(response.data.users[0].avatar);
+					setBirthdate(response.data.users[0].birthdate);
+					setLoading(false);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+				router.push('/users/login');
+			});
 		} else {
 			router.push('/users/login');
 		}
-	}, []);
+	}, [router]);
 
 	if (isLoading) return <p>Loading...</p>;
 	if (!data) return <p>No data shown...</p>;
@@ -164,9 +140,9 @@ export default function EditUser() {
 									<img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin" className="rounded-circle p-1 bg-primary" width="110" />
 									<div className="mt-3">
 										{/* TODO - Update with state name, job title, city, state */}
-										<h4>{data.firstName} {data.lastName}</h4>
-										<p className="text-secondary mb-1">{data.jobTitle}</p>
-										<p className="text-muted font-size-sm">{data.address.city}, {data.address.state}</p>
+										<h4>{data.fullName}</h4>
+										<p className="text-secondary mb-1">{data.username}</p>
+										<p className="text-muted font-size-sm">{data.location}</p>
 										<button className="btn btn-primary">Follow</button>
 										<button className="btn btn-outline-primary">Message</button>
 									</div>
@@ -203,22 +179,6 @@ export default function EditUser() {
 							<form className="card-body" onSubmit={handleSubmit}>
 								<div className="row mb-3">
 									<div className="col-sm-3">
-										<h6 className="mb-0">First Name</h6>
-									</div>
-									<div className="col-sm-9 text-secondary">
-										<input type="text" className="form-control" value={firstName} onChange={handleFirstName} />
-									</div>
-								</div>
-								<div className="row mb-3">
-									<div className="col-sm-3">
-										<h6 className="mb-0">Last Name</h6>
-									</div>
-									<div className="col-sm-9 text-secondary">
-										<input type="text" className="form-control" value={lastName} onChange={handleLastName} />
-									</div>
-								</div>
-								<div className="row mb-3">
-									<div className="col-sm-3">
 										<h6 className="mb-0">Email</h6>
 									</div>
 									<div className="col-sm-9 text-secondary">
@@ -227,58 +187,42 @@ export default function EditUser() {
 								</div>
 								<div className="row mb-3">
 									<div className="col-sm-3">
-										<h6 className="mb-0">Job Title</h6>
+										<h6 className="mb-0">Full Name</h6>
 									</div>
 									<div className="col-sm-9 text-secondary">
-										<input type="text" className="form-control" value={jobTitle} onChange={handleJobTitle} />
+										<input type="text" className="form-control" value={fullName} onChange={handleFullName} />
 									</div>
 								</div>
 								<div className="row mb-3">
 									<div className="col-sm-3">
-										<h6 className="mb-0">Phone</h6>
+										<h6 className="mb-0">Username</h6>
 									</div>
 									<div className="col-sm-9 text-secondary">
-										<input type="text" className="form-control" value={number} onChange={handleNumber} />
+										<input type="text" className="form-control" value={username} onChange={handleUsername} />
 									</div>
 								</div>
 								<div className="row mb-3">
 									<div className="col-sm-3">
-										<h6 className="mb-0">Mobile</h6>
+										<h6 className="mb-0">Location</h6>
 									</div>
 									<div className="col-sm-9 text-secondary">
-										<input type="text" className="form-control" value={number} onChange={handleNumber} />
+										<input type="text" className="form-control" value={location} onChange={handleLocation} />
 									</div>
 								</div>
 								<div className="row mb-3">
 									<div className="col-sm-3">
-										<h6 className="mb-0">Street Address</h6>
+										<h6 className="mb-0">Avatar</h6>
 									</div>
 									<div className="col-sm-9 text-secondary">
-										<input type="text" className="form-control" value={streetAddress} onChange={handleStreetAddress} />
+										<input type="text" className="form-control" value={avatar} onChange={handleAvatar} />
 									</div>
 								</div>
 								<div className="row mb-3">
 									<div className="col-sm-3">
-										<h6 className="mb-0">City</h6>
+										<h6 className="mb-0">Birthdate</h6>
 									</div>
 									<div className="col-sm-9 text-secondary">
-										<input type="text" className="form-control" value={city} onChange={handleCity} />
-									</div>
-								</div>
-								<div className="row mb-3">
-									<div className="col-sm-3">
-										<h6 className="mb-0">State</h6>
-									</div>
-									<div className="col-sm-9 text-secondary">
-										<input type="text" className="form-control" value={state} onChange={handleState} />
-									</div>
-								</div>
-								<div className="row mb-3">
-									<div className="col-sm-3">
-										<h6 className="mb-0">ZipCode</h6>
-									</div>
-									<div className="col-sm-9 text-secondary">
-										<input type="text" className="form-control" value={zipCode} onChange={handleZipCode} />
+										<input type="datetime-local" className="form-control" value={birthdate} onChange={handleBirthdate} />
 									</div>
 								</div>
 								<div className="row">
