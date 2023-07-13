@@ -7,9 +7,6 @@ import jwtDecode from 'jwt-decode';
 import handleLogout from '@/app/utils/handleLogout';
 import setAuthToken from '@/app/utils/setAuthToken';
 
-import setAuthToken from '@/app/utils/setAuthToken';
-
-
 export default function EditUser() {
 	const router = useRouter();
 	const [data, setData] = useState(null);
