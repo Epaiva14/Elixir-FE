@@ -36,8 +36,8 @@ export default function RecipePreviewContainer() {
                         </div>
                     </div>
                 </div>
-                    <div class="overlay">
-                        <div class="content1">
+                    <div className="overlay">
+                        <div className="content1">
                             <p>
                                 1. You put your left leg in 
                                 <br /> 
