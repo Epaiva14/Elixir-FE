@@ -15,14 +15,18 @@ export default function Profile() {
     const [data, setData] = useState(null);
     const [isLoading, setLoading] = useState(true);
 
-    const expirationTime = new Date(parseInt(localStorage.getItem('expiration')) * 1000);
-    let currentTime = Date.now();
 
-    // make a condition that compares exp and current time
-    if (currentTime >= expirationTime) {
-        handleLogout();
-        alert('Session has ended. Please login to continue.');
-        router.push('/users/login');
+	if (typeof window !== 'undefined') {
+        const expirationTime = new Date(localStorage.getItem('expiration') * 1000);
+        let currentTime = Date.now();
+        console.log(expirationTime, localStorage);
+
+        // make a condition that compares exp and current time
+        if (currentTime >= expirationTime) {
+            handleLogout();
+            alert('Session has ended. Please login to continue.');
+            router.push('/users/login');
+        }
     }
 
     useEffect(() => {
