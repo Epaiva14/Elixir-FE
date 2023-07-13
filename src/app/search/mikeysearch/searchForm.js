@@ -5,6 +5,14 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function Search() {
+    const resultStyle = {
+        color: 'orange'
+    }
+
+    const paramStyle = {
+        color: 'green'
+    }
+
     const router = useRouter();
     const [redirect, setRedirect] = useState(false);
     const [error, setError] = useState(false);
@@ -14,6 +22,7 @@ export default function Search() {
     const [list, setList] = useState([]);
     const [ingredients, setIngredients] = useState();
     const [selectedParams, setSelectedParams] = useState([]);
+    const [searchResults, setSearchResults] = useState();
     
     const handleChange = (e) => {
         const results = ingredients.filter(ingredient => {
@@ -51,7 +60,7 @@ export default function Search() {
 
         axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/search`, { selectedParams })
         .then(response => {
-            console.log(response.data);
+            setSearchResults(response.data);
             setRedirect(true);
         })
         .catch(err => {
@@ -68,7 +77,12 @@ export default function Search() {
         });
     }, []);
 
-    if (redirect) { router.push('/search/results'); }
+    // if (redirect) {
+    //     router.push({
+    //         path: '/search/mikeysearch/results',
+    //         state: { searchResults: searchResults }
+    //     });
+    // }
     if (error) {
         return (
             <>
@@ -78,7 +92,6 @@ export default function Search() {
         );
     }
     if (isLoading) return <p>Loading...</p>;
-    // if (!data) return <p>No data shown...</p>;
 
     return (
         <>
@@ -88,7 +101,7 @@ export default function Search() {
             </form>
             <ul>
                 {(selectedParams === '' ? '' : selectedParams.map(param => {
-                    return <li key={param._id}>{param.name} <a onClick={() => {removeParam(param)}}>X</a></li>
+                    return <li style={paramStyle} key={param._id}>{param.name} <a onClick={() => {removeParam(param)}}>X</a></li>
                 }))}
             </ul>
             <ul>
@@ -96,6 +109,9 @@ export default function Search() {
                     return <li onClick={() => {addParam(ingredient)}} key={ingredient._id}>{ingredient.name}</li>
                 }))}
             </ul>
+            {!searchResults ? '' : searchResults.recipes.map(recipe => {
+                return <div style={resultStyle} key={recipe._id}>{recipe.name}</div>
+            })}
         </>
     );
 }
