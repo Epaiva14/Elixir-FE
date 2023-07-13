@@ -11,7 +11,7 @@ export default function Layout({ children }) {
         left: 0,
         width: '100%',
         zIndex: 2,
-        backgroundColor: 'rgba(0,0,0,0.1);',
+        backgroundColor: 'rgba(0,0,0,0.1)',
         justifyContent: 'center',
     }
 
