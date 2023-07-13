@@ -47,9 +47,9 @@ const Signup = () => {
 
 		const newUser = {
 			fullName,
-			lastName,
 			email,
-			password
+			password,
+			birthdate
 		};
 		axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/signup`, newUser)
 			.then(response => {
