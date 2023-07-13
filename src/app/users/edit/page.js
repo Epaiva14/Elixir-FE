@@ -7,6 +7,8 @@ import jwtDecode from 'jwt-decode';
 import handleLogout from '@/app/utils/handleLogout';
 import setAuthToken from '@/app/utils/setAuthToken';
 
+import setAuthToken from '@/app/utils/setAuthToken';
+
 
 export default function EditUser() {
 	const router = useRouter();
@@ -23,14 +25,14 @@ export default function EditUser() {
 	const [birthdate, setBirthdate] = useState('');
 
 	const expirationTime = new Date(parseInt(localStorage.getItem('expiration')) * 1000);
-    let currentTime = Date.now();
+	let currentTime = Date.now();
 
-    // make a condition that compares exp and current time
-    if (currentTime >= expirationTime) {
-        handleLogout();
-        alert('Session has ended. Please login to continue.');
-        router.push('/users/login');
-    }
+	// make a condition that compares exp and current time
+	if (currentTime >= expirationTime) {
+		handleLogout();
+		alert('Session has ended. Please login to continue.');
+		router.push('/users/login');
+	}
 
 	const handleEmail = (e) => {
 		// fill in code

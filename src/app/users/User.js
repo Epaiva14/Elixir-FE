@@ -17,8 +17,8 @@ export default function User({ user }) {
 
     return (
         <tr>
-            <td>{user.firstName}</td>
-            <td>{user.lastName}</td>
+            <td>{user.fullName}</td>
+            {/* <td>{user.lastName}</td> */}
             <td>{user.birthdate}</td>
             <td onClick={addUserData}>{user.email}</td>
         </tr>
