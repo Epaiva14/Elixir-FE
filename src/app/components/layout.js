@@ -49,19 +49,19 @@ export default function Layout() {
 
                         <div className="navbar-start is-centered" >
                             <a className="navbar-item" href='/' >
-                                My Drinks
+                                Home Feed
+                            </a>
+
+                            <a className="navbar-item" href="/trending" >
+                                Trending Recipes
                             </a>
 
                             <a className="navbar-item" href="/users" >
-                                Trending
-                            </a>
-
-                            <a className="navbar-item" href="/commerce" >
-                                Following
+                                Profile
                             </a>
 
                             <a className="navbar-item" href="/airlines" >
-                                Profile
+                                Search
                             </a>
                         </div>
 
