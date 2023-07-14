@@ -69,20 +69,20 @@ export default function Search() {
     }
     
     useEffect(() => {
+        if (redirect) {
+            // console.log(searchResults);
+            localStorage.setItem('searchResults', JSON.stringify(searchResults.recipes));
+            // router.replace('/search/results', {state: searchResults});
+            router.push('/search/results');
+        }
+
         fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ingredients`)
         .then((res) => res.json())
         .then((result) => {
             setIngredients(result.ingredients);
             setIsLoading(false);
         });
-    }, []);
-
-    // if (redirect) {
-    //     router.push({ 
-    //         // pathname: '/mikeysearch/results',
-    //         // state: { searchResults }
-    //     });
-    // }
+    }, [redirect, router, searchResults]);
     
     if (error) {
         return (
@@ -94,10 +94,12 @@ export default function Search() {
     }
     if (isLoading) return <p>Loading...</p>;
     
-    if (redirect) {
-        router.replace('/search/results', {state: searchResults});
-        console.log('search results', searchResults)
-    }
+    // if (redirect) {
+    //     console.log(searchResults);
+    //     localStorage.setItem('searchResults', JSON.stringify(searchResults.recipes));
+    //     // router.replace('/search/results', {state: searchResults});
+    //     router.push('/search/results');
+    // }
     return (
         <>
             <form onSubmit={handleSubmit}>
@@ -114,9 +116,6 @@ export default function Search() {
                     return <li onClick={() => {addParam(ingredient)}} key={ingredient._id}>{ingredient.name}</li>
                 }))}
             </ul>
-            {!searchResults ? '' : searchResults.recipes.map(recipe => {
-                return <div style={resultStyle} key={recipe._id}>{recipe.name}</div>
-            })}
         </>
     );
 }
