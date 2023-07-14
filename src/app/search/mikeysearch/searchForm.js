@@ -78,11 +78,12 @@ export default function Search() {
     }, []);
 
     // if (redirect) {
-    //     router.push({
-    //         path: '/search/mikeysearch/results',
-    //         state: { searchResults: searchResults }
+    //     router.push({ 
+    //         // pathname: '/mikeysearch/results',
+    //         // state: { searchResults }
     //     });
     // }
+    
     if (error) {
         return (
             <>
@@ -92,7 +93,11 @@ export default function Search() {
         );
     }
     if (isLoading) return <p>Loading...</p>;
-
+    
+    if (redirect) {
+        router.replace('/search/results', {state: searchResults});
+        console.log('search results', searchResults)
+    }
     return (
         <>
             <form onSubmit={handleSubmit}>

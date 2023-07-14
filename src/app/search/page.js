@@ -1,7 +1,7 @@
 'use client';
 import 'bulma/css/bulma.min.css';
 import Image from 'next/image';
-import styles from '../page.module.css';
+// import styles from '../page.module.css';
 import { useEffect, useState } from 'react';
 import setAuthToken from '../utils/setAuthToken';
 import Layout from '../components/layout'
