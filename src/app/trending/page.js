@@ -12,7 +12,7 @@ export default function Trending() {
   const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/trending`)
+        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/trending/20`)
             .then((res) => res.json())
             .then((data) => {
                 setRecipes(data.recipes);
