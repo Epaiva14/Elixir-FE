@@ -32,14 +32,16 @@ export default function Home() {
 
     return (
         <>
-            <Layout />
+            <Layout>
 
-            {/* <Search Form /> */}
-            {/* <Search Form /> */}
-            {/* <Search Form /> */}
-            {/* <Search Form /> */}
+                {/* <Search Form /> */}
+                {/* <Search Form /> */}
+                {/* <Search Form /> */}
+                {/* <Search Form /> */}
 
-            <BackgroundImage />
+                <BackgroundImage />
+
+            </Layout>
         </>
     )
 }
