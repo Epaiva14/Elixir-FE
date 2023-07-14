@@ -1,5 +1,4 @@
 "use client";
-import 'bootstrap/dist/css/bootstrap.css';
 import { useState, useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
 import { useRouter } from 'next/navigation';

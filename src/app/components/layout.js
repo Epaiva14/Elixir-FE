@@ -1,6 +1,6 @@
 'use client'
 import '../css/bulma.css';
-import 'bulma/css/bulma.min.css';
+// import 'bulma/css/bulma.min.css';
 
 export default function Layout({ children }) {
 
