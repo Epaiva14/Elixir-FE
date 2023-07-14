@@ -10,5 +10,9 @@ export default function BackgroundImage() {
         zIndex: 1
     };
 
-    return <div style={divStyle}></div>;
+    return <div style={divStyle}>
+
+
+
+    </div>;
 };

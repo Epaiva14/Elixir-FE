@@ -23,22 +23,12 @@ export default function Layout({ children }) {
         color: 'white',
     };
 
-    // const footerStyle = {
-    //     position: 'fixed',
-    //     marginTop: 'auto',
-    //     padding: '0rem 10.5rem 3rem',
-    //     backgroundColor: 'rgba(0,0,0,0.1);',
-    //     zIndex: 10
-
-
-    // };
-
     const footerStyle = {
-        position: 'fixed',
+        position: 'relative',
         bottom: 0,
         left: 0,
         width: '100%',
-        backgroundColor: 'transparent',
+        backgroundColor: 'rgba(0,0,0,0.1);',
         padding: '1rem',
         color: 'white',
         zIndex: 10,

@@ -53,9 +53,9 @@ const Signup = () => {
 
 		const newUser = {
 			fullName,
-      username,
-      birthdate,
-      location
+			username,
+			birthdate,
+			location,
 			email,
 			password
 		};
