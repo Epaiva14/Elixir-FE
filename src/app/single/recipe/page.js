@@ -12,7 +12,6 @@ export default function SingleRecipe() {
     return (
         <>
             <Layout>
-
                 <SingleTemplate />
 
             </Layout>

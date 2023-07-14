@@ -1,4 +1,6 @@
 'use client';
+import '../css/bulma.css';
+import 'bulma/css/bulma.min.css';
 import { useEffect, useState } from 'react';
 import Layout from '../components/layout'
 import BackgroundImage from '../components/backgroundImage'
@@ -28,11 +30,13 @@ export default function Trending() {
 
     return (
         <>
-            <Layout />
+            <Layout>
 
-            {/* <Card /> */}
-            <RecipePreviewContainer />
-            <BackgroundImage />
+
+                <RecipePreviewContainer />
+                <BackgroundImage />
+            </Layout>
+
         </>
     )
 }
