@@ -6,6 +6,19 @@
 
 /* .recipe-on-hover {} */
 
+.recipe-style {
+
+    scale: .8;
+    position: absolute;
+    left: 0;
+    top: 20%;
+    z-index: 2;
+    justify-content: center;
+    max-width: 50%;
+    border-radius: 10px;
+    margin-left: 25%; 
+
+}
 
 .overlay {
     position: absolute;
@@ -24,7 +37,7 @@
 
 .overlay:hover {
     opacity: 0.9;
-}   
+}
 
 .content1 {
     color: white;
@@ -33,6 +46,7 @@
     z-index: 1;
     text-align: justify;
 }
+
 /* 
 .recipe-on-hover:hover {
     opacity: 0;
