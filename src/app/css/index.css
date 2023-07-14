@@ -6,6 +6,20 @@
 
 /* .recipe-on-hover {} */
 
+.recipe-style {
+
+    scale: .8;
+    position: absolute;
+    left: 0;
+    top: 20%;
+    z-index: 2;
+    justify-content: center;
+    max-width: 50%;
+    border-radius: 10px;
+    margin-left: 25%; 
+    max-width: 350px;
+
+}
 
 .overlay {
     position: absolute;
@@ -20,19 +34,33 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    border-radius: 2px;
 }
 
 .overlay:hover {
-    opacity: 0.9;
-}   
+    opacity: 0.98;
+}
 
 .content1 {
     color: white;
+    font-weight: bold;
     max-width: 100%;
-    padding: 0 20px;
     z-index: 1;
     text-align: justify;
 }
+
+.overlay-text-heading {
+    transform: translate(0, -20%); 
+    font-size: 30px; 
+}
+
+.read-more {
+    font-style: italic;
+    text-align: right;
+    font-weight: lighter;
+    transform: translate(0, 60%);
+}
+
 /* 
 .recipe-on-hover:hover {
     opacity: 0;
