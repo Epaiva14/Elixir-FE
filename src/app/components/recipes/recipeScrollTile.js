@@ -41,7 +41,7 @@ export default function RecipeScrollTile({ recipes }) {
         <>
             <main>
                 <div className='tile is-ancestor is-4 scroll-tile'>
-                    <div className='tile is-parent box is-vertical'>
+                    <div className='tile is-parent box is-vertical scroll-func'>
                         {renderScrollTile()}
                     </div>
                 </div>
