@@ -24,9 +24,9 @@ export default function RecipePreviewContainer({ recipe }) {
 
     const ingredients = [];
     for (let i = 0; i < 4; i++) {
-        // MIKEY HERE - was getting an error on ingredients.push on recipes with less than 4 ingredients so added this if statement
         if (i < recipe.ingredients.length) {
-            ingredients.push(recipe.ingredients[i].name);
+            ingredients.push(`${i + 1}. ${recipe.ingredients[i].name}`);
+            ingredients.push(<br />);
         }
     }
 
@@ -57,15 +57,7 @@ export default function RecipePreviewContainer({ recipe }) {
                                 <em><h2>{recipe.glassType ? recipeGlassTypeText : null}</h2></em>
                                 <hr />
                                 <p>
-                                    1. {ingredients[0]}
-                                    <br />
-                                    2. {ingredients[1]}
-                                    <br />
-                                    3. {ingredients[2]}
-                                    <br />
-                                    4. {ingredients[3]}
-                                    <br />
-                                    {/* MIKEY HERE - changed <div> to <span>, was getting error message that a <div> can't be contained by a <p> */}
+                                    {ingredients}
                                     <span className='read-more'>...read more</span>
                                 </p>
                             </div>
