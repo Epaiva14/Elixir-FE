@@ -61,21 +61,39 @@ export default function Profile() {
         <>
             <Layout>
                 <div className='divStyle'>
-
                     <div className='profileSection'>
 
                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
-                        <h4>{data.username}</h4>
-                        <p className="text-secondary mb-1">{data.birthdate}</p>
-                        <p className="text-muted font-size-sm">{data.email}</p>
+                        <h2 className='username'>{data.username}</h2>
                         <button className="btn btn-primary">Follow</button>
+
                         <button className="btn btn-outline-primary">Message</button>
+                        <br />
+                        <br />
+
+
+                        <a className="btn btn-info editButton" target="__blank" href="/users/edit">Edit</a>
+
+                        <a className="breadcrumb-item logoutButton" onClick={handleLogout}><a href="/users/login">Logout</a></a>
 
                     </div>
 
+                    <div className="profileInfo">
+                        <h6 className="mb-0"><strong>Full Name: </strong>{data.fullName} </h6>
+                        <p className="text-secondary mb-1"><strong>Birthday:</strong> {data.birthdate}</p>
+                        <p className="text-muted font-size-sm"><strong>Email: </strong>{data.email}</p>
+                        <p className="text-muted font-size-sm"><strong>Residence: </strong>{data.location}</p>
+
+                    </div>
+
+                    <h2 className='myRecipeHeader'>My Recipes</h2>
+
+                    <div className='profileRecipes'>
+
+
+
+                    </div>
                 </div>
-
-
 
             </Layout>
         </>
@@ -87,11 +105,7 @@ export default function Profile() {
 
 // <div className="container">
 //                     <div className="main-body">
-//                         <nav aria-label="breadcrumb" className="main-breadcrumb">
-//                             <ol className="breadcrumb">
-//                                 <li className="breadcrumb-item" onClick={handleLogout}><a href="">Logout</a></li>
-//                             </ol>
-//                         </nav>
+//                       
 //                         <div className="row gutters-sm">
 //                             <div className="col-md-4 mb-3">
 //                                 <div className="card">
@@ -104,13 +118,7 @@ export default function Profile() {
 //                                     width="150"
 //                                     height={"150"}
 //                                     /> */}
-//                                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
-//                                             <div className="mt-3">
-//                                                 <h4>{data.username}</h4>
-//                                                 {/* <p className="text-secondary mb-1">{data.birthdate}</p> */}
-//                                                 {/* <p className="text-muted font-size-sm">{pastecodehere}</p> */}
-//                                                 <button className="btn btn-primary">Follow</button>
-//                                                 <button className="btn btn-outline-primary">Message</button>
+//                                             
 //                                             </div>
 //                                         </div>
 //                                     </div>
