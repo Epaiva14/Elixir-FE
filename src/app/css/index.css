@@ -6,19 +6,43 @@
 
 /* .recipe-on-hover {} */
 
+.scroll-tile {
+    /* background-color: white; */
+    max-width: 620px;
+
+    background-color: rgba(0,0,0, 0);
+    position: absolute;
+    top: 22%;
+    transform: translate(20%, 0);
+    z-index: 2;
+    border-radius: 10px;
+    max-height: 600px;
+    align-self: center;
+    /* display: flex; */
+    /* justify-content: flex-start; */
+}
+
+
+
 .recipe-style {
 
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
     scale: .8;
-    position: absolute;
-    left: 0;
-    top: 20%;
-    z-index: 2;
-    justify-content: center;
+    position: relative;
+    z-index: 3;
     max-width: 50%;
     border-radius: 10px;
-    margin-left: 25%; 
-    max-width: 350px;
+    min-width: 250px;
+    max-width: 250px;
+    transition: transform .5s ease-in-out;
 
+}
+
+
+.recipe-style:hover {
+    transform: translate(0, -5%);
 }
 
 .overlay {
