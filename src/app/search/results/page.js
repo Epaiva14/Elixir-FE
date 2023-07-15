@@ -1,20 +1,29 @@
 'use client';
 import Layout from '../../components/layout';
 import BackgroundImage from '../../components/backgroundImage';
-import SearchForm from '../searchForm';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
+export default function SearchResults() {
+    const router = useRouter();
+    const [recipeRedirect, setRecipeRedirect] = useState(false);
+    let searchResults = JSON.parse(localStorage.getItem('searchResults'));
+    
+    useEffect(() => {
+        if (recipeRedirect) {
+            localStorage.setItem('recipeId', JSON.stringify(recipeRedirect));
+            router.push('/single/recipe');
+        }
+    }, [recipeRedirect, router]);
 
-export default function Search() {
-    const [searchResults, setSearchResults] = useState(JSON.parse(localStorage.getItem('searchResults')));
-    // console.log(searchResults);
     return (
         <>
-            {/* <Layout /> */}
-            {searchResults ? searchResults.map(recipe => {
-                return <div key={recipe._id}>{recipe.name}</div>
-            }) : ''}
-            {/* <BackgroundImage /> */}
+            {/* <Layout> */}
+                {searchResults ? searchResults.map(recipe => {
+                    return <div key={recipe._id} onClick={() => setRecipeRedirect(recipe._id)}>{recipe.name}</div>
+                }) : ''}
+                {/* <BackgroundImage />
+            </Layout> */}
         </>
     );
 }

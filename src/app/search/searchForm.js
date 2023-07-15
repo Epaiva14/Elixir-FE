@@ -1,8 +1,10 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Layout from '../components/layout';
+import BackgroundImage from '../components/backgroundImage';
 
 export default function Search() {
     const paramStyle = {
@@ -43,54 +45,61 @@ export default function Search() {
     const [recipes, setRecipes] = useState();
     const [users, setUsers] = useState();
 
-    const updateIngredientOptions = () => {
-        if(ingredientsLoading) {
-            return setIngredientsList(['Loading...']);
-        }
-        const results = ingredients.filter(ingredient => {
-            if (query === '') return true;
+    const updateIngredientOptions = useCallback((newQuery) => {
+        if(newQuery) {
+            if(ingredientsLoading) {
+                return setIngredientsList(['Loading...']);
+            }
+            const results = ingredients.filter(ingredient => {
+                if (newQuery === '') return true;
 
-            let isAlreadySelected = false;
-            selectedParams.forEach(param => {
-                if (ingredient._id === param._id) isAlreadySelected = true;
+                let isAlreadySelected = false;
+                selectedParams.forEach(param => {
+                    if (ingredient._id === param._id) isAlreadySelected = true;
+                });
+                if (isAlreadySelected) return false;
+                
+                return ingredient.name.toLowerCase().includes(newQuery.toLowerCase());
             });
-            if (isAlreadySelected) return false;
-            
-            return ingredient.name.toLowerCase().includes(query.toLowerCase());
-        });
 
-        setIngredientsList(results);
-    }
-
-    const updateRecipeOptions = () => {
-        if(recipesLoading) {
-            return setRecipesList(['Loading...']);
+            setIngredientsList(results);
         }
-        const results = recipes.filter(recipe => {
-            if (query === '') return true;
-            return recipe.name.toLowerCase().includes(query.toLowerCase());
-        });
+    }, [ingredients, selectedParams, ingredientsLoading]);
 
-        setRecipesList(results);
-    }
+    const updateRecipeOptions = useCallback((newQuery) => {
+        if(newQuery) {
+            if(recipesLoading) {
+                return setRecipesList(['Loading...']);
+            }
+            const results = recipes.filter(recipe => {
+                if (newQuery === '') return true;
+                return recipe.name.toLowerCase().includes(newQuery.toLowerCase());
+            });
 
-    const updateUserOptions = () => {
-        if(usersLoading) {
-            return setUsersList(['Loading...']);
+            setRecipesList(results);
         }
-        const results = users.filter(user => {
-            if (query === '') return true;
-            return user.username.toLowerCase().includes(query.toLowerCase());
-        });
+    }, [recipes, recipesLoading]);
 
-        setUsersList(results);
-    }
+    const updateUserOptions = useCallback((newQuery) => {
+        if(newQuery) {
+            if(usersLoading) {
+                return setUsersList(['Loading...']);
+            }
+            const results = users.filter(user => {
+                if (newQuery === '') return true;
+                return user.username.toLowerCase().includes(newQuery.toLowerCase());
+            });
+
+            setUsersList(results);
+        }
+    }, [users, usersLoading]);
     
     const handleChange = (e) => {
-        setQuery(e.target.value);
-        updateIngredientOptions();
-        updateRecipeOptions();
-        updateUserOptions();
+        const newQuery = e.target.value;
+        setQuery(newQuery);
+        updateIngredientOptions(newQuery);
+        updateRecipeOptions(newQuery);
+        updateUserOptions(newQuery);
     }
 
     const addParam = (ingredient) => {
@@ -165,6 +174,12 @@ export default function Search() {
         });
     }, []);
 
+    useEffect(() => {
+        updateIngredientOptions(query);
+        updateRecipeOptions(query);
+        updateUserOptions(query);
+    }, [selectedParams, query, updateIngredientOptions, updateRecipeOptions, updateUserOptions]);
+
     
     if (error) {
         return (
@@ -177,40 +192,43 @@ export default function Search() {
     
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <input type="search" value={query} onChange={handleChange} />
-                <button type="submit">Search</button>
-            </form>
-            <ul style={paramStyle}>
-                {(selectedParams === '' ? '' : selectedParams.map(param => {
-                    return <li key={param._id}>{param.name} <a onClick={() => {
-                        removeParam(param);
-                        updateIngredientOptions();
-                    }}>X</a></li>
-                }))}
-            </ul>
-            <ul style={ingredientStyle}>
-                {(query === '' ? '' : ingredientsList.map(ingredient => {
-                    return (ingredient === 'Loading...') ? <li key='loading'>Ingredients Loading...</li> : <li key={ingredient._id} onClick={() => {
-                        addParam(ingredient);
-                        updateIngredientOptions();
-                    }}>{ingredient.name}</li>
-                }))}
-            </ul>
-            <ul style={recipeStyle}>
-                {( query === '' ? '' : recipesList.map(recipe => {
-                    return (recipe === 'Loading...') ? <li key='loading'>Recipes Loading...</li> : <li key={recipe._id} onClick={() => {
-                        setRecipeRedirect(recipe._id);
-                    }}>{recipe.name}</li>
-                }))}
-            </ul>
-            <ul style={userStyle}>
-                {( query === '' ? '' : usersList.map(user => {
-                    return (user === 'Loading...') ? <li key='loading'>Users Loading...</li> : <li key={user._id} onClick={() => {
-                        setUserRedirect(user._id);
-                    }}>{user.username}</li>
-                }))}
-            </ul>
+            {/* <Layout> */}
+                <form onSubmit={handleSubmit}>
+                    <input type="search" value={query} onChange={handleChange} />
+                    <button type="submit">Search</button>
+                </form>
+                <ul style={paramStyle}>
+                    {(selectedParams === '' ? '' : selectedParams.map(param => {
+                        return <li key={param._id}>{param.name} <a onClick={() => {
+                            removeParam(param);
+                            updateIngredientOptions();
+                        }}>X</a></li>
+                    }))}
+                </ul>
+                <ul style={ingredientStyle}>
+                    {(query === '' ? '' : ingredientsList.map(ingredient => {
+                        return (ingredient === 'Loading...') ? <li key='loading'>Ingredients Loading...</li> : <li key={ingredient._id} onClick={() => {
+                            addParam(ingredient);
+                            updateIngredientOptions();
+                        }}>{ingredient.name}</li>
+                    }))}
+                </ul>
+                <ul style={recipeStyle}>
+                    {( query === '' ? '' : recipesList.map(recipe => {
+                        return (recipe === 'Loading...') ? <li key='loading'>Recipes Loading...</li> : <li key={recipe._id} onClick={() => {
+                            setRecipeRedirect(recipe._id);
+                        }}>{recipe.name}</li>
+                    }))}
+                </ul>
+                <ul style={userStyle}>
+                    {( query === '' ? '' : usersList.map(user => {
+                        return (user === 'Loading...') ? <li key='loading'>Users Loading...</li> : <li key={user._id} onClick={() => {
+                            setUserRedirect(user._id);
+                        }}>{user.username}</li>
+                    }))}
+                </ul>
+                {/* <BackgroundImage />
+            </Layout> */}
         </>
     );
 }
