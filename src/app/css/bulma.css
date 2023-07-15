@@ -442,7 +442,7 @@ input,
 optgroup,
 select,
 textarea {
-    font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif, 'Big Shoulders Display', cursive;
 }
 
 code,
@@ -13053,5 +13053,113 @@ print {
     background-color: #fafafa;
     padding: 3rem 1.5rem 6rem;
 }
+
+.divStyle {
+    background-image: url('https://i.imgur.com/QuJqHP1.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height: 100vh;
+    z-index: 1;
+    margin: auto;
+
+}
+
+
+.navStyle {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.1);
+    justify-content: center;
+}
+
+.navItemsStyle {
+    margin-left: 22.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+
+.profileSection {
+    border-radius: 15px;
+    border-width: thick;
+    border-style: double;
+    padding: 0rem 3rem 0rem 3rem;
+    margin-top: 10%;
+    margin-left: 50%;
+    position: absolute;
+
+}
+
+.profileInfo {
+    border-radius: 15px;
+    border-width: thick;
+    border-style: double;
+    padding: 3rem;
+    margin-top: 10%;
+    margin-left: 20%;
+    position: absolute;
+}
+
+.profileRecipes {
+    border-radius: 15px;
+    border-width: thick;
+    border-top-style: double;
+    width: 100%;
+    margin-top: 35%;
+    position: absolute;
+}
+
+.username {
+    font-size: x-large;
+}
+
+.myRecipeHeader {
+    position: absolute;
+    margin-top: 32%;
+    font-size: xx-large;
+}
+
+.editButton {
+    border-radius: 5px;
+    border-width: thin;
+    border-style: solid;
+    background-color: white;
+    padding: 1px;
+
+}
+
+.logoutButton {
+    margin-left: 1rem;
+    border-radius: 5px;
+    border-width: thin;
+    border-style: solid;
+    background-color: white;
+    padding: 1px;
+}
+
+.footerStyle {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 0rem;
+    color: rosybrown;
+    z-index: 1;
+}
+
+
+
+.linkStyle {
+    color: #F0D7CF;
+}
+
+
+
 
 /*# sourceMappingURL=bulma.css.map */
