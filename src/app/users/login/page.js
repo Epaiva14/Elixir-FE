@@ -5,6 +5,8 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import setAuthToken from '@/app/utils/setAuthToken';
 import jwtDecode from 'jwt-decode';
+import BackgroundImage from '@/app/components/backgroundImage';
+import '../../css/bulma.css';
 
 export default function Login() {
     const router = useRouter();
@@ -55,9 +57,9 @@ export default function Login() {
                             <br />
                             <h2>Login</h2>
                             <p>Sign In to your account</p>
-                            <a href="/users/login" type="button" className="btn btn-primary active mt-3">Login</a>
+                            <a href="/users/login" type="button" className="button is-outlined">Login</a>
                             <span>  </span>
-                            <a href="/users/signup" type="button" className="btn btn-secondary active mt-3">Signup</a>
+                            <a href="/users/signup" type="button" className="button is-outlined">Signup</a>
                         </div>
                     </div>
                 </div>
@@ -66,48 +68,52 @@ export default function Login() {
     }
 
     return (
-        <div className="container">
-            <br />
-            <br />
-            <br />
-            <br />
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card-group mb-0">
-                        <div className="card p-4">
-                            <form className="card-body" onSubmit={handleSubmit}>
-                                <h1>Login</h1>
-                                <p className="text-muted">Sign In to your account</p>
-                                <div className="input-group mb-3">
-                                    <span className="input-group-addon"><i className="fa fa-user"></i></span>
-                                    <input type="text" className="form-control" placeholder="Email" value={email} onChange={handleEmail} required />
-                                </div>
-                                <div className="input-group mb-4">
-                                    <span className="input-group-addon"><i className="fa fa-lock"></i></span>
-                                    <input type="password" className="form-control" placeholder="Password" alue={password} onChange={handlePassword} required />
-                                </div>
-                                <div className="row">
-                                    <div className="col-6">
-                                        <button type="submit" className="btn btn-primary px-4">Login</button>
+        <>
+            <BackgroundImage />
+            <div className="columns is-centered">
+                <div className="column is-4">
+                    <div className="login-card card">
+                        <div className='card-header'>
+                            <h1>Sign in to your account</h1>
+                        </div>
+                        <div className="card-content">
+                            <form onSubmit={handleSubmit}>
+                                <div className="field">
+                                    <div className="control has-icons-left is-3">
+                                        <input type="text" className="form-control" placeholder="Email" value={email} onChange={handleEmail} required />
+                                        <span className="icon is-small is-left"><i className="fas fa-envelope"></i></span>
                                     </div>
-                                    <div className="col-6 text-right">
-                                        <button type="button" className="btn btn-link px-0">Forgot password?</button>
+                                </div>
+                                <div className="field">
+                                    <div className="control has-icons-left">
+                                        <span className="icon is-small is-left"><i className="fa fa-lock"></i></span>
+                                        <input type="password" className="form-control" placeholder="Password" value={password} onChange={handlePassword} required />
+                                    </div>
+                                </div>
+                                <div className="card-footer">
+                                    <div className="card-footer-item">
+                                        <button type="submit" className="button is-small login-btn">Login</button>
+                                    </div>
+                                    <div className="card-footer-item">
+                                        <button type="button" className="button is-small is-outlined">Forgot password?</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <div className="card text-white bg-primary py-5 d-md-down-none" style={{ width: "44%" }}>
-                            <div className="card-body text-center">
-                                <div>
-                                    <h2>Sign up</h2>
-                                    <p>Get started now by creating an account.</p>
-                                    <a href="/users/signup" type="button" className="btn btn-primary active mt-3">Register Now!</a>
-                                </div>
+                    </div>
+                </div>
+                <div className="column is-2">
+                    <div className="card">
+                        <div className="card-body text-center">
+                            <div>
+                                <h2>Sign up</h2>
+                                <p>Get started now by creating an account.</p>
+                                <a href="/users/signup" type="button" className="btn btn-primary active mt-3">Register Now!</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

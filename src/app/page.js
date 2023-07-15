@@ -14,7 +14,7 @@ export default function Home() {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/trending/5`)
+    fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/trending/6`)
       .then((res) => res.json())
       .then((data) => {
         setRecipes(data.recipes);
