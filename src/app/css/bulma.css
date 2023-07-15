@@ -13054,4 +13054,60 @@ print {
     padding: 3rem 1.5rem 6rem;
 }
 
+.divStyle {
+    background-image: url('https://i.imgur.com/QuJqHP1.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height: 100vh;
+    zIndex: 1;
+
+}
+
+.profileSection {
+    border-radius: 15px;
+    border-width: thick;
+    border-style: outset;
+    padding-top: 8rem;
+}
+
+
+.navStyle {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.1);
+    justify-content: center;
+}
+
+.navItemsStyle {
+    margin-left: 22.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+
+
+.footerStyle {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 0rem;
+    color: rosybrown;
+    z-index: 1;
+}
+
+
+
+.linkStyle {
+    color: #F0D7CF;
+}
+
+
+
 /*# sourceMappingURL=bulma.css.map */
