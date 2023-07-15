@@ -7,27 +7,28 @@
 /* .recipe-on-hover {} */
 
 .scroll-tile {
-    /* background-color: white; */
+
+
     width: 620px;
     background-color: rgba(0,0,0, 0);
     position: absolute;
-    top: 20%;
+    top: 20.5%;
     left: -5%;
     transform: translate(20%, 0);
     z-index: 2;
     border-radius: 10px;
     max-height: 550px;
     align-self: center;
-    /* display: flex; */
-    /* justify-content: flex-start; */
+
 }
 
 .scroll-func {
+
     overflow-x: hidden;
     overflow-y: auto;
     background-color: #E3E0DE;
-}
 
+}
 
 
 .recipe-style {
@@ -90,6 +91,14 @@
     text-align: right;
     font-weight: lighter;
     transform: translate(0, 60%);
+}
+
+.login-btn {
+    background-color: #E8BA9E;
+}
+
+.login-card {
+    background-color: rgba(0,0,0, 0.2)
 }
 
 /* 
