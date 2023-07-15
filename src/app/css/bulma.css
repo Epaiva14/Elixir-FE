@@ -453,6 +453,9 @@ pre {
 }
 
 body {
+    /* background-image: url('https://i.imgur.com/QuJqHP1.jpg');
+    background-size: cover;
+    background-position: center; */
     color: #4a4a4a;
     font-size: 1em;
     font-weight: 400;
@@ -13049,10 +13052,10 @@ print {
     }
 }
 
-.footer {
-    background-color: #fafafa;
-    padding: 3rem 1.5rem 6rem;
-}
+
+
+
+
 
 .divStyle {
     background-image: url('https://i.imgur.com/QuJqHP1.jpg');
@@ -13142,6 +13145,11 @@ print {
     padding: 1px;
 }
 
+.footer {
+    background-color: #fafafa;
+    padding: 3rem 1.5rem 6rem;
+}
+
 .footerStyle {
     position: relative;
     bottom: 0;
@@ -13160,6 +13168,47 @@ print {
 }
 
 
+@media (max-width: 414px) {
+    .profileSection {
+        margin-left: auto;
+        padding: 0rem;
+        transform: translate(0, 10%);
+    }
 
+    .profileInfo {
+        padding: 0rem;
+        margin-left: 45%;
+        margin-top: 16%;
+    }
+
+    .navStyle {
+        height: 7%;
+    }
+
+    .navItemsStyle {
+        margin-top: -5rem;
+        margin-left: 10rem;
+        background-color: transparent;
+
+    }
+
+    img {
+        height: 80%;
+        max-width: 60%;
+    }
+
+    .myRecipeHeader {
+        transform: translate(106%, 350%);
+    }
+
+    .buttons.is-primary {
+        margin-right: -9.5rem;
+        padding: 0rem;
+    }
+
+    .profileRecipes {
+        transform: translate(0, 4000%);
+    }
+}
 
 /*# sourceMappingURL=bulma.css.map */
