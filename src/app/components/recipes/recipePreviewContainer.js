@@ -17,11 +17,6 @@ export default function RecipePreviewContainer({ recipe }) {
     }
     const recipeGlassTypeText = glassTypePrefix + ' ' + recipeGlassType;
 
-    // setting created by 
-    if (recipe.createdBy.length === 0) {
-        recipe.createdBy = 'Elixir';
-    }
-
     const ingredients = [];
     for (let i = 0; i < 4; i++) {
         if (i < recipe.ingredients.length) {
@@ -47,7 +42,7 @@ export default function RecipePreviewContainer({ recipe }) {
                             <div className="media">
                                 <div className="media-content">
                                     <p className="title is-4">{recipe.name}</p>
-                                    <p className="subtitle is-6">{recipe.createdBy}</p>
+                                    <p className="subtitle is-6">{recipe.createdBy.length ? recipe.createdBy[0].username : 'Elixir'}</p>
                                 </div>
                             </div>
                         </div>
