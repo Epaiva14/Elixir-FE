@@ -1,41 +1,34 @@
-'use client'
+'use client';
 import '../../css/bulma.css';
 import '../../css/index.css';
 
+export default function RecipePreviewContainer({ recipe }) {
+    // declaring variables
+    const vowels = ['a', 'e', 'i', 'o', 'u'];
+    let glassTypePrefix = '';
 
-export default function RecipePreviewContainer({ recipes }) {
-    //declaring variables
-    const vowels = ['a', 'e', 'i', 'o', 'u']
-    let glassTypePrefix 
-    const recipe = recipes[0];
-
-    //to lower case glass type + creating preview text 
+    // to lower case glass type + creating preview text 
     const recipeGlassType = recipe.glassType.toLowerCase();
 
     if (recipeGlassType[0].includes(vowels) === true) {
-        glassTypePrefix = 'in an'
+        glassTypePrefix = 'in an';
     } else {
-        glassTypePrefix = 'in a'
+        glassTypePrefix = 'in a';
     }
-    const recipeGlassTypeText = glassTypePrefix + ' ' + recipeGlassType; 
+    const recipeGlassTypeText = glassTypePrefix + ' ' + recipeGlassType;
 
-    //setting created by 
+    // setting created by 
     if (recipe.createdBy.length === 0) {
-
-        recipe.createdBy = 'Elixir'
-
+        recipe.createdBy = 'Elixir';
     }
-
 
     const ingredients = [];
     for (let i = 0; i < 4; i++) {
-
-        ingredients.push(recipe.ingredients[i].name);
-
+        // MIKEY HERE - was getting an error on ingredients.push on recipes with less than 4 ingredients so added this if statement
+        if (i < recipe.ingredients.length) {
+            ingredients.push(recipe.ingredients[i].name);
+        } 
     }
-  
-    console.log('Ingredients?', ingredients)
-    // 
 
     return (
         <>  
@@ -59,7 +52,7 @@ export default function RecipePreviewContainer({ recipes }) {
                     <div className="overlay">
                         <div className="content1">
                             <h1 className='overlay-text-heading'>{recipe.category}</h1>
-                            <em><h2>{recipeGlassTypeText}</h2></em>
+                            <em><h2>{recipe.glassType ? recipeGlassTypeText : null}</h2></em> 
                             <hr />
                             <p>
                                1. {ingredients[0]}
@@ -70,7 +63,8 @@ export default function RecipePreviewContainer({ recipes }) {
                                <br />
                                4. {ingredients[3]}
                                <br />
-                               <div className='read-more'>...read more</div>
+                               {/* MIKEY HERE - changed <div> to <span>, was getting error message that a <div> can't be contained by a <p> */}
+                               <span className='read-more'>...read more</span>
                             </p>
                         </div>
                     </div>

@@ -3,40 +3,31 @@ import './css/bulma.css';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import setAuthToken from './utils/setAuthToken';
-import Layout from './components/layout'
-import Card from './components/card'
-import BackgroundImage from './components/backgroundImage'
-import RecipePreviewContainer from './components/recipes/recipePreviewContainer'
-
-// we are going to be fetching data from our API and displaying it on
-// the page
+import Layout from './components/layout';
+import Card from './components/card';
+import BackgroundImage from './components/backgroundImage';
+import RecipePreviewContainer from './components/recipes/recipePreviewContainer';
+import RecipeScrollTile from './components/recipes/recipeScrollTile';
 
 export default function Home() {
-  // state is what the data is representing in realtime
-  const [data, setData] = useState(null);
-  const [isLoading, setLoading] = useState(false);
-  const [age, setAge] = useState(null);
-  const [name, setName] = useState('Dylan');
+  const [recipes, setRecipes] = useState(null);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/`)
+    fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/trending/5`)
       .then((res) => res.json())
       .then((data) => {
-        // data is an object
-        setData(data);
+        setRecipes(data.recipes);
         setLoading(false);
       });
   }, []);
 
-  // if (isLoading) return <p>Loading...</p>;
-  // if (!data) return <p>No data shown...</p>;
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <>
       <Layout>
-
-        {/* <Card /> */}
-        <RecipePreviewContainer />
+        <RecipeScrollTile recipes={recipes} />
         <BackgroundImage />
       </Layout>
     </>
