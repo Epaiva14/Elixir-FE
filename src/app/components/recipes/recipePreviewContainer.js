@@ -30,7 +30,7 @@ export default function RecipePreviewContainer({ recipe }) {
     const recipeGlassTypeText = glassTypePrefix + ' ' + recipeGlassType;
 
     const ingredients = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 3; i++) {
         if (i < recipe.ingredients.length) {
             ingredients.push(`${i + 1}. ${recipe.ingredients[i].name}`);
             ingredients.push(<br />);

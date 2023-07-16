@@ -47,20 +47,22 @@ export default function SingleTemplate({recipe}) {
 
     return (
         <>
-            <div>{recipe.name}</div>
-            <div>{recipe.createdBy.length ? recipe.createdBy[0].username : 'Elixir'}</div>
-            <ul>
-                {renderIngredients()}
-            </ul>
-            <div>{recipe.instructions}</div>
-            <div>{recipe.description}</div>
-            <div>{recipe.alcoholic ? 'Alcoholic' : 'Non-Alcoholic'}</div>
-            <div><img src={recipe.image ? recipe.image : ''} /></div>
-            <div>{recipe.glassType}</div>
-            <div>{recipe.category}</div>
-            <div>
-                {renderComments()}
-            </div>
+            <main>
+                <div>{recipe.name}</div>
+                <div>{recipe.createdBy.length ? recipe.createdBy[0].username : 'Elixir'}</div>
+                <ul>
+                    {renderIngredients()}
+                </ul>
+                <div>{recipe.instructions}</div>
+                <div>{recipe.description}</div>
+                <div>{recipe.alcoholic ? 'Alcoholic' : 'Non-Alcoholic'}</div>
+                <div><img src={recipe.image ? recipe.image : ''} /></div>
+                <div>{recipe.glassType}</div>
+                <div>{recipe.category}</div>
+                <div>
+                    {renderComments()}
+                </div>
+            </main>
         </>
     );
 }

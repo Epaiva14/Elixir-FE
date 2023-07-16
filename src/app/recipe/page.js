@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Layout from "@/app/components/layout";
 import BackgroundImage from "@/app/components/backgroundImage";
 import SingleTemplate from "./singleTemplate";
+import Link from 'next/link';
 
 export default function Recipe() {
     const [isLoading, setIsLoading] = useState(true);
@@ -26,10 +27,10 @@ export default function Recipe() {
 
     return (
         <>
-            {/* <Layout> */}
-                <SingleTemplate recipe={recipe} />
-                {/* <BackgroundImage />
-            </Layout> */}
+            <Layout>
+                {(recipe ? <SingleTemplate recipe={recipe} /> : <p>Recipe not found. <Link href='/search'>Search</Link> for recipes.</p>)}
+                <BackgroundImage />
+            </Layout>
         </>
     )
 }
