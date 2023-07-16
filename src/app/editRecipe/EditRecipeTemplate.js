@@ -4,11 +4,12 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
 
-export default function CreateRecipeTemplate() {
+export default function EditRecipeTemplate() {
     const router = useRouter();
-	// const [ data, setData ] = useState(null);
-	// const [isLoading, setLoading] = useState(true);
+	const [ recipe, setRecipe ] = useState(null);
+	const [isLoading, setLoading] = useState(true);
 	const [redirect, setRedirect] = useState(false);
+    const recipeId = JSON.parse(localStorage.getItem('recipeId'))
 
 	// Add parts for recipe
 	const [name, setName] = useState('');
@@ -20,6 +21,7 @@ export default function CreateRecipeTemplate() {
     const [createdBy, setCreatedBy] = useState('');
     const [glassType, setGlassType] = useState('');
     const [category, setCategory] = useState('');
+    
 
     const handleName = (e) => {
         setName(e.target.value);
@@ -61,7 +63,7 @@ export default function CreateRecipeTemplate() {
 		e.preventDefault();
 
         // let createdBy = req.user.id
-        const newRecipe = { 
+        const editRecipe = { 
             name, 
             ingredients, 
             measures, 
@@ -72,28 +74,66 @@ export default function CreateRecipeTemplate() {
             glassType, 
             category 
         }
-        axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/new/`, newRecipe)
+        axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/${recipeId}`, editRecipe)
             .then(response => {
                 console.log('recipe created', response);
-                localStorage.setItem('recipeId')
+                localStorage.setItem('recipeId', recipeId)
                 setRedirect(true);
             })
             .catch(error => {
-                console.log('===> Error in creation', error)
+                console.log('===> Error in edit', error)
                 router.push('/recipes/')
             });
 	}
-    
-    const recipeId = JSON.parse(localStorage.getItem('recipeId'));
 
-	if (redirect) {router.push(`/recipe`)}
+    const handleDelete = (e) => {
+        e.preventDefault();
+
+        axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/${recipeId}`)
+            .then(response => {
+                console.log('recipe has been deleted', response)
+                localStorage.removeItem('recipeId', recipeId)
+                setRedirect(true);
+
+            })
+            .catch(error => {
+                console.log('===> Error in edit', error)
+                router.push('/profile')
+            });
+
+    }
+
+
+    useEffect(() => {
+		fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/${localStorage.getItem('recipeId')}`)
+		.then((res) => res.json())
+		.then((data) => {
+		  // data is an object
+		  console.log('--- found recipe ---', data.recipes[0]);
+          setRecipe(data.recipes[0]);
+		  setName(data.recipes[0].name);
+          setIngredients(data.recipes[0].ingredients)
+          setMeasures(data.recipes[0].measures)
+          setInstructions(data.recipes[0].instructions)
+          setAlcoholic(data.recipes[0].alcoholic)
+          setImage(data.recipes[0].image)
+          setCreatedBy(data.recipes[0].address.createdBy)
+          setGlassType(data.recipes[0].address.glassType)
+          setCategory(data.recipes[0].address.category)
+		  setLoading(false);
+		})
+	  }, [recipeId]);
+
+	if (isLoading) return <p>Loading...</p>
+    if (!recipe) return <p>No recipe shown...</p>
+    if (redirect) {router.push(`/recipes/${recipe._id}`)}
 
 	
     return (
 
     <div className="container box p-6 has-background-light">
       <h2 className="subtitle has-text-centered"> Create a new Recipe</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} on>
         <div className="field">
           <label htmlFor="name">Recipe Name</label>
           <div className="control">
@@ -165,6 +205,9 @@ export default function CreateRecipeTemplate() {
         <div className="field is-grouped">
           <div className="control">
             <button className="button is-success" type='submit'>Create Recipe</button>
+          </div>
+          <div className="control">
+            <button className="button is-danger" type='delete' onClick={handleDelete}>Delete</button>
           </div>
           <div className="control">
             <button className="button is-link is-light" type='cancel'>Cancel</button>
