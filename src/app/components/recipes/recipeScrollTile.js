@@ -1,51 +1,59 @@
 'use client'
+
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
 import '../../css/bulma.css';
 import '../../css/index.css';
 import RecipePreviewContainer from './recipePreviewContainer';
 
-export default function RecipeScrollTile({ recipes }) {
+export default function RecipeScrollTile({ type, number }) {
+    const [recipes, setRecipes] = useState(null);
+    const [recipesLoading, setRecipesLoading] = useState(true);
+    
+    useEffect(() => {
+        let recipeQuery = `${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/`;
+        if (type == 'trending') recipeQuery = recipeQuery.concat(`trending/${number}`);
+        if (type == 'my') recipeQuery = recipeQuery.concat(`my`);
+        axios.get(recipeQuery)
+        .then((data) => {
+            setRecipes(data.data.recipes);
+            setRecipesLoading(false);
+        });
+    }, [number, type])
 
-    // const recipeTiles = [];
-    // const divHead = <div className="tile is-parent">;
-    // const divTail = </div>);
-    // for(let i = 0; i < recipes.length; i++) {
-    //     if(i % 2 === 0) {
-    //         recipeTiles.push(divHead);
-    //     }
-        
-    //     recipeTiles.push(<RecipePreviewContainer key={recipes[i]._id} recipe={recipes[i]} />);
-        
-    //     if(i % 2 === 1) {
-    //         recipeTiles.push(divTail);
-    //     }
-    // }
-
-    const recipeTiles = recipes.map((recipe, i) => (
-        <RecipePreviewContainer key={recipe._id} recipe={recipe} />
-    ));
-
+    
     const renderScrollTile = () => {
-        const rows = [];
-        for (let i = 0; i < recipeTiles.length; i += 2) {
-            rows.push(
-                <div className='tile is-parent'>
-                    {recipeTiles[i]}
-                    {i + 1 < recipeTiles.length ? recipeTiles[i + 1] : null}
-                </div>
-            )
+        if(recipes) {
+            const recipeTiles = recipes.map((recipe, i) => (
+                <RecipePreviewContainer key={recipe._id} recipe={recipe} />
+            ));
+            const rows = [];
+            for (let i = 0; i < recipeTiles.length; i += 2) {
+                rows.push(
+                    <div className='tile is-parent'>
+                        {recipeTiles[i]}
+                        {i + 1 < recipeTiles.length ? recipeTiles[i + 1] : null}
+                    </div>
+                )
+            }
+            return rows;
         }
-        return rows;
     }
+
+    if (recipesLoading) return <p>Loading...</p>;
 
     return (
         <>
-            <main>
+            <div>
                 <div className='tile is-ancestor is-4 scroll-tile is-responsive'>
                     <div className='tile is-parent box is-vertical scroll-func'>
+                        {type === 'trending' ? <h2 className='title is-1'>Trending Recipes</h2> : null}
+                        {type === 'my' ? <h2 className='title is-1'>My Recipes</h2> : null}
                         {renderScrollTile()}
                     </div>
                 </div>
-            </main>
+            </div>
         </>
     )
 } 

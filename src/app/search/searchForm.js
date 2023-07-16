@@ -3,8 +3,6 @@ import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import Layout from '../components/layout';
-import BackgroundImage from '../components/backgroundImage';
 
 export default function Search() {
     const paramStyle = {
@@ -192,7 +190,7 @@ export default function Search() {
     
     return (
         <>
-            {/* <Layout> */}
+            <div>
                 <form onSubmit={handleSubmit}>
                     <input type="search" value={query} onChange={handleChange} />
                     <button type="submit">Search</button>
@@ -227,8 +225,7 @@ export default function Search() {
                         }}>{user.username}</li>
                     }))}
                 </ul>
-                {/* <BackgroundImage />
-            </Layout> */}
+            </div>
         </>
     );
 }

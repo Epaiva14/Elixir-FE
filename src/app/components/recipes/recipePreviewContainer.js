@@ -15,19 +15,24 @@ export default function RecipePreviewContainer({ recipe }) {
         }
     }, [recipeRedirect, router]);
 
+    // console.log(recipe);
+
     // declaring variables
-    const vowels = ['a', 'e', 'i', 'o', 'u'];
-    let glassTypePrefix = '';
 
-    // to lower case glass type + creating preview text 
-    const recipeGlassType = recipe.glassType.toLowerCase();
+    const getGlassType = (recipe) => {
+        const vowels = ['a', 'e', 'i', 'o', 'u'];
+        let glassTypePrefix = '';
 
-    if (recipeGlassType[0].includes(vowels) === true) {
-        glassTypePrefix = 'in an';
-    } else {
-        glassTypePrefix = 'in a';
+        // to lower case glass type + creating preview text 
+        let recipeGlassType = recipe.glassType.toLowerCase();
+
+        if (recipeGlassType[0].includes(vowels) === true) {
+            glassTypePrefix = 'in an';
+        } else {
+            glassTypePrefix = 'in a';
+        }
+        return glassTypePrefix + ' ' + recipeGlassType;
     }
-    const recipeGlassTypeText = glassTypePrefix + ' ' + recipeGlassType;
 
     const ingredients = [];
     for (let i = 0; i < 3; i++) {
@@ -41,13 +46,11 @@ export default function RecipePreviewContainer({ recipe }) {
         <>
             <div className='tile is-child' onClick={() => setRecipeRedirect(recipe._id)}>
                 <div className="card recipe-style">
-                    {/* <a href='/recipes'> */}
                         <div className="card-image">
                             <figure className="image is-4by3">
                                 <img src={recipe.image} alt="Placeholder image" />
                             </figure>
                         </div>
-                    {/* </a> */}
                     <div className='recipe-on-hover'>
                         <div className="card-content">
                             <div className="media">
@@ -60,7 +63,7 @@ export default function RecipePreviewContainer({ recipe }) {
                         <div className="overlay">
                             <div className="content1">
                                 <h1 className='overlay-text-heading'>{recipe.category}</h1>
-                                <em><h2>{recipe.glassType ? recipeGlassTypeText : null}</h2></em>
+                                <em><h2>{recipe.glassType ? getGlassType(recipe) : null}</h2></em>
                                 <hr />
                                 <p>
                                     {ingredients}
@@ -73,5 +76,4 @@ export default function RecipePreviewContainer({ recipe }) {
             </div>
         </>
     )
-
 }
