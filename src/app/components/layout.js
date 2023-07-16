@@ -1,34 +1,31 @@
-'use client'
+'use client';
+
+import { useRouter } from 'next/navigation';
+import handleLogout from '@/app/utils/handleLogout';
+
 import '../css/bulma.css';
-// import 'bulma/css/bulma.min.css';
 
 export default function Layout({ children }) {
+    const router = useRouter();
 
-
-
-
-
+    const logMeOut = () => {
+        if (typeof window !== 'undefined') {
+            handleLogout();
+            alert('Session has ended. Please login to continue.');
+            router.push('/users/login');
+        }
+    }
+    
     return (
         <>
-
-
             <nav className="navbar navStyle is-mobile is-tablet is-desktop is-widescreen" role="navigation" aria-label="main navigation">
-
                 <div className="navbar-brand">
                     <a href="/">
                         <img src="https://i.imgur.com/E9RlsOw.png" width="112" height="28" />
                     </a>
                 </div>
 
-
                 <div className="navbar-menu navItemsStyle">
-
-                    {/* <div className="navbar-start is-centered" >
-                        <a className="navbar-item" href="/search" >
-                            Search
-                        </a>
-                    </div> */}
-
                     <div className="navbar-end">
                         <div className="navbar-item">
                             <div className="buttons" id='nav-button'>
@@ -38,7 +35,7 @@ export default function Layout({ children }) {
                                 <a className="button is-primary is-responsive" href='/search'>
                                     <strong>Search</strong>
                                 </a>
-                                <a className="button is-light is-responsive" href='/users/login'>
+                                <a className="button is-light is-responsive" href='' onClick={logMeOut}>
                                     Logout
                                 </a>
                             </div>
@@ -46,9 +43,7 @@ export default function Layout({ children }) {
                     </div>
 
                 </div>
-
             </nav>
-
 
             {children}
 
@@ -62,11 +57,6 @@ export default function Layout({ children }) {
                     </p>
                 </div>
             </footer>
-
-
-
         </>
-
-
     )
 }

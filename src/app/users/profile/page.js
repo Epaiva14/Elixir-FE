@@ -1,14 +1,15 @@
-"use client";
-import '../../css/bulma.css';
+'use client';
+
 import { useState, useEffect } from 'react';
-import jwtDecode from 'jwt-decode';
 import { useRouter } from 'next/navigation';
+import jwtDecode from 'jwt-decode';
+import setAuthToken from '@/app/utils/setAuthToken';
 import handleLogout from '@/app/utils/handleLogout';
+import axios from 'axios';
+
+import '../../css/bulma.css';
 import Layout from '../../components/layout';
 import BackgroundImage from '../../components/backgroundImage';
-import axios from 'axios';
-import setAuthToken from '@/app/utils/setAuthToken';
-
 
 export default function Profile() {
     // state is what the data is representing in realtime
@@ -16,11 +17,10 @@ export default function Profile() {
     const [data, setData] = useState(null);
     const [isLoading, setLoading] = useState(true);
 
-
     if (typeof window !== 'undefined') {
         const expirationTime = new Date(localStorage.getItem('expiration') * 1000);
         let currentTime = Date.now();
-        console.log(expirationTime, localStorage);
+        // console.log(expirationTime, localStorage);
 
         // make a condition that compares exp and current time
         if (currentTime >= expirationTime) {
@@ -44,7 +44,6 @@ export default function Profile() {
                     } else {
                         router.push('/users/login');
                     }
-
                 })
                 .catch((error) => {
                     console.log(error);
