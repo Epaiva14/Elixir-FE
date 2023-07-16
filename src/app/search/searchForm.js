@@ -138,12 +138,12 @@ export default function Search() {
 
         if (recipeRedirect) {
             localStorage.setItem('recipeId', JSON.stringify(recipeRedirect));
-            router.push('/single/recipe');
+            router.push('/recipe');
         }
 
         if (userRedirect) {
             localStorage.setItem('userId', JSON.stringify(userRedirect));
-            router.push('/single/user');
+            router.push('/user');
         }
     }, [router, searchResults, searchRedirect, recipeRedirect, userRedirect]);
     
