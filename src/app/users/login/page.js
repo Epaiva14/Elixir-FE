@@ -74,28 +74,28 @@ export default function Login() {
                 <div className="column is-4">
                     <div className="login-card card">
                         <div className='card-header'>
-                            <h1>Sign in to your account</h1>
+                            <span><em><h1 className='login-title'>Sign in to your account</h1></em></span>
                         </div>
                         <div className="card-content">
                             <form onSubmit={handleSubmit}>
                                 <div className="field">
                                     <div className="control has-icons-left is-3">
-                                        <input type="text" className="form-control" placeholder="Email" value={email} onChange={handleEmail} required />
+                                        <input type="text" className="input email-input" placeholder="Email" value={email} onChange={handleEmail} required />
                                         <span className="icon is-small is-left"><i className="fas fa-envelope"></i></span>
                                     </div>
                                 </div>
                                 <div className="field">
                                     <div className="control has-icons-left">
                                         <span className="icon is-small is-left"><i className="fa fa-lock"></i></span>
-                                        <input type="password" className="form-control" placeholder="Password" value={password} onChange={handlePassword} required />
+                                        <input type="password" className="input password-input" placeholder="Password" value={password} onChange={handlePassword} required />
                                     </div>
                                 </div>
-                                <div className="card-footer">
-                                    <div className="card-footer-item">
+                                <div className="card-footer is-responsive">
+                                    <div className="card-footer-item is-responsive">
                                         <button type="submit" className="button is-small login-btn">Login</button>
                                     </div>
-                                    <div className="card-footer-item">
-                                        <button type="button" className="button is-small is-outlined">Forgot password?</button>
+                                    <div className="card-footer-item is-responsive">
+                                        <button type="button" className="button is-small forget-btn">Forgot password?</button>
                                     </div>
                                 </div>
                             </form>
@@ -103,12 +103,12 @@ export default function Login() {
                     </div>
                 </div>
                 <div className="column is-2">
-                    <div className="card">
+                    <div className="card signup-card">
                         <div className="card-body text-center">
-                            <div>
-                                <h2>Sign up</h2>
-                                <p>Get started now by creating an account.</p>
-                                <a href="/users/signup" type="button" className="btn btn-primary active mt-3">Register Now!</a>
+                            <div className='register-content'>
+                                <h2 className='signup-title'>Don't have an account?</h2>
+                                <p className='call-to-action'>Create one now to join the party</p>
+                                <a href="/users/signup" type="button" className="button signup-btn">Take me to the bouncer</a>
                             </div>
                         </div>
                     </div>
