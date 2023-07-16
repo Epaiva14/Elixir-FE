@@ -13151,14 +13151,15 @@ print {
 }
 
 .footerStyle {
-    position: relative;
+    position: static;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: #66584F;
     padding: 0rem;
     color: rosybrown;
     z-index: 1;
+    transform: translate(0, 100vh);
 }
 
 
