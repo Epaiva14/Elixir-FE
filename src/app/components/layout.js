@@ -1,9 +1,9 @@
 'use client';
+import '../css/bulma.css';
+import '../css/index.css';
 
 import { useRouter } from 'next/navigation';
 import handleLogout from '@/app/utils/handleLogout';
-
-import '../css/bulma.css';
 
 export default function Layout({ children }) {
     const router = useRouter();
