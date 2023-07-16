@@ -1,5 +1,8 @@
 /*! bulma.io v0.9.4 | MIT License | github.com/jgthms/bulma */
 /* Bulma Utilities */
+
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 .bg {
     /* The image used */
     background-image: url("https: //i.imgur.com/QuJqHP1.jpg");
@@ -11,6 +14,13 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+
+
+* {
+    font-family: 'Big Shoulders Display', cursive;
+    letter-spacing: 1.1;
 }
 
 .button,
@@ -457,7 +467,7 @@ body {
     background-size: cover;
     background-position: center; */
     color: #4a4a4a;
-    font-size: 1em;
+    font-size: 1.25em;
     font-weight: 400;
     line-height: 1.5;
 }
