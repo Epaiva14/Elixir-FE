@@ -6,9 +6,12 @@ export default function BackgroundImage() {
         backgroundImage: `url('https://i.imgur.com/QuJqHP1.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        position: 'relative',
+        position: 'fixed',
         height: '100vh',
-        zIndex: 0
+        zIndex: -1,
+        right: 0,
+        bottom: 0,
+        width: '100%'
         
     };
 
