@@ -6,9 +6,10 @@ import SearchForm from './searchForm';
 export default function Search() {
     return (
         <>
-            {/* <Layout /> */}
-            <SearchForm />
-            {/* <BackgroundImage /> */}
+            <Layout>
+                <SearchForm />
+                <BackgroundImage />
+            </Layout>
         </>
     );
 }
