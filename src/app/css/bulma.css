@@ -1,7 +1,7 @@
 /*! bulma.io v0.9.4 | MIT License | github.com/jgthms/bulma */
 /* Bulma Utilities */
 
-@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 .bg {
     /* The image used */
@@ -19,8 +19,8 @@
 
 
 * {
-    font-family: 'Big Shoulders Display', cursive;
-    letter-spacing: 1.1;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1;
 }
 
 .button,
@@ -467,7 +467,7 @@ body {
     background-size: cover;
     background-position: center; */
     color: #4a4a4a;
-    font-size: 1.25em;
+    font-size: .85em;
     font-weight: 400;
     line-height: 1.5;
 }
@@ -13063,8 +13063,132 @@ print {
 }
 
 
+ .login-card {
+     transform: translate(-10%, 25vh);
+     background-color: rgba(99, 98, 97, .8);
+     transition: background .5s ease-in-out;
+     scale: 1.5;
+
+     
+ }
 
 
+
+ .signup-card {
+    scale: 1.5; 
+    transform: translate(35%, 30vh);
+    width: fit-content;
+    background-color: #C9C7C5;
+ }
+
+ .login-title {
+    position: absolute;
+    font-size: 200%;
+    font-weight: 900;
+    font-family: inherit;
+    color: #e3e0de;
+    top: -30%;
+    align-content: center;
+    background-color: rgba(99, 98, 97, .8);
+    border-radius: 5px;
+    padding: 1%;
+
+
+ }
+
+ .signup-title {
+
+    background-color: rgba(227, 224, 222, .8);
+    position: absolute;
+    font-size: 120%; 
+    font-weight: 700;
+    color: #636261; 
+    top: -30%;
+    left: 6%;
+    border-radius: 3px;
+    padding: .75%;
+
+ }
+
+ .login-btn {
+
+    background-color: #E8BA9E;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 1%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-right: 10%;
+    width: 100%;
+    font-size: 100%;
+    font-weight: 900;
+    font-family: inherit;
+    transform: translate(0, 25%);
+    transition: .4s ease-in-out;
+
+
+ }
+
+ .login-btn:hover {
+
+    color: #636261;
+    background-color: #CFA68C;
+ }
+
+ .forget-btn {
+
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            border-radius: 5px;
+            border: none;
+            padding: 1%;
+            margin-top: 5%;
+            margin-bottom: 5%;
+            width: 100%;
+            font-size: 100%;
+            font-weight: 700;
+            font-family: inherit;
+            transform: translate(0, 25%);
+            transition: .4s ease-in-out;
+
+ }
+
+ .forget-btn:hover {
+
+    color: #E8BA9E;
+
+ }
+
+ .signup-btn {
+
+    transform: translate(-13%, 20%);
+    scale: .8;
+    font-weight: 500;
+    background-color: #636261;
+    color: #e3e0de;
+    transition: .4s ease-in-out;
+
+
+ }
+
+ .signup-btn:hover {
+    
+        background-color: #e3e0de;
+        color: #636261;
+    
+ }
+
+ .call-to-action {
+    justify-content: center;
+ }
+
+
+ .register-content {
+
+    padding: 20px;
+
+ }
 
 
 .divStyle {
@@ -13228,6 +13352,8 @@ print {
     .profileRecipes {
         transform: translate(0, 4000%);
     }
+
+       
 }
 
 /*# sourceMappingURL=bulma.css.map */
