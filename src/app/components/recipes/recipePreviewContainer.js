@@ -1,8 +1,20 @@
 'use client';
 import '../../css/bulma.css';
 import '../../css/index.css';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function RecipePreviewContainer({ recipe }) {
+    const router = useRouter();
+    const [recipeRedirect, setRecipeRedirect] = useState(false);
+    
+    useEffect(() => {
+        if (recipeRedirect) {
+            localStorage.setItem('recipeId', JSON.stringify(recipeRedirect));
+            router.push('/recipe');
+        }
+    }, [recipeRedirect, router]);
+
     // declaring variables
     const vowels = ['a', 'e', 'i', 'o', 'u'];
     let glassTypePrefix = '';
@@ -27,16 +39,15 @@ export default function RecipePreviewContainer({ recipe }) {
 
     return (
         <>
-
-            <div className='tile is-child'>
+            <div className='tile is-child' onClick={() => setRecipeRedirect(recipe._id)}>
                 <div className="card recipe-style">
-                    <a href='/recipes'>
+                    {/* <a href='/recipes'> */}
                         <div className="card-image">
                             <figure className="image is-4by3">
                                 <img src={recipe.image} alt="Placeholder image" />
                             </figure>
                         </div>
-                    </a>
+                    {/* </a> */}
                     <div className='recipe-on-hover'>
                         <div className="card-content">
                             <div className="media">
@@ -60,7 +71,6 @@ export default function RecipePreviewContainer({ recipe }) {
                     </div>
                 </div>
             </div>
-
         </>
     )
 
