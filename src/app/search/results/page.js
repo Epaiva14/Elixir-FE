@@ -1,4 +1,5 @@
 'use client';
+import '../../css/bulma.css';
 import Layout from '../../components/layout';
 import BackgroundImage from '../../components/backgroundImage';
 import { useEffect, useState } from 'react';
@@ -12,18 +13,18 @@ export default function SearchResults() {
     useEffect(() => {
         if (recipeRedirect) {
             localStorage.setItem('recipeId', JSON.stringify(recipeRedirect));
-            router.push('/single/recipe');
+            router.push('/recipe');
         }
     }, [recipeRedirect, router]);
 
     return (
         <>
-            {/* <Layout> */}
+            <Layout>
                 {searchResults ? searchResults.map(recipe => {
                     return <div key={recipe._id} onClick={() => setRecipeRedirect(recipe._id)}>{recipe.name}</div>
                 }) : ''}
-                {/* <BackgroundImage />
-            </Layout> */}
+                <BackgroundImage />
+            </Layout>
         </>
     );
 }
