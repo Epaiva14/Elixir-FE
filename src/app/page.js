@@ -45,7 +45,6 @@ export default function Home() {
                   } else {
                       router.push('/users/login');
                   }
-
               })
               .catch((error) => {
                   console.log(error);
