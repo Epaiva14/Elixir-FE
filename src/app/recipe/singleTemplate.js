@@ -19,6 +19,7 @@ export default function SingleTemplate({ recipe }) {
     const [isLoading, setLoading] = useState(true);
 
     const [commentBody, setCommentBody] = useState('');
+    const [editingComment, setEditingComment] = useState(false);
 
 
     if (typeof window !== 'undefined') {
@@ -84,6 +85,48 @@ export default function SingleTemplate({ recipe }) {
         }
     }
 
+    const presentEditCommentForm = (commentId) => {
+        setEditingComment(commentId);
+        setCommentBody(comments.filter(comment => comment._id === commentId)[0].body);
+        // localStorage.setItem('commentId', JSON.stringify(commentId));
+        // router.push(`/comment/edit`);
+    }
+
+    const handleEditComment = (e) => {
+        e.preventDefault();
+        if (commentBody) {
+            axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${editingComment}`, { body: commentBody })
+            .then(response => {
+                setComments(comments.map(comment => {
+                    if (comment._id === editingComment) {
+                        comment.body = commentBody;
+                    }
+                    return comment;
+                }));
+                setCommentBody('');
+                setEditingComment(false);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        }
+    }
+
+    const cancelEditComment = () => {
+        setEditingComment(false);
+        setCommentBody('');
+    }
+
+    const handleDeleteComment = (commentId) => {
+        axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${commentId}`)
+        .then(response => {
+            setComments(comments.filter(comment => comment._id !== commentId));
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }
+
     const renderIngredients = () => {
         const rows = [];
         for (let i = 0; i < recipe.ingredients.length; i++) {
@@ -103,11 +146,50 @@ export default function SingleTemplate({ recipe }) {
                 <div key={comments[i]._id}>
                     <h2 key={comments[i].title}>{comments[i].createdBy ? comments[i].createdBy[0].username : null} - {comments[i].title}</h2>
                     <p key={comments[i].body}>{comments[i].body}</p>
+                    {data._id === comments[i].createdBy[0]._id ? <a className='button' onClick={() => presentEditCommentForm(comments[i]._id)}>Edit</a> : null}
+                    {data._id === comments[i].createdBy[0]._id ? <a className='button' onClick={() => handleDeleteComment(comments[i]._id)}>Delete</a> : null}
                     <hr />
                 </div>
             );
         }
         return rows;
+    }
+
+    const renderAddCommentForm = () => {
+        return (
+        <form className='commentForm commentStyle' onSubmit={handleComment}>
+            <div className='field'>
+                <div className='control'>
+                    <textarea className='textarea' name='body' value={commentBody} placeholder='Leave a Comment' onChange={handleChange} />
+                </div>
+            </div>
+            <div className='field'>
+                <div className='control'>
+                    <button className='button is-link' type='submit'>Submit</button>
+                </div>
+            </div>
+        </form>
+        );
+    }
+
+    const renderEditCommentForm = () => {
+        return (
+            <form className='commentForm commentStyle' onSubmit={handleEditComment}>
+                <div className='field'>
+                    <div className='control'>
+                        <textarea className='textarea' name='body' value={commentBody} placeholder='Leave a Comment' onChange={handleChange} />
+                    </div>
+                </div>
+                <div className='is-grouped field'>
+                    <div className='control'>
+                        <button className='button is-link' type='submit'>Submit</button>
+                    </div>
+                    <div className='control'>
+                        <button className='button is-link' type='cancel' onClick={cancelEditComment}>Cancel</button>
+                    </div>
+                </div>
+            </form>
+        );
     }
 
     const handleEdit = () => {
@@ -153,19 +235,9 @@ export default function SingleTemplate({ recipe }) {
 
             </main>
             <div className='commentStyle'>
-                <form className='commentForm commentStyle' onSubmit={handleComment}>
-                    <div className='field'>
-                        <div className='control'>
-                            <textarea className='textarea' name='body' value={commentBody} placeholder='Leave a Comment' onChange={handleChange} />
-                        </div>
-                    </div>
-                    <div className='field'>
-                        <div className='control'>
-                            <button className='button is-link' type='submit'>Submit</button>
-                        </div>
-                    </div>
-                </form>
+                {editingComment ? renderEditCommentForm() : renderAddCommentForm()}
                 {renderComments()}
+                {/* MIKEY HERE - MOVE THIS FORM SOMEWHERE ELSE AND GET RID OF commentStyle CLASS AT SOME POINT - I PUT IT HERE SO I COULD SEE IT AND USE IT WHILE DEVELOPING */}
             </div>
         </>
     );
