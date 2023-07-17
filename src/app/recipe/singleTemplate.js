@@ -61,8 +61,8 @@ export default function SingleTemplate({ recipe }) {
                 </div>
                 <div className='recipeCategory'>
                     <div>{recipe.alcoholic ? 'Alcoholic' : 'Non-Alcoholic'}</div>
-                    <div>{recipe.glassType}</div>
-                    <div>{recipe.category}</div>
+                    <div>Glass: {recipe.glassType}</div>
+                    <div>Cat: {recipe.category}</div>
                 </div>
 
                 <div className='createdBy'>
@@ -73,7 +73,9 @@ export default function SingleTemplate({ recipe }) {
                         {recipe.createdBy.length ? recipe.createdBy[0].username : 'Elixir'}</div>
                 </div>
 
-                <div className='descriptionStyle'>{recipe.instructions}</div>
+                <div className='descriptionStyle'>
+                    <hr />
+                    {recipe.instructions}</div>
 
             </main>
             <div className='commentStyle'>
