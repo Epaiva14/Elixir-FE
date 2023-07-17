@@ -13,7 +13,7 @@ export default function Layout({ children }) {
     const logMeOut = () => {
         if (typeof window !== 'undefined') {
             handleLogout();
-            alert('Session has ended. Please login to continue.');
+            // alert('Session has ended. Please login to continue.');
             router.push('/users/login');
         }
     }
