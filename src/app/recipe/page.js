@@ -67,7 +67,7 @@ export default function Recipe() {
         .catch(err => {
             console.log(err);
         })
-    }, [recipeId]);
+    }, [recipeId, recipe]);
 
     if (recipesLoading || isLoading) return <p>Loading ...</p>;
 

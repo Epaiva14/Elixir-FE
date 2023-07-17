@@ -18,6 +18,8 @@ export default function SingleTemplate({ recipe }) {
     const [commentsLoading, setCommentsLoading] = useState(true);
     const [isLoading, setLoading] = useState(true);
 
+    const [commentBody, setCommentBody] = useState('');
+
 
     if (typeof window !== 'undefined') {
         const expirationTime = new Date(localStorage.getItem('expiration') * 1000);
@@ -62,7 +64,25 @@ export default function SingleTemplate({ recipe }) {
             .catch(err => {
                 console.log(err);
             })
-    }, [comments]);
+    }, []);
+
+    const handleChange = (e) => {
+        setCommentBody(e.target.value);
+    }
+
+    const handleComment = (e) => {
+        e.preventDefault();
+        if (commentBody) {
+            axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/${recipe._id}/comment`, { body: commentBody })
+            .then(response => {
+                setComments([...comments, response.data.comment]);
+                setCommentBody('');
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        }
+    }
 
     const renderIngredients = () => {
         const rows = [];
@@ -75,7 +95,6 @@ export default function SingleTemplate({ recipe }) {
         }
         return rows;
     }
-
 
     const renderComments = () => {
         const rows = [];
@@ -118,7 +137,6 @@ export default function SingleTemplate({ recipe }) {
                 </div>
 
                 <div className='createdBy'>
-
                     <div>
                         Recipe By:
                         <br />
@@ -135,6 +153,18 @@ export default function SingleTemplate({ recipe }) {
 
             </main>
             <div className='commentStyle'>
+                <form className='commentForm commentStyle' onSubmit={handleComment}>
+                    <div className='field'>
+                        <div className='control'>
+                            <textarea className='textarea' name='body' value={commentBody} placeholder='Leave a Comment' onChange={handleChange} />
+                        </div>
+                    </div>
+                    <div className='field'>
+                        <div className='control'>
+                            <button className='button is-link' type='submit'>Submit</button>
+                        </div>
+                    </div>
+                </form>
                 {renderComments()}
             </div>
         </>
