@@ -38,7 +38,8 @@ export default function Layout({ children }) {
     }, [prevScrollPos]);
     
     return (
-        <>
+        <div className='page-container'>
+   
             <BackgroundImage />
             <nav className="navbar navStyle is-mobile is-tablet is-desktop is-widescreen" id='navbar' role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
@@ -67,7 +68,9 @@ export default function Layout({ children }) {
                 </div>
             </nav>
 
+            <div className='body-content columns is-multiline'>
             {children}
+            </div>
 
             <footer className="footer footerStyle" >
                 <div className="content has-text-centered">
@@ -79,6 +82,7 @@ export default function Layout({ children }) {
                     </p>
                 </div>
             </footer>
-        </>
+
+        </div>
     )
 }
