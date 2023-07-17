@@ -4,6 +4,8 @@ import '../css/index.css';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import handleLogout from '@/app/utils/handleLogout';
+import BackgroundImage from './backgroundImage';
+
 
 export default function Layout({ children }) {
     const router = useRouter();
@@ -37,6 +39,7 @@ export default function Layout({ children }) {
     
     return (
         <>
+            <BackgroundImage />
             <nav className="navbar navStyle is-mobile is-tablet is-desktop is-widescreen" id='navbar' role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <a href="/">
