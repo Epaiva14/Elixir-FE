@@ -62,7 +62,6 @@ export default function Home() {
         <>
         <Layout>
             <RecipeScrollTile type='trending' number='20' />
-            <BackgroundImage />
             <RecipeScrollTile type='my' number='all' />
         </Layout>
         </>

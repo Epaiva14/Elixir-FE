@@ -8,18 +8,18 @@ import handleLogout from '@/app/utils/handleLogout';
 import axios from 'axios';
 
 import '../css/bulma.css';
+import '../css/index.css';
 import Layout from '../components/layout';
 import RecipeScrollTile from '../components/recipes/recipeScrollTile';
-import BackgroundImage from '../components/backgroundImage';
-import SearchForm from '../search/searchForm'
+import SearchForm from '../search/searchForm';
 
 
 export default function Home() {
     // state is what the data is representing in realtime
     const router = useRouter();
     const [data, setData] = useState(null);
-    const [recipes, setRecipes] = useState(null);
-    const [recipesLoading, setRecipesLoading] = useState(true);
+    // const [recipes, setRecipes] = useState(null);
+    // const [recipesLoading, setRecipesLoading] = useState(true);
     const [isLoading, setLoading] = useState(true);
 
 
@@ -57,27 +57,14 @@ export default function Home() {
         }
     }, [router]);
 
-    useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/trending/20`)
-            .then((res) => res.json())
-            .then((data) => {
-                setRecipes(data.recipes);
-                setRecipesLoading(false);
-            });
-    }, []);
-
-    if (isLoading || recipesLoading) return <p>Loading...</p>;
+    if (isLoading) return <p>Loading...</p>;
 
     return (
         <>
             <Layout>
-                <div className='column'>
-                        <RecipeScrollTile recipes={recipes} />
-                </div>
-                <div className='column'>
-                        <span className='title is-2'>Search for Recipes</span>
-                        <SearchForm />
-                </div>
+                <RecipeScrollTile type='trending' number='20' />
+                <SearchForm />
+                <RecipeScrollTile type='my' number='all' />
             </Layout>
         </>
     )
