@@ -46,7 +46,7 @@ export default function Login() {
 
     };
 
-    if (redirect) { router.push('/users/profile'); }
+    if (redirect) { router.push('/'); }
     if (error) {
         return (
             <div>
@@ -106,7 +106,7 @@ export default function Login() {
                     <div className="card signup-card">
                         <div className="card-body text-center">
                             <div className='register-content'>
-                                <h2 className='signup-title'>Don't have an account?</h2>
+                                <h2 className='signup-title'>Don&apos;t have an account?</h2>
                                 <p className='call-to-action'>Create one now to join the party</p>
                                 <a href="/users/signup" type="button" className="button signup-btn">Take me to the bouncer</a>
                             </div>

@@ -25,7 +25,7 @@ export default function Profile() {
         // make a condition that compares exp and current time
         if (currentTime >= expirationTime) {
             handleLogout();
-            alert('Session has ended. Please login to continue.');
+            alert('Please login to continue.');
             router.push('/users/login');
         }
     }

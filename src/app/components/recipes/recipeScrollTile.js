@@ -15,6 +15,7 @@ export default function RecipeScrollTile({ type, number }) {
         let recipeQuery = `${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/`;
         if (type == 'trending') recipeQuery = recipeQuery.concat(`trending/${number}`);
         if (type == 'my') recipeQuery = recipeQuery.concat(`my`);
+        if (type == 'favorite') recipeQuery = recipeQuery.concat(`favorite`);
         axios.get(recipeQuery)
         .then((data) => {
             setRecipes(data.data.recipes);
@@ -45,9 +46,10 @@ export default function RecipeScrollTile({ type, number }) {
 
     return (
         <>
-            <div>
+            <div className={type}>
                 <div className='tile is-ancestor is-4 scroll-tile is-responsive'>
                     <div className='tile is-parent box is-vertical scroll-func'>
+                        {type === 'favorite' ? <h2 className='title is-1'>Favorite Recipes</h2> : null}
                         {type === 'trending' ? <h2 className='title is-1'>Trending Recipes</h2> : null}
                         {type === 'my' ? <h2 className='title is-1'>My Recipes</h2> : null}
                         {renderScrollTile()}
