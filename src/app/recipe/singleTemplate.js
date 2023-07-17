@@ -97,7 +97,7 @@ export default function SingleTemplate({ recipe }) {
     }
 
     if (isLoading || commentsLoading) return <p>Loading ...</p>;
-    console.log(recipe);
+    // console.log(recipe);
 
     return (
         <>

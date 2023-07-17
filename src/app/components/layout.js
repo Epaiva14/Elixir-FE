@@ -13,7 +13,6 @@ export default function Layout({ children }) {
     const logMeOut = () => {
         if (typeof window !== 'undefined') {
             handleLogout();
-            // alert('Session has ended. Please login to continue.');
             router.push('/users/login');
         }
     }
@@ -21,20 +20,22 @@ export default function Layout({ children }) {
     const [prevScrollPos, setPrevScrollPos] = useState(0);
 
     useEffect(() => {
-        const handleScroll = () => {
-            const currentScrollPos = window.scrollY;
-            if (prevScrollPos > currentScrollPos) {
-                document.getElementById("navbar").style.top = "0px";
-            } else {
-                document.getElementById("navbar").style.top = "-30vh";
-            }
-            setPrevScrollPos(currentScrollPos);
-        };
+        if (typeof window !== 'undefined') {
+            const handleScroll = () => {
+                const currentScrollPos = window.scrollY;
+                if (prevScrollPos > currentScrollPos) {
+                    document.getElementById("navbar").style.top = "0px";
+                } else {
+                    document.getElementById("navbar").style.top = "-30vh";
+                }
+                setPrevScrollPos(currentScrollPos);
+            };
 
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
+            window.addEventListener('scroll', handleScroll);
+            return () => {
+                window.removeEventListener('scroll', handleScroll);
+            };
+        }
     }, [prevScrollPos]);
     
     return (
@@ -66,10 +67,10 @@ export default function Layout({ children }) {
 
                 </div>
             </nav>
-
+            
             {children}
 
-            <footer className="footer footerStyle" >
+            {/* <footer className="footer footerStyle" >
                 <div className="content has-text-centered">
                     <img src="https://i.imgur.com/E9RlsOw.png" width="112" height="28" />
                     <p>
@@ -78,7 +79,7 @@ export default function Layout({ children }) {
                         is licensed <strong><a className='linkStyle' href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a></strong>.
                     </p>
                 </div>
-            </footer>
+            </footer> */}
         </>
     )
 }
