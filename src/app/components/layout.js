@@ -1,7 +1,7 @@
 'use client';
 import '../css/bulma.css';
 import '../css/index.css';
-
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import handleLogout from '@/app/utils/handleLogout';
 
@@ -15,10 +15,29 @@ export default function Layout({ children }) {
             router.push('/users/login');
         }
     }
+
+    const [prevScrollPos, setPrevScrollPos] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollPos = window.scrollY;
+            if (prevScrollPos > currentScrollPos) {
+                document.getElementById("navbar").style.top = "0px";
+            } else {
+                document.getElementById("navbar").style.top = "-30vh";
+            }
+            setPrevScrollPos(currentScrollPos);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [prevScrollPos]);
     
     return (
         <>
-            <nav className="navbar navStyle is-mobile is-tablet is-desktop is-widescreen" role="navigation" aria-label="main navigation">
+            <nav className="navbar navStyle is-mobile is-tablet is-desktop is-widescreen" id='navbar' role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <a href="/">
                         <img src="https://i.imgur.com/E9RlsOw.png" width="112" height="28" />
