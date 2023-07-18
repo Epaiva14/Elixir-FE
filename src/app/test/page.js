@@ -59,17 +59,20 @@ export default function Home() {
         <>
             <Layout>
 
-                <div className='column is-5'>
-                    <RecipeScrollTile type='trending' number='20' />
-                </div>
-                <div className='column'>
-                    <SearchForm />
-                    <div className='columns'>
-                    <div className='column is-three-fourths'>
-                        <RecipeScrollTile type='my' number='all' id='my-tile' />
+                <div class="field has-addons">
+                    <div class="control">
+                        <span><h2 className='title search-title'>Search for a drink</h2></span>
+                        <input className="input is-rounded is-large search-bar" type="search" value={query} onChange={handleChange} />
                     </div>
+                    <div class="control">
+                        <a class="button is-info" onSubmit={handleSubmit}>
+                            Search
+                        </a>
                     </div>
                 </div>
+
+
+            
              
 
             </Layout>

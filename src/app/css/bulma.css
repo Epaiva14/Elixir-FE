@@ -3640,7 +3640,7 @@ a.tag:hover {
 .textarea,
 .select select {
     background-color: white;
-    border-color: #dbdbdb;
+    border-color: #E8BA9E;
     border-radius: 4px;
     color: #363636;
 }
@@ -13195,14 +13195,12 @@ print {
 
 .search-btn {
 
-    justify-content: center;
-    position: relative;
-    background-color: rgba(0, 0, 0, 0);
-    border-radius: 2px;
-    border-color: #e3e0de;
-    font-size: 2em;
+
     font-weight: 700;
     font-style: italic;
+    transform: translate(0, 60%);
+    background-color: #E8BA9E;
+    color: white;
 
 }
 
@@ -13410,6 +13408,7 @@ print {
     max-width: 250px;
     height: 320px;
     transition: .5s ease-in-out;
+    white-space: normal;
 
 }
 
@@ -13474,9 +13473,10 @@ print {
 }
 
 .search-title {
-    transform: translate(5%, 78%);
+    transform: translate(2%, 20%);
     position: relative;
     z-index: 3;
+    transform: .5s ease-in-out;
 
 }
 
@@ -13500,6 +13500,44 @@ print {
     padding: 10px;
 }
 
+.results-container {
+
+    position: absolute;
+    z-index: 4;
+    background-color: white;
+    font-weight: 500;
+    font-size: 1.25em;
+    width: max-content;
+    min-width: 30vw;
+    transform: translate(23%, 0);
+    max-height: 30vh;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: auto;
+    border-radius: 8px;
+    transition: .5s ease-in-out;
+
+    
+}
+
+.ul-div {
+    margin-left: 2%;
+    margin-right: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    white-space: nowrap;
+}
+
+.search-item {
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.remove-item {
+
+    color: #636261;
+
+}
 
 
 .imageSize {
