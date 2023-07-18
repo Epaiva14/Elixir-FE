@@ -38,19 +38,19 @@ export default function SingleTemplate({ recipe }) {
         setAuthToken(localStorage.getItem('jwtToken'));
         if (localStorage.getItem('jwtToken')) {
             axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/email/${localStorage.getItem('email')}`)
-            .then((response) => {
-                let userData = jwtDecode(localStorage.getItem('jwtToken'));
-                if (userData.email === localStorage.getItem('email')) {
-                    setData(response.data.users[0]);
-                    setLoading(false);
-                } else {
+                .then((response) => {
+                    let userData = jwtDecode(localStorage.getItem('jwtToken'));
+                    if (userData.email === localStorage.getItem('email')) {
+                        setData(response.data.users[0]);
+                        setLoading(false);
+                    } else {
+                        router.push('/users/login');
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
                     router.push('/users/login');
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-                router.push('/users/login');
-            });
+                });
         } else {
             router.push('/users/login');
         }
@@ -58,13 +58,13 @@ export default function SingleTemplate({ recipe }) {
 
     useEffect(() => {
         axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments/search`, { commentIds: comments })
-        .then(response => {
-            setComments(response.data.comments);
-            setCommentsLoading(false);
-        })
-        .catch(err => {
-            console.log(err);
-        })
+            .then(response => {
+                setComments(response.data.comments);
+                setCommentsLoading(false);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }, []);
 
     const handleChange = (e) => {
@@ -75,13 +75,13 @@ export default function SingleTemplate({ recipe }) {
         e.preventDefault();
         if (commentBody) {
             axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/${recipe._id}/comment`, { body: commentBody })
-            .then(response => {
-                setComments([...comments, response.data.comment]);
-                setCommentBody('');
-            })
-            .catch(err => {
-                console.log(err);
-            });
+                .then(response => {
+                    setComments([...comments, response.data.comment]);
+                    setCommentBody('');
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         }
     }
 
@@ -94,19 +94,19 @@ export default function SingleTemplate({ recipe }) {
         e.preventDefault();
         if (commentBody) {
             axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${editingComment}`, { body: commentBody })
-            .then(response => {
-                setComments(comments.map(comment => {
-                    if (comment._id === editingComment) {
-                        comment.body = commentBody;
-                    }
-                    return comment;
-                }));
-                setCommentBody('');
-                setEditingComment(false);
-            })
-            .catch(err => {
-                console.log(err);
-            });
+                .then(response => {
+                    setComments(comments.map(comment => {
+                        if (comment._id === editingComment) {
+                            comment.body = commentBody;
+                        }
+                        return comment;
+                    }));
+                    setCommentBody('');
+                    setEditingComment(false);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         }
     }
 
@@ -117,14 +117,14 @@ export default function SingleTemplate({ recipe }) {
 
     const handleDeleteComment = (commentId) => {
         axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${commentId}`)
-        .then(response => {
-            if (response) {
-                setComments(comments.filter(comment => comment._id !== commentId));
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        });
+            .then(response => {
+                if (response) {
+                    setComments(comments.filter(comment => comment._id !== commentId));
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     const renderIngredients = () => {
@@ -143,7 +143,7 @@ export default function SingleTemplate({ recipe }) {
         const rows = [];
         for (let i = 0; i < comments.length; i++) {
             rows.push(
-                <div key={comments[i]._id}>
+                <div className='commentTextArea' key={comments[i]._id}>
                     <h2 key={comments[i].title}>{comments[i].createdBy ? comments[i].createdBy[0].username : null} - {comments[i].title}</h2>
                     <p key={comments[i].body}>{comments[i].body}</p>
                     {data._id === comments[i].createdBy[0]._id ? <a className='button' onClick={() => presentEditCommentForm(comments[i]._id)}>Edit</a> : null}
@@ -157,7 +157,7 @@ export default function SingleTemplate({ recipe }) {
 
     const renderAddCommentForm = () => {
         return (
-            <form className='commentForm commentStyle' onSubmit={handleComment}>
+            <form className='commentForm' onSubmit={handleComment}>
                 <div className='field'>
                     <div className='control'>
                         <textarea className='textarea' name='body' value={commentBody} placeholder='Leave a Comment' onChange={handleChange} />
@@ -174,7 +174,7 @@ export default function SingleTemplate({ recipe }) {
 
     const renderEditCommentForm = () => {
         return (
-            <form className='commentForm commentStyle' onSubmit={handleEditComment}>
+            <form className='commentForm' onSubmit={handleEditComment}>
                 <div className='field'>
                     <div className='control'>
                         <textarea className='textarea' name='body' value={commentBody} placeholder='Leave a Comment' onChange={handleChange} />
@@ -204,18 +204,18 @@ export default function SingleTemplate({ recipe }) {
 
     const handleAddFavorite = () => {
         axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/${recipe._id}/favorite`)
-        .then(result => {
-            data.favorites = result.data.user.favorites;
-        })
-        .catch(err => console.log(err));
+            .then(result => {
+                data.favorites = result.data.user.favorites;
+            })
+            .catch(err => console.log(err));
     }
 
     const handleRemoveFavorite = () => {
         axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/${recipe._id}/unfavorite`)
-        .then(result => {
-            data.favorites = result.data.user.favorites;
-        })
-        .catch(err => console.log(err));
+            .then(result => {
+                data.favorites = result.data.user.favorites;
+            })
+            .catch(err => console.log(err));
     }
 
     const renderRemoveFavoriteButton = () => {
@@ -234,43 +234,57 @@ export default function SingleTemplate({ recipe }) {
 
     return (
         <>
-            <img className='imageSize' src={recipe.image ? recipe.image : ''} />
-            <div className='recipeBox'>
-                <div>{recipe.name}</div>
-                <div>
+            <div className='column'>
+                <img className='imageSize' src={recipe.image ? recipe.image : ''} />
+                <div className='recipeBox'>
+                    <div><strong>{recipe.name}</strong></div>
+                    <br />
+                    <ul>
+                        {renderIngredients()}
+                    </ul>
+                    <div>{recipe.description}</div>
+                    <br />
+                </div>
+                <div className='recipeCategory'>
+                    <div>{recipe.alcoholic ? 'Alcoholic' : 'Non-Alcoholic'}</div>
+                    <div>{recipe.glassType}</div>
+                    <div>{recipe.category}</div>
+                </div>
+                <div className='favoriteButton'>
                     {checkFavorite() ? renderRemoveFavoriteButton() : renderAddFavoriteButton()}
                 </div>
-                <ul>
-                    {renderIngredients()}
-                </ul>
-                <div>{recipe.description}</div>
-                <br />
+                <div className='createdBy'>
+                    <div>
+                        Recipe By:
+                        <br />
+                        {recipe.createdBy.length ? recipe.createdBy[0].username : 'Elixir'}
+                    </div>
+                </div>
             </div>
-            <div className='recipeCategory'>
-                <div>{recipe.alcoholic ? 'Alcoholic' : 'Non-Alcoholic'}</div>
-                <div>{recipe.glassType}</div>
-                <div>{recipe.category}</div>
+            <h3 className='title is-1 instructions-title'>Instructions:</h3>
+            <div className='column is-full'>
+                <div className='descriptionStyle'>{recipe.instructions}</div>
             </div>
 
-            <div className='createdBy'>
-                <div>
-                    Recipe By:
-                    <br />
-                    {recipe.createdBy.length ? recipe.createdBy[0].username : 'Elixir'}
+            {/* MIKEY HERE - MOVE THIS BUTTON AND DITCH THE DIV WHEN STYLING, ONLY PUT HERE SO I COULD FIND IT AND CLICK ON IT */}
+            <div className='column'>
+                <div className='editCommentButton'>
+                    {recipe.createdBy.length && data._id === recipe.createdBy[0]._id ? <a className='button' onClick={handleEdit}>Edit</a> : null}
+                </div>
+
+            </div>
+            <h2 className='title is-1 comment-title'>Comments:</h2>
+            <div className='column is-full'>
+                <div className='commentStyle'>
+                    {/* MIKEY HERE - MOVE THIS FORM SOMEWHERE ELSE AND GET RID OF commentStyle CLASS AT SOME POINT - I PUT IT HERE SO I COULD SEE IT AND USE IT WHILE DEVELOPING */}
+                    <div className='column'>
+                        {renderComments()}
+                    </div>
+                    {editingComment ? renderEditCommentForm() : renderAddCommentForm()}
+
                 </div>
             </div>
 
-            <div className='descriptionStyle'>{recipe.instructions}</div>
-            
-            {/* MIKEY HERE - MOVE THIS BUTTON AND DITCH THE DIV WHEN STYLING, ONLY PUT HERE SO I COULD FIND IT AND CLICK ON IT */}
-            <div className='createdBy'>
-                {recipe.createdBy.length && data._id === recipe.createdBy[0]._id ? <a className='button' onClick={handleEdit}>Edit</a> : null}
-            </div>
-            <div className='commentStyle'>
-                {/* MIKEY HERE - MOVE THIS FORM SOMEWHERE ELSE AND GET RID OF commentStyle CLASS AT SOME POINT - I PUT IT HERE SO I COULD SEE IT AND USE IT WHILE DEVELOPING */}
-                {editingComment ? renderEditCommentForm() : renderAddCommentForm()}
-                {renderComments()}
-            </div>
         </>
     );
 }
