@@ -13268,23 +13268,20 @@ print {
 
 .profileSection {
     border-radius: 15px;
-    border-width: thick;
-    border-style: double;
     padding: 0rem 3rem 0rem 3rem;
     margin-top: 10%;
     margin-left: 10%;
-
-
+    background-color: #E3E0DE;
+    box-shadow: 5px 5px #BF9A82;
 }
 
 .profileInfo {
     border-radius: 15px;
-    border-width: thick;
-    border-style: double;
     padding: 3rem;
     margin-top: 10%;
     margin-left: 10%;
-
+    background-color: #E3E0DE;
+    box-shadow: 5px 5px #BF9A82;
 }
 
 .profileRecipes {
