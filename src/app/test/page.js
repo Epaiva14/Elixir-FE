@@ -10,9 +10,11 @@ import axios from 'axios';
 import '../css/bulma.css';
 import '../css/index.css';
 import Layout from '../components/layout';
-import SearchForm from './searchForm';
+import RecipeScrollTile from '../components/recipes/recipeScrollTile';
+import SearchForm from '../search/searchForm';
 
-export default function Search() {
+
+export default function Home() {
     const router = useRouter();
     const [data, setData] = useState(null);
     const [isLoading, setLoading] = useState(true);
@@ -57,8 +59,10 @@ export default function Search() {
     return (
         <>
             <Layout>
+                <RecipeScrollTile type='trending' number='20' />
                 <SearchForm />
+                <RecipeScrollTile type='my' number='all' />
             </Layout>
         </>
-    );
+    )
 }

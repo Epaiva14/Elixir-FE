@@ -72,6 +72,7 @@ const Signup = () => {
 	};
 
 	if (redirect) { router.push('/users/login'); }
+	
 	if (error) {
 		return (
 			<div>

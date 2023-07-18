@@ -1,9 +1,11 @@
 'use client';
 import '../css/bulma.css';
 import '../css/index.css';
-
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import handleLogout from '@/app/utils/handleLogout';
+import BackgroundImage from './backgroundImage';
+
 
 export default function Layout({ children }) {
     const router = useRouter();
@@ -11,14 +13,35 @@ export default function Layout({ children }) {
     const logMeOut = () => {
         if (typeof window !== 'undefined') {
             handleLogout();
-            alert('Session has ended. Please login to continue.');
             router.push('/users/login');
         }
     }
+
+    const [prevScrollPos, setPrevScrollPos] = useState(0);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const handleScroll = () => {
+                const currentScrollPos = window.scrollY;
+                if (prevScrollPos > currentScrollPos) {
+                    document.getElementById("navbar").style.top = "0px";
+                } else {
+                    document.getElementById("navbar").style.top = "-30vh";
+                }
+                setPrevScrollPos(currentScrollPos);
+            };
+
+            window.addEventListener('scroll', handleScroll);
+            return () => {
+                window.removeEventListener('scroll', handleScroll);
+            };
+        }
+    }, [prevScrollPos]);
     
     return (
         <>
-            <nav className="navbar navStyle is-mobile is-tablet is-desktop is-widescreen" role="navigation" aria-label="main navigation">
+            <BackgroundImage />
+            <nav className="navbar navStyle is-mobile is-tablet is-desktop is-widescreen" id='navbar' role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <a href="/">
                         <img src="https://i.imgur.com/E9RlsOw.png" width="112" height="28" />
@@ -44,10 +67,10 @@ export default function Layout({ children }) {
 
                 </div>
             </nav>
-
+            
             {children}
 
-            <footer className="footer footerStyle" >
+            {/* <footer className="footer footerStyle" >
                 <div className="content has-text-centered">
                     <img src="https://i.imgur.com/E9RlsOw.png" width="112" height="28" />
                     <p>
@@ -56,7 +79,7 @@ export default function Layout({ children }) {
                         is licensed <strong><a className='linkStyle' href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a></strong>.
                     </p>
                 </div>
-            </footer>
+            </footer> */}
         </>
     )
 }
