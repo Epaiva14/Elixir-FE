@@ -2,6 +2,7 @@
 import '../../css/bulma.css';
 import Layout from '../../components/layout';
 import BackgroundImage from '../../components/backgroundImage';
+import RecipeScrollTile from '@/app/components/recipes/recipeScrollTile';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -20,10 +21,16 @@ export default function SearchResults() {
     return (
         <>
             <Layout>
-                {searchResults ? searchResults.map(recipe => {
+                {/* {searchResults ? searchResults.map(recipe => {
                     return <div key={recipe._id} onClick={() => setRecipeRedirect(recipe._id)}>{recipe.name}</div>
-                }) : ''}
-                <BackgroundImage />
+                }) : ''} */}
+                <div className='column'>
+                </div>
+                <div className='column is-5'>
+                    <RecipeScrollTile type='search' number='all' searchResults={searchResults}/>
+                </div>
+                <div className='column'>
+                </div>
             </Layout>
         </>
     );
