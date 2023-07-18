@@ -13575,16 +13575,16 @@ print {
 
 
 @media (max-width: 414px) {
+
     .profileSection {
-        margin-left: auto;
-        padding: 0rem;
-        transform: translate(0, 10%);
+        padding: 0rem 0rem 0rem 6rem;
+        margin: -4rem 0rem 0rem 0rem;
     }
 
     .profileInfo {
-        padding: 0rem 1rem 0rem 1rem;
-        margin-left: 45%;
-        margin-top: 16%;
+        padding: 0rem 0rem 0rem 0rem;
+        margin-left: 0%;
+        margin-top: 0%;
     }
 
     .navStyle {
@@ -13593,9 +13593,9 @@ print {
 
     .navItemsStyle {
         margin-top: -5rem;
-        margin-left: 10rem;
+        margin-left: 9rem;
         background-color: transparent;
-
+        box-shadow: none;
     }
 
     img {
@@ -13603,21 +13603,15 @@ print {
         max-width: 60%;
     }
 
-    .myRecipeHeader {
-        transform: translate(106%, 350%);
-    }
-
     .buttons.is-primary {
         margin-right: -9.5rem;
         padding: 0rem;
     }
 
-    .profileRecipes {
-        transform: translate(0, 4000%);
+    .scroll-tile {
+        width: 360px;
+        height: 100px;
     }
-
-
-
 
     /* .commentStyle {
         margin: 87% 3% 0% 2%;
@@ -13650,5 +13644,33 @@ print {
     } */
 
 }
+
+
+@media (min-width: 415px) and (max-width:667px) {
+
+    .navItemsStyle {
+        background-color: transparent;
+        box-shadow: none;
+        margin-top: -4rem;
+        margin-left: 0rem;
+    }
+
+    img {
+        max-width: 50%;
+    }
+
+    .profileSection {
+        margin: 0rem 20rem 0rem 0rem;
+        padding-bottom: 1rem;
+
+    }
+
+    .profileInfo {
+        margin: -16rem 0rem 0rem 21rem;
+    }
+
+
+}
+
 
 /*# sourceMappingURL=bulma.css.map */
