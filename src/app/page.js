@@ -8,10 +8,10 @@ import handleLogout from '@/app/utils/handleLogout';
 import axios from 'axios';
 
 import './css/bulma.css';
-import './css/index.css';
 import Layout from './components/layout';
 import RecipeScrollTile from './components/recipes/recipeScrollTile';
 import SearchForm from './search/searchForm';
+
 
 export default function Home() {
     const router = useRouter();
@@ -57,12 +57,22 @@ export default function Home() {
 
     return (
         <>
-        <Layout>
-            <RecipeScrollTile type='trending' number='20' />
-            <SearchForm />
-            {/* <RecipeScrollTile type='my' number='all' /> */}
-            <RecipeScrollTile type='favorite' number='all' />
-        </Layout>
+            <Layout>
+
+                <div className='column is-5'>
+                    <RecipeScrollTile type='trending' number='20' />
+                </div>
+                <div className='column'>
+                    <SearchForm />
+                    <div className='columns'>
+                        <div className='column is-three-fourths'>
+                            <RecipeScrollTile type='my' number='all' id='my-tile' />
+                        </div>
+                    </div>
+                </div>
+
+
+            </Layout>
         </>
     )
 }

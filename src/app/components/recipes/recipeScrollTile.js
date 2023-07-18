@@ -60,7 +60,7 @@ export default function RecipeScrollTile({ type, number, id }) {
           {type === 'favorite' ? <h2 className='title is-1'>Favorite Recipes</h2> : null}
             {type === 'trending' ? <h2 className='title is-1 trending-title'>What's shakin</h2> : null}
             {type === 'my' ? <h2 className='title is-1 my-title'>My Bar</h2> : null}
-                <div className='tile is-ancestor is-4 scroll-tile is-responsive'>
+                <div className='tile is-ancestor scroll-tile is-responsive'>
                     <div className='tile is-parent box is-vertical scroll-func'>
                     
 

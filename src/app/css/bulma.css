@@ -13204,7 +13204,7 @@ print {
     font-weight: 700;
     font-style: italic;
 
-
+}
 
 .signup-btn:hover {
 
@@ -13617,7 +13617,7 @@ print {
 
 
 
-    .commentStyle {
+    /* .commentStyle {
         margin: 87% 3% 0% 2%;
         font-size: small;
 
@@ -13645,7 +13645,7 @@ print {
     .createdBy {
         margin-left: 38%;
         margin-top: 18%;
-    }
+    } */
 
 }
 
