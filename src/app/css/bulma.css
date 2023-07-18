@@ -23,6 +23,19 @@
     letter-spacing: 1;
 }
 
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+.page-container {
+
+    position: relative;
+    min-height: 100vh;
+
+}
+
 .button,
 .input,
 .textarea,
@@ -468,7 +481,7 @@ body {
     background-position: center; */
     color: #4a4a4a;
     font-size: .85em;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.5;
 }
 
@@ -13172,6 +13185,27 @@ print {
 
 }
 
+
+.signup-btn:hover {
+
+    background-color: #e3e0de;
+    color: #636261;
+
+}
+
+.search-btn {
+
+    justify-content: center;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 2px;
+    border-color: #e3e0de;
+    font-size: 2em;
+    font-weight: 700;
+    font-style: italic;
+
+
+
 .signup-btn:hover {
 
     background-color: #e3e0de;
@@ -13220,6 +13254,15 @@ print {
     justify-content: center;
     align-items: center;
     color: white;
+}
+
+.body-content {
+    transform: translate(0, 20vh);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10rem;
+    width: 100%;
+    height: 100%;
 }
 
 
@@ -13283,15 +13326,18 @@ print {
 
 
 .footerStyle {
-    position: relative;
-    bottom: 0;
+
     left: 0;
-    width: 100%;
     background-color: #66584F;
     padding: 0rem;
     color: rosybrown;
     z-index: 1;
-    transform: translate(0, 100vh);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: rem;
+    transform: translate(0, 20vh);
+    margin-top: 20vh;
 }
 
 .signupForm {
@@ -13307,6 +13353,154 @@ print {
 .linkStyle {
     color: #F0D7CF;
 }
+
+
+#nav-button {
+
+    color: #E8BA9E;
+
+}
+
+.scroll-tile {
+
+
+    width: 620px;
+    background-color: rgba(0, 0, 0, 0);
+    position: relative;
+    transform: translate(0, -8%);
+    z-index: 2;
+    border-radius: 10px;
+    height: 80vh;
+    justify-content: space-between;
+    padding: 5%;
+
+
+}
+
+.scroll-func {
+
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #E3E0DE;
+
+}
+
+#my-tile {
+    background-color: blue;
+}
+
+.my-tile {
+    background-color: blue;
+}
+
+
+.recipe-style {
+
+    transition: transform(-10%, 0);
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    scale: .9;
+    position: relative;
+    z-index: 3;
+    max-width: 50%;
+    border-radius: 10px;
+    min-width: 250px;
+    max-width: 250px;
+    height: 320px;
+    transition: .5s ease-in-out;
+
+}
+
+#user-recipe {
+
+    height: 10vh;
+}
+
+.recipe-style:hover {
+    transform: translate(0, -5%);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#E8BA9E, #f0d7cf);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 2px;
+}
+
+.overlay:hover {
+    opacity: 0.98;
+}
+
+.content1 {
+ 
+    justify-content: center;
+    margin: 0 auto;
+    color: white;
+    font-weight: bold;
+    font-size: 1.25em;
+    max-width: 100%;
+    z-index: 1;
+    text-align: justify;
+}
+
+.overlay-text-heading {
+    transform: translate(0, -20%);
+    font-size: 2em;
+}
+
+.trending-title {
+    transform: translate(2%, 10%);
+    position: relative;
+    z-index: 3;
+
+}
+
+.my-title {
+    transform: translate(4%, 32%);
+    position: relative;
+    z-index: 3;
+
+}
+
+.search-title {
+    transform: translate(5%, 78%);
+    position: relative;
+    z-index: 3;
+
+}
+
+.read-more {
+    font-style: italic;
+    text-align: right;
+    font-weight: lighter;
+    transform: translate(0, 60%);
+}
+
+.login-btn {
+    background-color: #E8BA9E;
+}
+
+.search-bar {
+
+    transform: translate(2.5%, 0);
+    width: 95%;
+    position: relative;
+    top: 3vh;
+    padding: 10px;
+}
+
+
 
 .imageSize {
     position: absolute;
@@ -13377,6 +13571,7 @@ print {
     margin-left: 10%;
 }
 
+
 @media (max-width: 414px) {
     .profileSection {
         margin-left: auto;
@@ -13419,6 +13614,9 @@ print {
         transform: translate(0, 4000%);
     }
 
+
+
+
     .commentStyle {
         margin: 87% 3% 0% 2%;
         font-size: small;
@@ -13448,6 +13646,7 @@ print {
         margin-left: 38%;
         margin-top: 18%;
     }
+
 }
 
 /*# sourceMappingURL=bulma.css.map */

@@ -30,7 +30,7 @@ export default function Search() {
     const [searchRedirect, setSearchRedirect] = useState(false);
     const [recipeRedirect, setRecipeRedirect] = useState(false);
     const [userRedirect, setUserRedirect] = useState(false);
-    
+
     const [recipesLoading, setRecipesLoading] = useState(true);
     const [ingredientsLoading, setIngredientsLoading] = useState(true);
     const [usersLoading, setUsersLoading] = useState(true);
@@ -38,14 +38,14 @@ export default function Search() {
     const [ingredientsList, setIngredientsList] = useState([]);
     const [recipesList, setRecipesList] = useState([]);
     const [usersList, setUsersList] = useState([]);
-    
+
     const [ingredients, setIngredients] = useState();
     const [recipes, setRecipes] = useState();
     const [users, setUsers] = useState();
 
     const updateIngredientOptions = useCallback((newQuery) => {
-        if(newQuery) {
-            if(ingredientsLoading) {
+        if (newQuery) {
+            if (ingredientsLoading) {
                 return setIngredientsList(['Loading...']);
             }
             const results = ingredients.filter(ingredient => {
@@ -56,7 +56,7 @@ export default function Search() {
                     if (ingredient._id === param._id) isAlreadySelected = true;
                 });
                 if (isAlreadySelected) return false;
-                
+
                 return ingredient.name.toLowerCase().includes(newQuery.toLowerCase());
             });
 
@@ -65,8 +65,8 @@ export default function Search() {
     }, [ingredients, selectedParams, ingredientsLoading]);
 
     const updateRecipeOptions = useCallback((newQuery) => {
-        if(newQuery) {
-            if(recipesLoading) {
+        if (newQuery) {
+            if (recipesLoading) {
                 return setRecipesList(['Loading...']);
             }
             const results = recipes.filter(recipe => {
@@ -79,8 +79,8 @@ export default function Search() {
     }, [recipes, recipesLoading]);
 
     const updateUserOptions = useCallback((newQuery) => {
-        if(newQuery) {
-            if(usersLoading) {
+        if (newQuery) {
+            if (usersLoading) {
                 return setUsersList(['Loading...']);
             }
             const results = users.filter(user => {
@@ -91,7 +91,7 @@ export default function Search() {
             setUsersList(results);
         }
     }, [users, usersLoading]);
-    
+
     const handleChange = (e) => {
         const newQuery = e.target.value;
         setQuery(newQuery);
@@ -119,13 +119,13 @@ export default function Search() {
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/search`, { selectedParams })
-        .then(response => {
-            setSearchResults(response.data);
-            setSearchRedirect(true);
-        })
-        .catch(err => {
-            setError(true);
-        })
+            .then(response => {
+                setSearchResults(response.data);
+                setSearchRedirect(true);
+            })
+            .catch(err => {
+                setError(true);
+            })
     }
 
     useEffect(() => {
@@ -144,32 +144,32 @@ export default function Search() {
             router.push('/user');
         }
     }, [router, searchResults, searchRedirect, recipeRedirect, userRedirect]);
-    
+
     useEffect(() => {
         fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ingredients`)
-        .then((res) => res.json())
-        .then((result) => {
-            setIngredients(result.ingredients);
-            setIngredientsLoading(false);
-        });
+            .then((res) => res.json())
+            .then((result) => {
+                setIngredients(result.ingredients);
+                setIngredientsLoading(false);
+            });
     }, []);
 
     useEffect(() => {
         fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/recipes`)
-        .then((res) => res.json())
-        .then((result) => {
-            setRecipes(result.recipes);
-            setRecipesLoading(false);
-        });
+            .then((res) => res.json())
+            .then((result) => {
+                setRecipes(result.recipes);
+                setRecipesLoading(false);
+            });
     }, []);
 
     useEffect(() => {
         fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`)
-        .then((res) => res.json())
-        .then((result) => {
-            setUsers(result.users);
-            setUsersLoading(false);
-        });
+            .then((res) => res.json())
+            .then((result) => {
+                setUsers(result.users);
+                setUsersLoading(false);
+            });
     }, []);
 
     useEffect(() => {
@@ -178,7 +178,7 @@ export default function Search() {
         updateUserOptions(query);
     }, [selectedParams, query, updateIngredientOptions, updateRecipeOptions, updateUserOptions]);
 
-    
+
     if (error) {
         return (
             <>
@@ -187,14 +187,18 @@ export default function Search() {
             </>
         );
     }
-    
+
     return (
         <>
             <div>
+
+
                 <form onSubmit={handleSubmit}>
-                    <input type="search" value={query} onChange={handleChange} />
-                    <button type="submit">Search</button>
+                    <span><h2 className='title search-title'>Search for a drink</h2></span>
+                    <input className="input is-rounded is-large search-bar" type="search" value={query} onChange={handleChange} />
                 </form>
+
+
                 <ul style={paramStyle}>
                     {(selectedParams === '' ? '' : selectedParams.map(param => {
                         return <li key={param._id}>{param.name} <a onClick={() => {
@@ -212,14 +216,14 @@ export default function Search() {
                     }))}
                 </ul>
                 <ul style={recipeStyle}>
-                    {( query === '' ? '' : recipesList.map(recipe => {
+                    {(query === '' ? '' : recipesList.map(recipe => {
                         return (recipe === 'Loading...') ? <li key='loading'>Recipes Loading...</li> : <li key={recipe._id} onClick={() => {
                             setRecipeRedirect(recipe._id);
                         }}>{recipe.name}</li>
                     }))}
                 </ul>
                 <ul style={userStyle}>
-                    {( query === '' ? '' : usersList.map(user => {
+                    {(query === '' ? '' : usersList.map(user => {
                         return (user === 'Loading...') ? <li key='loading'>Users Loading...</li> : <li key={user._id} onClick={() => {
                             setUserRedirect(user._id);
                         }}>{user.username}</li>
