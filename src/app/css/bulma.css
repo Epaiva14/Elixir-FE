@@ -13598,12 +13598,12 @@ print {
 .createdBy {
     margin-left: 40%;
     margin-top: 10%;
-    position: absolute;
+    /* position: absolute; */
     font-size: xx-small;
 }
 
 .descriptionStyle {
-    position: absolute;
+    /* position: absolute; */
     margin-top: 35%;
     margin-left: 10%;
 }
@@ -13715,6 +13715,20 @@ print {
         background-color: transparent;
         box-shadow: none;
         margin-top: -7%;
+        margin-left: 32rem;
+    }
+
+    img {
+        max-width: 50%;
+    }
+}
+
+@media (min-width:916px) and (max-width:1024px) {
+
+    .navItemsStyle {
+        background-color: transparent;
+        box-shadow: none;
+        /* margin-top: -7%; */
         margin-left: 32rem;
     }
 
