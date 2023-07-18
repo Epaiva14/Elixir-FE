@@ -60,8 +60,6 @@ export default function Profile() {
     return (
         <>
             <Layout>
-
-
                 <div className='column is-half'>
                     <div className='profileSection'>
                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
@@ -70,7 +68,6 @@ export default function Profile() {
                         <button className="btn btn-outline-primary">Message</button>
                         <br />
                         <br />
-
                         <a className="btn btn-info editButton" target="__blank" href="/users/edit">Edit</a>
                         <a className="breadcrumb-item logoutButton" onClick={handleLogout}><a href="/users/login">Logout</a></a>
                     </div>
@@ -83,11 +80,9 @@ export default function Profile() {
                         <p className="text-muted font-size-sm"><strong>Residence: </strong>{data.location}</p>
                     </div>
                 </div>
-
                 <div className='column'>
                     <RecipeScrollTile type='my' number='all' id='my-tile' />
                 </div>
-
             </Layout >
         </>
     );
