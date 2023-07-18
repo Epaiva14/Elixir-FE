@@ -6,20 +6,23 @@ import Link from 'next/link';
 
 export default function Search() {
     const paramStyle = {
-        color: 'green'
+        color: '#E8BA9E',
+
     }
 
     const ingredientStyle = {
-        color: 'blue'
+        color: '#BAB8B6',
+
     }
 
     const recipeStyle = {
-        color: 'red'
+        color: ' #636261',
+
     }
 
-    const userStyle = {
-        color: 'purple'
-    }
+    // const userStyle = {
+    //     color: 'purple'
+    // }
 
     const router = useRouter();
     const [error, setError] = useState(false);
@@ -143,7 +146,7 @@ export default function Search() {
         //     localStorage.setItem('userId', JSON.stringify(userRedirect));
         //     router.push('/user');
         // }
-    // }, [router, searchResults, searchRedirect, recipeRedirect, userRedirect]);
+        // }, [router, searchResults, searchRedirect, recipeRedirect, userRedirect]);
     }, [router, searchResults, searchRedirect, recipeRedirect]);
 
     useEffect(() => {
@@ -177,7 +180,7 @@ export default function Search() {
         updateIngredientOptions(query);
         updateRecipeOptions(query);
         // updateUserOptions(query);
-    // }, [selectedParams, query, updateIngredientOptions, updateRecipeOptions, updateUserOptions]);
+        // }, [selectedParams, query, updateIngredientOptions, updateRecipeOptions, updateUserOptions]);
     }, [selectedParams, query, updateIngredientOptions, updateRecipeOptions]);
 
 
@@ -195,35 +198,56 @@ export default function Search() {
             <div>
 
 
-                <form onSubmit={handleSubmit}>
+                {/* <form onSubmit={handleSubmit}>
                     <span><h2 className='title search-title'>Search for a drink</h2></span>
                     <input className="input is-rounded is-large search-bar" type="search" value={query} onChange={handleChange} />
+                </form> */}
+                <form onSubmit={handleSubmit}>
+                    <div class="field has-addons search-bar">
+                        <div class="control is-expanded">
+                            <span><h2 className='title search-title'>Search for a drink</h2></span>
+                            <input className="input is-rounded is-large " type="search" value={query} onChange={handleChange} />
+                        </div>
+                        <div class="control">
+                            <a class="button search-btn is-rounded is-large" onClick={handleSubmit}>
+                                Search
+                            </a>
+                        </div>
+                    </div>
                 </form>
 
 
-                <ul style={paramStyle}>
-                    {(selectedParams === '' ? '' : selectedParams.map(param => {
-                        return <li key={param._id}>{param.name} <a onClick={() => {
-                            removeParam(param);
-                            updateIngredientOptions();
-                        }}>X</a></li>
-                    }))}
-                </ul>
-                <ul style={ingredientStyle}>
-                    {(query === '' ? '' : ingredientsList.map(ingredient => {
-                        return (ingredient === 'Loading...') ? <li key='loading'>Ingredients Loading...</li> : <li key={ingredient._id} onClick={() => {
-                            addParam(ingredient);
-                            updateIngredientOptions();
-                        }}>{ingredient.name}</li>
-                    }))}
-                </ul>
-                <ul style={recipeStyle}>
-                    {(query === '' ? '' : recipesList.map(recipe => {
-                        return (recipe === 'Loading...') ? <li key='loading'>Recipes Loading...</li> : <li key={recipe._id} onClick={() => {
-                            setRecipeRedirect(recipe._id);
-                        }}>{recipe.name}</li>
-                    }))}
-                </ul>
+                <div className="results-container">
+                    <div className='ul-div'>
+                        <ul style={paramStyle}>
+                            {(selectedParams === '' ? '' : selectedParams.map(param => {
+                                return <li className='search-item' key={param._id}>{param.name} <a className='remove-item' onClick={() => {
+                                    removeParam(param);
+                                    updateIngredientOptions();
+                                }}>X</a></li>
+                            }))}
+                        </ul>
+                    </div>
+                    <div className='ul-div'>
+                        <ul style={ingredientStyle}>
+                            {(query === '' ? '' : ingredientsList.map(ingredient => {
+                                return (ingredient === 'Loading...') ? <li key='loading'>Ingredients Loading...</li> : <li className='search-item' key={ingredient._id} onClick={() => {
+                                    addParam(ingredient);
+                                    updateIngredientOptions();
+                                }}>{ingredient.name}</li>
+                            }))}
+                        </ul>
+                   
+                   
+                        <ul style={recipeStyle}>
+                            {(query === '' ? '' : recipesList.map(recipe => {
+                                return (recipe === 'Loading...') ? <li key='loading'>Recipes Loading...</li> : <li className='search-item' key={recipe._id} onClick={() => {
+                                    setRecipeRedirect(recipe._id);
+                                }}>{recipe.name}</li>
+                            }))}
+                        </ul>
+                    </div>
+                </div>
                 {/* <ul style={userStyle}>
                     {(query === '' ? '' : usersList.map(user => {
                         return (user === 'Loading...') ? <li key='loading'>Users Loading...</li> : <li key={user._id} onClick={() => {

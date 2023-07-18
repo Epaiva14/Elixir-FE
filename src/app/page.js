@@ -66,7 +66,7 @@ export default function Home() {
                     <SearchForm />
                     <div className='columns'>
                         <div className='column is-three-fourths'>
-                            <RecipeScrollTile type='my' number='all' id='my-tile' />
+                            <RecipeScrollTile type='favorite' number='all' id='my-tile' />
                         </div>
                     </div>
                 </div>

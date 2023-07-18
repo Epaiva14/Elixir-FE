@@ -68,7 +68,11 @@ export default function RecipeScrollTile({ type, number, id, searchResults }) {
             <div className={type}>
 
           {type === 'favorite' ? <h2 className='title is-1'>Favorite Recipes</h2> : null}
+
+             
+
             {type === 'trending' ? <h2 className='title is-1 trending-title'>What&apos;s shakin</h2> : null}
+
             {type === 'my' ? <h2 className='title is-1 my-title'>My Bar</h2> : null}
             {type === 'search' ? <h2 className='title is-1 search-title'>Search Results</h2> : null}
 
