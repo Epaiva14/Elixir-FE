@@ -13185,6 +13185,7 @@ print {
 
 }
 
+
 .signup-btn:hover {
 
     background-color: #e3e0de;
@@ -13202,6 +13203,13 @@ print {
     font-size: 2em;
     font-weight: 700;
     font-style: italic;
+
+
+
+.signup-btn:hover {
+
+    background-color: #e3e0de;
+    color: #636261;
 
 }
 
@@ -13222,7 +13230,7 @@ print {
     background-size: cover;
     background-position: center;
     position: relative;
-    height: 100vh;
+    height: 100%;
     z-index: 1;
     margin: auto;
 
@@ -13316,12 +13324,9 @@ print {
     padding: 1px;
 }
 
-.footer {
-    background-color: #fafafa;
-    padding: 3rem 1.5rem 6rem;
-}
 
 .footerStyle {
+
     left: 0;
     background-color: #66584F;
     padding: 0rem;
@@ -13348,6 +13353,7 @@ print {
 .linkStyle {
     color: #F0D7CF;
 }
+
 
 #nav-button {
 
@@ -13496,6 +13502,76 @@ print {
 
 
 
+.imageSize {
+    position: absolute;
+    max-width: 350px;
+    max-height: 400px;
+    margin-left: 10%;
+    margin-top: 10%;
+    border-radius: 15px;
+}
+
+.singleRecipe {
+    position: absolute;
+    border-width: thick;
+    border-style: solid;
+    margin-top: 10%;
+    font-size: x-large;
+    color: navajowhite;
+    padding-right: 65%;
+    padding-bottom: 2px;
+}
+
+.recipeBox {
+    margin-left: 53%;
+    margin-top: 11%;
+    position: absolute;
+    border-top: navajowhite;
+    border-right: navajowhite;
+    border-width: thick;
+    border-right-style: ridge;
+    border-top-style: ridge;
+    font-size: large;
+    padding-right: 5px;
+}
+
+.recipeCategory {
+    position: absolute;
+    margin-left: 78%;
+    margin-top: 11%;
+    font-size: large;
+    border-top: navajowhite;
+    border-top-style: ridge;
+    border-width: thick;
+    padding-left: 10px;
+    padding-right: 100px;
+}
+
+.commentStyle {
+    border-style: outset;
+    border-width: thick;
+    border-radius: 15px;
+    position: absolute;
+    margin: 40% 10% 0% 10%;
+    font-size: larger;
+    padding: 0rem 1rem 0rem 0rem;
+    background-color: antiquewhite;
+}
+
+.createdBy {
+    margin-left: 40%;
+    margin-top: 10%;
+    position: absolute;
+    font-size: xx-small;
+}
+
+.descriptionStyle {
+    position: absolute;
+    margin-top: 35%;
+    margin-left: 10%;
+}
+
+
 @media (max-width: 414px) {
     .profileSection {
         margin-left: auto;
@@ -13538,6 +13614,38 @@ print {
         transform: translate(0, 4000%);
     }
 
+
+
+
+    .commentStyle {
+        margin: 87% 3% 0% 2%;
+        font-size: small;
+
+    }
+
+    .imageSize {
+        max-width: 200px;
+        max-height: 200px;
+        margin-left: 0%;
+        margin-top: 23%;
+    }
+
+    .recipeCategory {
+        margin-left: 56%;
+        margin-top: 65%;
+        font-size: small;
+    }
+
+    .recipeBox {
+        font-size: small;
+        margin-left: 56%;
+        margin-top: 26%;
+    }
+
+    .createdBy {
+        margin-left: 38%;
+        margin-top: 18%;
+    }
 
 }
 

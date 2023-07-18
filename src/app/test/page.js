@@ -14,11 +14,8 @@ import SearchForm from '../search/searchForm';
 
 
 export default function Home() {
-    // state is what the data is representing in realtime
     const router = useRouter();
     const [data, setData] = useState(null);
-    // const [recipes, setRecipes] = useState(null);
-    // const [recipesLoading, setRecipesLoading] = useState(true);
     const [isLoading, setLoading] = useState(true);
 
 
@@ -29,7 +26,7 @@ export default function Home() {
         // make a condition that compares exp and current time
         if (currentTime >= expirationTime) {
             handleLogout();
-            alert('Session has ended. Please login to continue.');
+            alert('Please login to continue.');
             router.push('/users/login');
         }
     }

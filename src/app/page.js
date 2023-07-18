@@ -11,14 +11,11 @@ import './css/bulma.css';
 import './css/index.css';
 import Layout from './components/layout';
 import RecipeScrollTile from './components/recipes/recipeScrollTile';
-import BackgroundImage from './components/backgroundImage';
+import SearchForm from './search/searchForm';
 
 export default function Home() {
-    // state is what the data is representing in realtime
     const router = useRouter();
     const [data, setData] = useState(null);
-    // const [recipes, setRecipes] = useState(null);
-    // const [recipesLoading, setRecipesLoading] = useState(true);
     const [isLoading, setLoading] = useState(true);
 
 
@@ -29,7 +26,7 @@ export default function Home() {
         // make a condition that compares exp and current time
         if (currentTime >= expirationTime) {
             handleLogout();
-            alert('Session has ended. Please login to continue.');
+            alert('Please login to continue.');
             router.push('/users/login');
         }
     }
@@ -62,7 +59,9 @@ export default function Home() {
         <>
         <Layout>
             <RecipeScrollTile type='trending' number='20' />
-            <RecipeScrollTile type='my' number='all' />
+            <SearchForm />
+            {/* <RecipeScrollTile type='my' number='all' /> */}
+            <RecipeScrollTile type='favorite' number='all' />
         </Layout>
         </>
     )
