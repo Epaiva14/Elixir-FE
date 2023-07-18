@@ -7,7 +7,21 @@ import handleLogout from '@/app/utils/handleLogout';
 import setAuthToken from '@/app/utils/setAuthToken';
 import Layout from '@/app/components/layout';
 
-export default function EditUser() {
+export default function EditUser() {  
+	const background = {
+	  backgroundColor : "#E3E0DE"
+	}
+  
+	const buttonColor = {
+	  backgroundColor:"#E8BA9E"
+	}
+	
+	const fontStyle = {
+	  fontWeight:"700",
+	  color: 'whitesmoke' ,
+	  textShadow: "0px 0px 5px #E8BA9E, 0px 0px 5px #E8BA9E"
+	}
+
 	const router = useRouter();
 	const [data, setData] = useState(null);
 	const [isLoading, setLoading] = useState(true);
@@ -23,74 +37,73 @@ export default function EditUser() {
 
 	// console.log(localStorage);
 	if (typeof window !== 'undefined') {
-
 		const expirationTime = new Date(localStorage.getItem('expiration') * 1000);
 		let currentTime = Date.now();
-		console.log(expirationTime, localStorage);
-
+		// console.log(expirationTime, localStorage);
 
 		// make a condition that compares exp and current time
 		if (currentTime >= expirationTime) {
 			handleLogout();
-			alert('Session has ended. Please login to continue.');
+			// alert('Session has ended. Please login to continue.');
 			router.push('/users/login');
 		}
 	}
 
-	const handleEmail = (e) => {
-		// fill in code
-		setEmail(e.target.value);
-	};
+	// const handleEmail = (e) => {
+	// 	setEmail(e.target.value);
+	// };
 
 	const handleFullName = (e) => {
-		// fill in code
 		setFullName(e.target.value);
 	};
 
 	const handleUsername = (e) => {
-		// fill in code
 		setUsername(e.target.value);
 	};
 
 	const handleLocation = (e) => {
-		// fill in code
 		setLocation(e.target.value);
 	};
 
 	const handleAvatar = (e) => {
-		// fill in code
 		setAvatar(e.target.value);
 	};
 
 	const handleBirthdate = (e) => {
-		// fill in code
 		setBirthdate(e.target.value);
 	};
 
+	const parseBirthdate = (birthdate) => {
+		let date = new Date(birthdate);
+		date.setDate(date.getDate() + 1);
+		let year = date.getFullYear();
+		let month = date.getMonth() + 1;
+		let day = date.getDate();
+		let formattedDate = `${year}-${month}-${day}`;
+		return formattedDate;
+	}
+
 	const handleSubmit = (e) => {
-		// fill in code
 		e.preventDefault();
-		// if the email is different, update that in localStorage
-		// use axios to put to the route
-		// create an object that stores that updated changes
+
 		const updateUserObject = {
-			email,
 			fullName,
 			username,
 			location,
 			avatar,
-			birthdate
+			birthdate: parseBirthdate(birthdate)
 		};
+
 		axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/${data._id}`, updateUserObject)
-			.then(response => {
-				// update email in localStorage
-				localStorage.setItem('email', email);
-				setRedirect(true);
-			})
-			.catch(error => {
-				console.log(error);
-				router.push('/users/profile');
-			});
+		.then(response => {
+			// update email in localStorage
+			localStorage.setItem('email', email);
+			setRedirect(true);
+		})
+		.catch(error => {
+			console.log(error);
+			router.push('/users/profile');
+		});
 
 	};
 
@@ -126,84 +139,61 @@ export default function EditUser() {
 	if (!data) return <p>No data shown...</p>;
 	if (redirect) { router.push('/users/profile'); }
 
-
 	return (
-
 		<Layout>
-			<form onSubmit={handleSubmit}>
-				<div className='column'>
-					<div className='profileSection'>
-						{/* change avatar */}
-						<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
-						<div className="row mb-3">
-							<div className="col-sm-3">
-								<h6 className="mb-0">Change Avatar:</h6>
-							</div>
-							<div className="col-sm-9 text-secondary">
-								<input type="text" className="form-control" value={avatar} onChange={handleAvatar} />
+			<div className='column'></div>
+			<div className='column is-three-fifths'>
+     			<h1 className="title has-text-centered" style={fontStyle}>Edit Profile</h1>
+     			<div className="container box p-6 shadow rounded content" style={background}>
+					<form onSubmit={handleSubmit}>
+						<div className="field">
+							<label htmlFor="email">Email</label>
+							<div className="control">
+								<input className="input" name="email" value={email} type="email" placeholder="Email (required)" disabled />
 							</div>
 						</div>
-
-						<h2 className='username'>{data.username}</h2>
-						<button className="btn btn-primary">Follow</button>
-						<button className="btn btn-outline-primary">Message</button>
-						<br />
-						<br />
-						<a className="btn btn-info editButton" target="__blank" href="/users/profile">Cancel</a>
-						<a className="breadcrumb-item logoutButton" onClick={handleLogout}><a href="/users/login">Logout</a></a>
-					</div>
+						<div className="field">
+							<label htmlFor="username">Username</label>
+							<div className="control">
+								<input className="input" name="username" value={username} onChange={handleUsername} type="text" placeholder="Username (required)" required />
+							</div>
+						</div>
+						<div className="field">
+							<label htmlFor="fullName">Full Name</label>
+							<div className="control">
+								<input className="input" name="fullName" value={fullName} onChange={handleFullName} type="text" placeholder="Full Name (required)" required />
+							</div>
+						</div>
+						<div className="field">
+							<label htmlFor="location">Location</label>
+							<div className="control">
+								<input className="input" name="location" value={location} onChange={handleLocation} type="text" placeholder="Location" />
+							</div>
+						</div>
+						<div className="field">
+							<label htmlFor="avatar">Avatar</label>
+							<div className="control">
+								<input className="input" name="avatar" value={avatar} onChange={handleAvatar} type="url" placeholder="Avatar URL" />
+							</div>
+						</div>
+						<div className="field">
+							<label htmlFor="birthdate">Birthdate</label>
+							<div className="col-sm-9 text-secondary">
+								<input className="input" name="birthdate" value={birthdate} onChange={handleBirthdate} type="date" />
+							</div>
+						</div>
+						<div className="field is-grouped">
+							<div className="control">
+								<button className="button is-success" type='submit' style={buttonColor}>Save Changes</button>
+							</div>
+							<div className="control">
+								<button className="button is-success" type='cancel'  style={buttonColor} onClick={() => {setRedirect(true)}}>Cancel</button>
+							</div>
+						</div>
+					</form>
 				</div>
-				{/* change username */}
-				<div className='column'>
-					<div className="profileInfo">
-						<h6 className="mb-0"><strong>Full Name: </strong>{data.fullName} </h6>
-						<div className="row mb-3">
-							<div className="col-sm-3">
-								<h6 className="mb-0">Change Username: </h6>
-							</div>
-							<div className="col-sm-9 text-secondary">
-								<input type="text" className="form-control" value={username} onChange={handleUsername} />
-							</div>
-						</div>
-
-						{/* change birthdate */}
-						<p className="text-secondary mb-1"><strong>Birthday:</strong> {data.birthdate}</p>
-						<div className="row mb-3">
-							<div className="col-sm-3">
-								<h6 className="mb-0">Change Birthdate: </h6>
-							</div>
-							<div className="col-sm-9 text-secondary">
-								<input type="datetime-local" className="form-control" value={birthdate} onChange={handleBirthdate} />
-							</div>
-						</div>
-
-						{/* change email */}
-						<p className="text-muted font-size-sm"><strong>Email: </strong>{data.email}</p>
-						<div className="row mb-3">
-							<div className="col-sm-3">
-								<h6 className="mb-0">Change Email: </h6>
-							</div>
-							<div className="col-sm-9 text-secondary">
-								<input type="text" className="form-control" value={email} onChange={handleEmail} required />
-							</div>
-						</div>
-
-						{/* change location */}
-						<p className="text-muted font-size-sm"><strong>Residence: </strong>{data.location}</p>
-						<div className="row mb-3">
-							<div className="col-sm-3">
-								<h6 className="mb-0">Change Location: </h6>
-							</div>
-							<div className="col-sm-9 text-secondary">
-								<input type="text" className="form-control" value={location} onChange={handleLocation} />
-							</div>
-						</div>
-						<button className="btn btn-primary px-4" type='Submit'>Save Changes</button>
-					</div>
-				</div>
-				{/* TODO - Update value for all user values */}
-			</form>
-
+			</div>
+			<div className='column'></div>
 		</Layout >
 	);
 }

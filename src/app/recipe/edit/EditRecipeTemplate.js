@@ -16,6 +16,20 @@ export default function EditRecipeTemplate() {
     color: 'blue'
   }
 
+  const background = {
+    backgroundColor : "#E3E0DE"
+  }
+
+  const buttonColor = {
+    backgroundColor:"#E8BA9E"
+  }
+  
+  const fontStyle = {
+    fontWeight:"700",
+    color: 'whitesmoke' ,
+    textShadow: "0px 0px 5px #E8BA9E, 0px 0px 5px #E8BA9E"
+  }
+
   const router = useRouter();
   const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(true);
@@ -273,9 +287,11 @@ export default function EditRecipeTemplate() {
 	if (isLoading || recipeLoading) return <p>Loading...</p>
 	
   return (
-
-    <div className="container box p-6 has-background-light">
-      <h1 className="subtitle has-text-centered">Create a New Recipe</h1>
+    <>
+    <div className='column'></div>
+    <div className="column is-three-fifths">
+      <h1 className="subtitle has-text-centered" style={fontStyle}>Edit Your Recipe</h1>
+      <div className="container box p-6 shadow rounded content" style={background}>
       <form onSubmit={handleSubmit}>
         <div className="field">
           <label htmlFor="name">Recipe Name</label>
@@ -392,7 +408,7 @@ export default function EditRecipeTemplate() {
   
         <div className="field is-grouped">
           <div className="control">
-            <button className="button is-success" type='submit'>Update Recipe</button>
+            <button className="button is-success" type='submit' style={buttonColor}>Update Recipe</button>
           </div>
           <div className="control">
             <button className="button is-danger" type='delete' onClick={handleDelete}>Delete</button>
@@ -403,5 +419,8 @@ export default function EditRecipeTemplate() {
         </div>
       </form>
     </div>
+    </div>
+    <div className='column'></div>
+    </>
   )
 }

@@ -2,13 +2,14 @@
 import '../css/bulma.css';
 import '../css/index.css';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import handleLogout from '@/app/utils/handleLogout';
 import BackgroundImage from './backgroundImage';
 
 
 export default function Layout({ children }) {
     const router = useRouter();
+    const pathname = usePathname();
 
     const logMeOut = () => {
         if (typeof window !== 'undefined') {
@@ -40,7 +41,6 @@ export default function Layout({ children }) {
 
     return (
         <div className='page-container'>
-
             <BackgroundImage />
             <nav className="navbar navStyle is-mobile is-tablet is-desktop is-widescreen" id='navbar' role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
@@ -52,30 +52,27 @@ export default function Layout({ children }) {
                 <div className="navbar-menu navItemsStyle">
                     <div className="navbar-end">
                         <div className="navbar-item">
+                            {['/users/login', '/users/register'].includes(pathname) ? null : 
                             <div className="buttons" id='nav-button'>
+                                <a className="button is-primary is-responsive" href='/recipe/new'>
+                                    <strong>Add Recipe</strong>
+                                </a>
                                 <a className="button is-primary is-responsive" href='/users/profile'>
                                     <strong>Profile</strong>
-                                </a>
-                                <a className="button is-primary is-responsive" href='/search'>
-                                    <strong>Search</strong>
                                 </a>
                                 <a className="button is-light is-responsive" href='' onClick={logMeOut}>
                                     Logout
                                 </a>
-                            </div>
+                            </div>}
                         </div>
                     </div>
 
                 </div>
             </nav>
 
-
             <div className='body-content columns is-multiline'>
                 {children}
             </div>
-
         </div>
-
-
     )
 }
