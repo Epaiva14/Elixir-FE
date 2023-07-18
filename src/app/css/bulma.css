@@ -13655,9 +13655,7 @@ print {
         margin-left: 0rem;
     }
 
-    img {
-        max-width: 50%;
-    }
+
 
     .profileSection {
         margin: 0rem 20rem 0rem 0rem;
@@ -13670,6 +13668,20 @@ print {
     }
 
 
+}
+
+@media (min-width:668px) and (max-width:915px) {
+
+    .navItemsStyle {
+        background-color: transparent;
+        box-shadow: none;
+        margin-top: -7%;
+        margin-left: 32rem;
+    }
+
+    img {
+        max-width: 50%;
+    }
 }
 
 
