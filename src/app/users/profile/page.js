@@ -6,7 +6,7 @@ import jwtDecode from 'jwt-decode';
 import setAuthToken from '@/app/utils/setAuthToken';
 import handleLogout from '@/app/utils/handleLogout';
 import axios from 'axios';
-
+import RecipeScrollTile from '@/app/components/recipes/recipeScrollTile';
 import '../../css/bulma.css';
 import Layout from '../../components/layout';
 import BackgroundImage from '../../components/backgroundImage';
@@ -54,47 +54,41 @@ export default function Profile() {
         }
     }, [router]);
 
+
     if (isLoading) return <p>Loading...</p>;
     if (!data) return <p>No data shown...</p>;
     return (
         <>
             <Layout>
-                <div className='divStyle'>
-                    <div className='profileSection'>
 
+
+                <div className='column is-half'>
+                    <div className='profileSection'>
                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
                         <h2 className='username'>{data.username}</h2>
                         <button className="btn btn-primary">Follow</button>
-
                         <button className="btn btn-outline-primary">Message</button>
                         <br />
                         <br />
 
-
                         <a className="btn btn-info editButton" target="__blank" href="/users/edit">Edit</a>
-
                         <a className="breadcrumb-item logoutButton" onClick={handleLogout}><a href="/users/login">Logout</a></a>
-
                     </div>
-
+                </div>
+                <div className='column is-half'>
                     <div className="profileInfo">
                         <h6 className="mb-0"><strong>Full Name: </strong>{data.fullName} </h6>
                         <p className="text-secondary mb-1"><strong>Birthday:</strong> {data.birthdate}</p>
                         <p className="text-muted font-size-sm"><strong>Email: </strong>{data.email}</p>
                         <p className="text-muted font-size-sm"><strong>Residence: </strong>{data.location}</p>
-
-                    </div>
-
-                    <h2 className='myRecipeHeader'>My Recipes</h2>
-
-                    <div className='profileRecipes'>
-
-
-
                     </div>
                 </div>
 
-            </Layout>
+                <div className='column'>
+                    <RecipeScrollTile type='my' number='all' id='my-tile' />
+                </div>
+
+            </Layout >
         </>
     );
 }

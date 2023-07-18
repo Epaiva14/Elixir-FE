@@ -13272,8 +13272,8 @@ print {
     border-style: double;
     padding: 0rem 3rem 0rem 3rem;
     margin-top: 10%;
-    margin-left: 50%;
-    position: absolute;
+    margin-left: 10%;
+
 
 }
 
@@ -13283,8 +13283,8 @@ print {
     border-style: double;
     padding: 3rem;
     margin-top: 10%;
-    margin-left: 20%;
-    position: absolute;
+    margin-left: 10%;
+
 }
 
 .profileRecipes {
@@ -13294,6 +13294,7 @@ print {
     width: 100%;
     margin-top: 35%;
     position: absolute;
+    margin-left: 2rem;
 }
 
 .username {
@@ -13304,6 +13305,7 @@ print {
     position: absolute;
     margin-top: 32%;
     font-size: xx-large;
+    margin-left: 5rem;
 }
 
 .editButton {
@@ -13443,7 +13445,7 @@ print {
 }
 
 .content1 {
- 
+
     justify-content: center;
     margin: 0 auto;
     color: white;
@@ -13580,7 +13582,7 @@ print {
     }
 
     .profileInfo {
-        padding: 0rem;
+        padding: 0rem 1rem 0rem 1rem;
         margin-left: 45%;
         margin-top: 16%;
     }
