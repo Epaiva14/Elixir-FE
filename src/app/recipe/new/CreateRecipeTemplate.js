@@ -16,6 +16,20 @@ export default function CreateRecipeTemplate() {
       color: 'blue'
   }
 
+  const background = {
+    backgroundColor : "#E3E0DE"
+  }
+
+  const buttonColor = {
+    backgroundColor:"#E8BA9E"
+  }
+  
+  const fontStyle = {
+    fontWeight:"700",
+    color: 'whitesmoke' ,
+    textShadow: "0px 0px 5px #E8BA9E, 0px 0px 5px #E8BA9E"
+  }
+
   const router = useRouter();
 	const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(true);
@@ -226,9 +240,11 @@ export default function CreateRecipeTemplate() {
 
 	
     return (
-
-    <div className="container box p-6 has-background-light">
-      <h1 className="subtitle has-text-centered">Create a New Recipe</h1>
+      <>
+    <div className='column'></div>
+    <div className='column is-three-fifths'>
+      <h1 className="title has-text-centered" style={fontStyle}>Share Your Recipe</h1>
+      <div className="container box p-6 shadow rounded content" style={background}>
       <form onSubmit={handleSubmit}>
         <div className="field">
           <label htmlFor="name">Recipe Name</label>
@@ -236,6 +252,7 @@ export default function CreateRecipeTemplate() {
             <input className="input" name="name" value={name} onChange={handleName} type="text" placeholder="Recipe Name" required />
           </div>
         </div>
+        
 
         <div className="field">
           <label htmlFor="instructions">Instructions</label>
@@ -345,10 +362,13 @@ export default function CreateRecipeTemplate() {
   
         <div className="field">
           <div className="control">
-            <button className="button is-success" type='submit'>Create Recipe</button>
+            <button className="button is-success" type='submit' style={buttonColor}>Create Recipe</button>
           </div>
         </div>
       </form>
+      </div>
     </div>
+    <div className='column'></div>
+    </>
     )
 }

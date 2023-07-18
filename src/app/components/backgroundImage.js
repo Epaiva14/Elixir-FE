@@ -12,7 +12,7 @@ export default function BackgroundImage() {
         right: 0,
         bottom: 0,
         width: '100%'
-        
+
     };
 
     return <div style={divStyle}>
