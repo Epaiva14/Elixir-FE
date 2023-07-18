@@ -73,6 +73,16 @@ export default function EditUser() {
 		setBirthdate(e.target.value);
 	};
 
+	const parseBirthdate = (birthdate) => {
+		let date = new Date(birthdate);
+		date.setDate(date.getDate() + 1);
+		let year = date.getFullYear();
+		let month = date.getMonth() + 1;
+		let day = date.getDate();
+		let formattedDate = `${year}-${month}-${day}`;
+		return formattedDate;
+	}
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
@@ -81,7 +91,7 @@ export default function EditUser() {
 			username,
 			location,
 			avatar,
-			birthdate
+			birthdate: parseBirthdate(birthdate)
 		};
 
 		axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/${data._id}`, updateUserObject)
