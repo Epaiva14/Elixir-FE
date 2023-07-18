@@ -82,6 +82,7 @@ export default function Profile() {
                 </div>
                 <div className='column'>
                     <RecipeScrollTile type='my' number='all' id='my-tile' />
+
                 </div>
             </Layout >
         </>
