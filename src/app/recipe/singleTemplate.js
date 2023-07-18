@@ -120,7 +120,9 @@ export default function SingleTemplate({ recipe }) {
     const handleDeleteComment = (commentId) => {
         axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${commentId}`)
         .then(response => {
-            setComments(comments.filter(comment => comment._id !== commentId));
+            if (response) {
+                setComments(comments.filter(comment => comment._id !== commentId));
+            }
         })
         .catch(err => {
             console.log(err);
