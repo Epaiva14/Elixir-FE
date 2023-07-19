@@ -22,6 +22,10 @@ export default function Login() {
         color: 'whitesmoke' ,
         textShadow: "0px 0px 5px #E8BA9E, 0px 0px 5px #E8BA9E"
       }
+      const secondFontStyle = {
+        fontWeight:"700",
+        color: 'whitesmoke' ,
+      }
 
     const router = useRouter();
     const [redirect, setRedirect] = useState(false);
@@ -178,13 +182,13 @@ export default function Login() {
     <div className='container'>
     <div className="content has-text-centered">
       <h4 style={fontStyle}>The Twitter of Alcoholism</h4>
-    <p>
+    <p style={secondFontStyle}>
     Elixir is a web app that provides an approachable entrance to creating mixed drinks and cocktails. 
     Elixir also provides a platform to stay up to date with the latest and most innovative recipes that people are posting.
     <br />
-      <strong>Elixir 2023</strong> by US. 
-      The source code is licensed
-      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.  
+      <strong style={fontStyle}>Elixir 2023</strong> by US. 
+      The source code is licensed 
+      <a href="http://opensource.org/licenses/mit-license.php"> MIT</a>.  
     </p>
     </div>
 </div>
