@@ -13510,9 +13510,11 @@ print {
     margin-right: 3%;
     margin-top: 5%;
     position: relative;
-    background: linear-gradient(45deg, #E8BA9E, #FFFFFF 30%);
+    
     
 }
+
+
 
 .recipe-content-container {
 
@@ -13534,7 +13536,7 @@ print {
 }
 
  .ingredient-hover .ingredient-hover-content .ingredient-div {
-transition: opacity .5s ease-in-out;
+    transition: .5s ease-in-out;
  }
 
 .ingredient-hover-content {
@@ -13543,13 +13545,17 @@ transition: opacity .5s ease-in-out;
     z-index: 5;
     overflow-x: hidden;
     overflow-y: auto;
-    scroll: auto;
     transition: opacity .5s ease-in-out;
-    max-height: 250px;
+    max-height: 200px;
     color: white;
-    font-weight: 500px;
     text-decoration: italic;
+    margin-bottom: 1rem;
     
+
+}
+
+.ingredient-hover-text {
+    font-weight: bold;
 
 }
 
@@ -13561,7 +13567,7 @@ transition: opacity .5s ease-in-out;
 
   .ingredient-hover:hover .ingredient-hover-content {
       visibility: visible;
-      opacity: 1;
+      opacity: .96;
     transition: opacity .5s ease-in-out;
   }
 

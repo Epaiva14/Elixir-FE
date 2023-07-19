@@ -124,20 +124,38 @@ export default function SingleTemplate({ recipe }) {
             });
     }
 
+    const checkDescription = (ingredient, measure) => {
+        if (!ingredient.description) {
+            return (
+                <li className='ingredient-hover' key={ingredient._id}>
+                <strong>{measure}</strong> { ingredient.name }
+                </li>
+            )
+        } else {
+            return (
+            <li className='ingredient-hover' key={ingredient._id}>
+                    <strong>{measure}</strong> <u>{ingredient.name}</u>
+            <div className='ingredient-hover-content card'>
+                <div className='card-content'>
+                    <p className='ingredient-hover-text'>{ingredient.description}</p>
+                </div>
+            </div>
+            </li>
+            )
+        }
+    }
+
     const renderIngredients = () => {
         const rows = [];
         for (let i = 0; i < recipe.ingredients.length; i++) {
+            let ingredient = recipe.ingredients[i];
+            let measure = recipe.measures[i];
             rows.push(
-                <ul className='ingredient-div'>
-                <li className='ingredient-hover' key={recipe.ingredients[i]._id}>
-                    <strong>{recipe.measures[i]}</strong> {recipe.ingredients[i].name}
-                    <div className='ingredient-hover-content card'>
-                        <div className='card-content'>
-                        <p>{recipe.ingredients[i].description}</p>
-                            </div>
-                    </div>
-                </li>
+                <div className='ingredient-div'>
+                <ul >
+                    {checkDescription(ingredient, measure)}
                 </ul>
+                </div>
             );
         }
         return rows;
@@ -293,7 +311,7 @@ export default function SingleTemplate({ recipe }) {
     return (
         <>
             <div className='column is-two-fifths'>
-                <div className='card comment-container'>
+                <div className='card comment-container '>
                     <div className='card-content'>
                         <h2 className='title is-2 recipe-name'>{recipe.name}</h2>
                         <h3 className='subtitle is-3 recipe-name'><em>From {recipe.createdBy.length ? recipe.createdBy[0].username : 'Elixir'}</em></h3>
