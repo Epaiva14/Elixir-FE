@@ -9,12 +9,18 @@ import { useRouter } from 'next/navigation';
 export default function SearchResults() {
     const router = useRouter();
     const [recipeRedirect, setRecipeRedirect] = useState(false);
-    let searchResults = JSON.parse(localStorage.getItem('searchResults'));
+    let searchResults;
+
+    if (typeof window !== 'undefined') {
+        searchResults = JSON.parse(localStorage.getItem('searchResults'));
+    }
     
     useEffect(() => {
         if (recipeRedirect) {
-            localStorage.setItem('recipeId', JSON.stringify(recipeRedirect));
-            router.push('/recipe');
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('recipeId', JSON.stringify(recipeRedirect));
+                router.push('/recipe');
+            }
         }
     }, [recipeRedirect, router]);
 
