@@ -48,7 +48,7 @@ export default function Layout({ children }) {
             <nav className="navbar navStyle is-mobile is-tablet is-desktop is-widescreen" id='navbar' role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <a href="/">
-                        <img src="https://i.imgur.com/E9RlsOw.png" width="112" height="28" />
+                        <img className='nav-image' src="https://i.imgur.com/E9RlsOw.png" width="112" height="28" />
                     </a>
                 </div>
 
@@ -57,10 +57,10 @@ export default function Layout({ children }) {
                         <div className="navbar-item">
                             {['/users/login', '/users/register'].includes(pathname) ? null : 
                             <div className="buttons" id='nav-button'>
-                                <a className="button is-primary is-responsive" href='/recipe/new'>
+                                <a className="button login-btn is-responsive" href='/recipe/new'>
                                     <strong>Add Recipe</strong>
                                 </a>
-                                <a className="button is-primary is-responsive" href='/users/profile'>
+                                <a className="button signup-btn is-responsive" href='/users/profile'>
                                     <strong>Profile</strong>
                                 </a>
                                 <a className="button is-light is-responsive" href='' onClick={logMeOut}>

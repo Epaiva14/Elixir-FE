@@ -60,25 +60,29 @@ export default function Profile() {
     return (
         <>
             <Layout>
-                <div className='column is-half'>
-                    <div className='profileSection'>
-                        <img src={data.avatar ? data.avatar : genericAvatar.src} alt="avatar" width="150" /> 
-                        <h2 className='username'>{data.username}</h2>
-                        <button className="btn btn-primary">Follow</button>
-                        <button className="btn btn-outline-primary">Message</button>
-                        <br />
-                        <br />
-                        <a className="btn btn-info editButton" target="__blank" href="/users/edit">Edit</a>
-                        <a className="breadcrumb-item logoutButton" onClick={handleLogout}><a href="/users/login">Logout</a></a>
+                <div className='column is-4'>
+                    <div className='card comment-conatiner'>
+                        <div class="card-image">
+                            <figure class="image is-square">
+                                <img src={data.avatar ? data.avatar : genericAvatar.src} alt="avatar" width="150" />
+                            </figure>
+                        </div>
+                        <div className='card-content'>
+                            <h2 className='title is-5'>{data.username}</h2>
+                            <h6 className="mb-0"><strong>Full Name: </strong>{data.fullName} </h6>
+                            <p className="text-secondary mb-1"><strong>Birthday:</strong> {data.birthdate}</p>
+                            <p className="text-muted font-size-sm"><strong>Email: </strong>{data.email}</p>
+                            <p className="text-muted font-size-sm"><strong>Residence: </strong>{data.location}</p>   
+                        </div>
+                        <div className='card-footer'>
+                            <a className="button card-footer-item login-btn" href="/users/edit">Edit</a>
+                            <a className="button card-footer-item signup-btn" onClick={handleLogout} href="/users/login">Logout</a>
+                        </div>
                     </div>
-                </div>
-                <div className='column is-half'>
-                    <div className="profileInfo">
-                        <h6 className="mb-0"><strong>Full Name: </strong>{data.fullName} </h6>
-                        <p className="text-secondary mb-1"><strong>Birthday:</strong> {data.birthdate}</p>
-                        <p className="text-muted font-size-sm"><strong>Email: </strong>{data.email}</p>
-                        <p className="text-muted font-size-sm"><strong>Residence: </strong>{data.location}</p>
-                    </div>
+
+
+                  
+
                 </div>
                 <div className='column is-5'>
                     <RecipeScrollTile type='my' number='all' id='my-tile' />

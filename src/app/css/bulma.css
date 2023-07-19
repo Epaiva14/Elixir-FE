@@ -36,6 +36,10 @@ html {
 
 }
 
+a {
+    color: white;
+}
+
 .button,
 .input,
 .textarea,
@@ -13495,7 +13499,7 @@ print {
 }
 
 .my-title {
-    transform: translate(4%, 32%);
+    transform: translate(4%, 20%);
     position: relative;
     z-index: 3;
 
@@ -13517,6 +13521,10 @@ print {
 
 .login-btn {
     background-color: #E8BA9E;
+}
+
+.nav-image {
+    margin-left: 7%;
 }
 
 .search-bar {
