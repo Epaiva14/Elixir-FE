@@ -131,9 +131,11 @@ export default function SingleTemplate({ recipe }) {
         const rows = [];
         for (let i = 0; i < recipe.ingredients.length; i++) {
             rows.push(
+
                 <li key={recipe.ingredients[i]._id}>
-                    {recipe.measures[i]} {recipe.ingredients[i].name}
+                    <strong>{recipe.measures[i]}</strong> {recipe.ingredients[i].name}
                 </li>
+
             );
         }
         return rows;
@@ -143,13 +145,21 @@ export default function SingleTemplate({ recipe }) {
         const rows = [];
         for (let i = 0; i < comments.length; i++) {
             rows.push(
-                <div className='commentTextArea' key={comments[i]._id}>
-                    <h2 key={comments[i].title}>{comments[i].createdBy ? comments[i].createdBy[0].username : null} - {comments[i].title}</h2>
-                    <p key={comments[i].body}>{comments[i].body}</p>
-                    {data._id === comments[i].createdBy[0]._id ? <a className='button' onClick={() => presentEditCommentForm(comments[i]._id)}>Edit</a> : null}
-                    {data._id === comments[i].createdBy[0]._id ? <a className='button' onClick={() => handleDeleteComment(comments[i]._id)}>Delete</a> : null}
-                    <hr />
-                </div>
+                <article class="media comment-style card-content">
+                    <figure class="media-left">
+                        <p class="image is-64x64">
+                            <img src="https://bulma.io/images/placeholders/128x128.png" />
+                        </p>
+                    </figure>
+                    <div key={comments[i]._id} className='media-content card'>
+                        <div className='content card-content'>
+                            <h2 key={comments[i].title}>{comments[i].createdBy ? comments[i].createdBy[0].username : null} - {comments[i].title}</h2>
+                            <p key={comments[i].body}>{comments[i].body}</p>
+                            {data._id === comments[i].createdBy[0]._id ? <a className='button login-btn' onClick={() => presentEditCommentForm(comments[i]._id)}>Edit</a> : null}
+                            {data._id === comments[i].createdBy[0]._id ? <a className='button signup-btn' onClick={() => handleDeleteComment(comments[i]._id)}>Delete</a> : null}
+                        </div>
+                    </div>
+                </article>
             );
         }
         return rows;
@@ -157,24 +167,33 @@ export default function SingleTemplate({ recipe }) {
 
     const renderAddCommentForm = () => {
         return (
-            <form className='commentForm' onSubmit={handleComment}>
-                <div className='field'>
-                    <div className='control'>
-                        <textarea className='textarea' name='body' value={commentBody} placeholder='Leave a Comment' onChange={handleChange} />
+            <article class="media card-content">
+                <form onSubmit={handleComment}>
+                    <figure class="media-left">
+                        <p class="image is-64x64">
+                            <img src="https://bulma.io/images/placeholders/128x128.png" />
+                        </p>
+                    </figure>
+                    <div class="media-content">
+                        <div className='field'>
+                            <div className='control'>
+                                <textarea className='textarea' name='body' value={commentBody} placeholder='Leave a Comment' onChange={handleChange} />
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className='field'>
-                    <div className='control'>
-                        <button className='button is-link' type='submit'>Submit</button>
+                    <div className='field'>
+                        <div className='control'>
+                            <button className='button login-btn' type='submit'>Submit</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </article>
         );
     }
 
     const renderEditCommentForm = () => {
         return (
-            <form className='commentForm' onSubmit={handleEditComment}>
+            <form onSubmit={handleEditComment}>
                 <div className='field'>
                     <div className='control'>
                         <textarea className='textarea' name='body' value={commentBody} placeholder='Leave a Comment' onChange={handleChange} />
@@ -220,30 +239,32 @@ export default function SingleTemplate({ recipe }) {
 
     const renderRemoveFavoriteButton = () => {
         return (
-            <a className='button favoriteButtonStyle' onClick={handleRemoveFavorite}>Favorite -</a>
+            <a className='button card-footer-item login-btn' onClick={handleRemoveFavorite}>Favorite -</a>
         );
     }
 
     const renderAddFavoriteButton = () => {
         return (
-            <a className='button favoriteButtonStyle' onClick={handleAddFavorite}>Favorite +</a>
+            <a className='button card-footer-item login-btn' onClick={handleAddFavorite}>Favorite +</a>
         );
     }
 
     const renderInstructions = () => {
         if (!recipe.instructions) {
             return (
-                <div className='column bulmaColumnStyle1'>
-                    <h3 className='title is-2 instructions-title'>Instructions:</h3>
-                    <div className='descriptionStyle column is-11'>There are no instructions for this drink</div>
+                <div className='card-content'>
+                    <p>There are no instructions for this drink</p>
                 </div>
 
             )
+
         } else {
-            <div className='column bulmaColumnStyle1'>
-                <h3 className='title is-2 instructions-title'>Instructions:</h3>
-                <div className='descriptionStyle column is-11'>{recipe.instructions}</div>
-            </div>
+            return (
+                <div className='card-content'>
+                    <p>{recipe.instructions}</p>
+                </div>
+            )
+
         }
 
 
@@ -253,62 +274,75 @@ export default function SingleTemplate({ recipe }) {
 
     return (
         <>
-            <div className='column specialColumn'>
 
-                <div className='column bulmaColumnStyle is-12'>
-                    <div className='column is-3 is-offset-0'>
-                        <img className='imageSize' src={recipe.image ? recipe.image : 'https://i.imgur.com/xkynjld.png'} />
-                    </div>
-                    <div className='column is-3 is-offset-0 card recipeBox'>
-                        <div><strong>{recipe.name}</strong></div>
-                        <br />
-                        <ul>
-                            {renderIngredients()}
-                        </ul>
-                        <div>{recipe.description}</div>
-                        <br />
-                    </div>
-                    <div className='column is-3 is-offset-8  card recipeCategory'>
-                        <div><strong>Alcohol?: </strong>{recipe.alcoholic ? 'Alcoholic' : 'Non-Alcoholic'}</div>
-                        <div><strong>Glass type: </strong>{recipe.glassType}</div>
-                        <div><strong>Category: </strong>{recipe.category}</div>
-                        <div className='createdBy'>
-                            Recipe By:
-                            <br />
-                            {recipe.createdBy.length ? recipe.createdBy[0].username : 'Elixir'}
+
+
+            <div className='column is-two-fifths'>
+                <div className='card comment-container'>
+                    <div className='card-content'>
+                        <h2 className='title is-2 recipe-name'>{recipe.name}</h2>
+                        <h3 className='subtitle is-3 recipe-name'><em>From {recipe.createdBy.length ? recipe.createdBy[0].username : 'Elixir'}</em></h3>
+                        <div className='card '>
+                            <div className='card-content image-card'>
+                                <img className='image imageSize' src={recipe.image ? recipe.image : 'https://i.imgur.com/xkynjld.png'} />
+                            </div>
                         </div>
                     </div>
-
-                    <div className='column is-1 is-offset-0 favoriteButton'>
+                    <footer class="card-footer">
                         {checkFavorite() ? renderRemoveFavoriteButton() : renderAddFavoriteButton()}
-                    </div>
+                        {recipe.createdBy.length && data._id === recipe.createdBy[0]._id ? <a className='button card-footer-item signup-btn' onClick={handleEdit}>Edit</a> : null}
+                    </footer>
+                </div>
+            </div>
 
-                    <div className='column is-1 is-offset-1 editCommentButton'>
-                        {recipe.createdBy.length && data._id === recipe.createdBy[0]._id ? <a className='button specialEditStyle' onClick={handleEdit}>Edit</a> : null}
-                    </div>
+            <div className='column is-vcentered is-two-fifths details-div'>
+                <div className='card comment-container'>
+                    <div className='card-content'>
+                        <div>
+                            <p className='recipe-types'>{recipe.alcoholic ? 'Alcoholic' : 'Non-Alcoholic'} {recipe.category} In A {recipe.glassType}</p>
+                        </div>
+                        <br />
+                        <div className='card'>
+                            <div className='card-content'>
+                                <ul>
+                                    {renderIngredients()}
+                                </ul>
+                            </div>
+                        </div>
+                        <div>{recipe.description}</div>
 
+                        <br />
+
+                    </div>
                 </div>
 
-                {renderInstructions()}
-                {/* <div className='column bulmaColumnStyle1'> }
-                    <h3 className='title is-2 instructions-title'>Instructions:</h3>
-                    <div className='descriptionStyle column is-11'>{recipe.instructions}</div>
-                </div> */}
-
-                {/* MIKEY HERE - MOVE THIS BUTTON AND DITCH THE DIV WHEN STYLING, ONLY PUT HERE SO I COULD FIND IT AND CLICK ON IT */}
-
-                <div className='column is-11 bulmaColumnStyle3'>
-                    <h2 className='title is-2 comment-title'>Comments:</h2>
-                    <div className='column commentStyle'>
-                        {/* MIKEY HERE - MOVE THIS FORM SOMEWHERE ELSE AND GET RID OF commentStyle CLASS AT SOME POINT - I PUT IT HERE SO I COULD SEE IT AND USE IT WHILE DEVELOPING */}
-
-                        {renderComments()}
-
-                        {editingComment ? renderEditCommentForm() : renderAddCommentForm()}
-
+                <div className='columns is-multiline'>
+                    <div className='column'>
+                        <div className='card comment-container'>
+                            <div className='card-content'>
+                                <h2 className='title is-5'>Instructions</h2>
+                                <div className='card'>
+                                <div className='card-content'>
+                                {renderInstructions()}
+                                </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <div className='column is-full'>
+                <div className="comment-container card">
+                    {/* MIKEY HERE - MOVE THIS FORM SOMEWHERE ELSE AND GET RID OF commentStyle CLASS AT SOME POINT - I PUT IT HERE SO I COULD SEE IT AND USE IT WHILE DEVELOPING */}
+                    <div className='card-content'>
+                        {renderComments()}
+
+                        {editingComment ? renderEditCommentForm() : renderAddCommentForm()}
+                    </div>
+                </div>
+            </div>
+
 
         </>
     );

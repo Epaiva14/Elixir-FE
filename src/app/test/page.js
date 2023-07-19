@@ -59,21 +59,48 @@ export default function Home() {
         <>
             <Layout>
 
-                <div class="field has-addons">
-                    <div class="control">
-                        <span><h2 className='title search-title'>Search for a drink</h2></span>
-                        <input className="input is-rounded is-large search-bar" type="search" value={query} onChange={handleChange} />
+                <div className="comment-container card">
+                <article class="media comment-style card-content">
+                    <figure class="media-left">
+                        <p class="image is-64x64">
+                            <img src="https://bulma.io/images/placeholders/128x128.png" />
+                        </p>
+                    </figure>
+                    <div class="media-content card">
+                        <div class="content card-content">
+                            <p>
+                                <strong>Barbara Middleton</strong>
+                                <br />
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in tempus turpis.
+                                <br />
+                            </p>
+                        </div>
                     </div>
-                    <div class="control">
-                        <a class="button is-info" onSubmit={handleSubmit}>
-                            Search
-                        </a>
+                </article>
+
+                <article class="media card-content">
+                    <figure class="media-left">
+                        <p class="image is-64x64">
+                            <img src="https://bulma.io/images/placeholders/128x128.png" />
+                        </p>
+                    </figure>
+                    <div class="media-content">
+                        <div class="field">
+                            <p class="control">
+                                <textarea class="textarea" placeholder="Add a comment..."></textarea>
+                            </p>
+                        </div>
+                        <div class="field">
+                            <p class="control">
+                                <button class="button">Post comment</button>
+                            </p>
+                        </div>
                     </div>
-                </div>
+                </article>
+            </div>
 
 
-            
-             
+
 
             </Layout>
         </>
