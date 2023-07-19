@@ -245,12 +245,18 @@ export default function Search() {
 }
 ```
 
-## Deployed on Heroku
+## Deployed on Heroku and Netlify
 
 # Future Enhancements
+* Incorporate ability to follow other users
+* Allow for users to include their own ingredients 
+* Update User UI
+* Allow users to view all Ingredients
+* Incorporate AI based on User interaction to imporve user experience 
 
 ## Contributing 
 Pull requests are welcome. For major changes, please open an issue first to discuss the potential implementations.
+
 
 
 
