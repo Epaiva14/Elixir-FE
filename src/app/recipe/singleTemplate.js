@@ -128,9 +128,16 @@ export default function SingleTemplate({ recipe }) {
         const rows = [];
         for (let i = 0; i < recipe.ingredients.length; i++) {
             rows.push(
-                <li key={recipe.ingredients[i]._id}>
+                <ul className='ingredient-div'>
+                <li className='ingredient-hover' key={recipe.ingredients[i]._id}>
                     <strong>{recipe.measures[i]}</strong> {recipe.ingredients[i].name}
+                    <div className='ingredient-hover-content card'>
+                        <div className='card-content'>
+                        <p>{recipe.ingredients[i].description}</p>
+                            </div>
+                    </div>
                 </li>
+                </ul>
             );
         }
         return rows;
@@ -140,14 +147,14 @@ export default function SingleTemplate({ recipe }) {
         const rows = [];
         for (let i = 0; i < comments.length; i++) {
             rows.push(
-                <article class="media comment-style card-content">
+                <article class="media comment-style card-content ">
                     <figure class="media-left">
                         <p class="image is-64x64">
                             <img src={comments[i].createdBy[0].avatar ? comments[i].createdBy[0].avatar : genericAvatar.src} />
                         </p>
                     </figure>
                     <div key={comments[i]._id} className='media-content card'>
-                        <div className='content card-content'>
+                        <div className='content card-content comment-content-container'>
                             <h2 key={comments[i].createdBy[0]._id}>{comments[i].createdBy ? comments[i].createdBy[0].username : null}</h2>
                             <p key={comments[i].body}>{comments[i].body}</p>
                             {data._id === comments[i].createdBy[0]._id ? <a className='button login-btn' onClick={() => presentEditCommentForm(comments[i]._id)}>Edit</a> : null}
@@ -255,13 +262,13 @@ export default function SingleTemplate({ recipe }) {
 
     const renderRemoveFavoriteButton = () => {
         return (
-            <a className='button card-footer-item signup-btn' onClick={handleRemoveFavorite}>Favorite -</a>
+            <a className='button card-footer-item login-btn' onClick={handleRemoveFavorite}>Favorite -</a>
         );
     }
 
     const renderAddFavoriteButton = () => {
         return (
-            <a className='button card-footer-item signup-btn' onClick={handleAddFavorite}>Favorite +</a>
+            <a className='button card-footer-item login-btn' onClick={handleAddFavorite}>Favorite +</a>
         );
     }
 
@@ -304,10 +311,10 @@ export default function SingleTemplate({ recipe }) {
             </div>
 
             <div className='column is-vcentered is-two-fifths details-div'>
-                <div className='card comment-container'>
+                <div className='card details-container'>
                     <div className='card-content'>
                         <div>
-                            <p className='recipe-types'>{recipe.alcoholic ? 'Alcoholic' : 'Non-Alcoholic'} {recipe.category} In A {recipe.glassType}</p>
+                            <p className='recipe-types details-title'>{recipe.alcoholic ? 'Alcoholic' : 'Non-Alcoholic'} {recipe.category} In A {recipe.glassType}</p>
                         </div>
                         <br />
                         <div className='card recipe-content-container'>
@@ -326,9 +333,9 @@ export default function SingleTemplate({ recipe }) {
 
                 <div className='columns is-multiline'>
                     <div className='column'>
-                        <div className='card comment-container'>
+                        <div className='card details-container'>
                             <div className='card-content'>
-                                <h2 className='title is-5'>Instructions</h2>
+                                <h2 className='title is-5 details-title'>Instructions</h2>
                                 <div className='card recipe-content-container'>
                                 <div className='card-content'>
                                 {renderInstructions()}
@@ -341,7 +348,7 @@ export default function SingleTemplate({ recipe }) {
             </div>
 
             <div className='column is-full'>
-                <div className="comment-container card">
+                <div className="comment-container card comment-container-adjust">
                     <div className='card-content'>
                         {renderComments()}
                         {editingComment ? renderEditCommentForm() : renderAddCommentForm()}

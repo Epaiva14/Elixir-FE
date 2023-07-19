@@ -13247,9 +13247,10 @@ print {
 }
 
 .body-content {
-    transform: translate(0, 20vh);
+    transform: translate(-1.25vw, 20vh);
     justify-content: space-evenly;
     margin-left: 1.5vw;
+    margin-right: 1.5vw;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10rem;
@@ -13458,6 +13459,11 @@ print {
 
 }
 
+.main-right-div {
+
+    margin-top: 3%;
+}
+
 .trending {
 
    transform: translate(0, 13vh);
@@ -13487,6 +13493,18 @@ print {
     position: relative;
 }
 
+.details-container {
+    background-color: #636261;
+    margin-right: 3%;
+    margin-top: 5%;
+    position: relative;
+}
+
+.details-title {
+
+    color: #E3E0DE;
+
+}
 .main-recipe-container {
 
     margin-right: 3%;
@@ -13501,15 +13519,54 @@ print {
     background: linear-gradient(-135deg, #E8BA9E, #FFFFFF 40%);
 }
 
+.comment-content-container {
 
+    background: linear-gradient(-45deg, #E8BA9E, #FFFFFF 40%);
+}
+
+.comment-container-adjust {
+    margin-left: 1.25vw;
+}
 
 .instructions-title {
     position: relative;
     z-index: 3;
 }
 
+ .ingredient-hover .ingredient-hover-content .ingredient-div {
+transition: opacity .5s ease-in-out;
+ }
+
+.ingredient-hover-content {
+    position: absolute;
+    background: linear-gradient(#E8BA9E, #f0d7cf);
+    z-index: 5;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll: auto;
+    transition: opacity .5s ease-in-out;
+    max-height: 250px;
+    color: white;
+    font-weight: 500px;
+    text-decoration: italic;
+    
+
+}
+
+  .ingredient-hover .ingredient-hover-content {
+      visibility: hidden;
+    transition: opacity .5s ease-in-out;
+      
+  }
+
+  .ingredient-hover:hover .ingredient-hover-content {
+      visibility: visible;
+      opacity: 1;
+    transition: opacity .5s ease-in-out;
+  }
+
 .fav-title {
-    transform: translate(30%, 9vh);
+    transform: translate(30%, 9.5vh);
     z-index: 3;
     position: absolute;
 }
@@ -13583,6 +13640,10 @@ print {
 .search-item {
     padding-top: 2%;
     padding-bottom: 2%;
+}
+
+.recipe-search-item {
+    list-style-type: none;
 }
 
 .remove-item {
