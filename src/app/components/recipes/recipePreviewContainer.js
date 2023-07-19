@@ -48,7 +48,7 @@ export default function RecipePreviewContainer({ recipe }) {
                 <div className="card recipe-style">
                         <div className="card-image">
                             <figure className="image is-4by3">
-                                <img src={recipe.image} alt="Placeholder image" />
+                            {recipe.image ? <img src={recipe.image} alt="drink image" /> : <img src='https://i.imgur.com/xkynjld.png' alt='placeholder image'/>}
                             </figure>
                         </div>
                     <div className='recipe-on-hover'>
