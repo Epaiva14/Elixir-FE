@@ -4,7 +4,6 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
 import Link from 'next/link';
-import '../css/searchForm.css';
 
 export default function Search() {
     const paramStyle = {

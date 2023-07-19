@@ -9,11 +9,7 @@ import axios from 'axios';
 
 export default function EditRecipeTemplate() {
   const paramStyle = {
-    color: 'green'
-  }
-
-  const ingredientStyle = {
-    color: 'blue'
+    color: '#E8BA9E'
   }
 
   const background = {
@@ -284,6 +280,17 @@ export default function EditRecipeTemplate() {
       });
     }
 
+    const renderIngredients = () => {
+        let rows = [];
+        for (let i = 0; i < 10 && i < ingredientsList.length; i++) {
+            rows.push(<li className='search-item' key={ingredientsList[i]._id} onClick={() => {
+                addParam(ingredientsList[i]);
+                updateIngredientOptions();
+            }}>{ingredientsList[i].name}</li>);
+        }
+        return rows;
+    }
+
 	if (isLoading || recipeLoading) return <p>Loading...</p>
 	
   return (
@@ -355,13 +362,14 @@ export default function EditRecipeTemplate() {
                 }}>X</a></li>
             }))}
         </ul>
-        <ul style={ingredientStyle}>
-            {(query === '' ? '' : ingredientsList.map(ingredient => {
+        <ul>
+            {(query === '' ? '' : ingredientsList[0] === 'Loading...' ? <li key='loading'>Ingredients Loading...</li> : renderIngredients())}
+            {/* {(query === '' ? '' : ingredientsList.map(ingredient => {
                 return (ingredient === 'Loading...') ? <li key='loading'>Ingredients Loading...</li> : <li key={ingredient._id} onClick={() => {
                     addParam(ingredient);
                     updateIngredientOptions();
                 }}>{ingredient.name}</li>
-            }))}
+            }))} */}
         </ul>
 
         <div className="field">
