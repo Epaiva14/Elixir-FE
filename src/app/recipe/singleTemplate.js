@@ -7,6 +7,8 @@ import setAuthToken from '@/app/utils/setAuthToken';
 import handleLogout from '@/app/utils/handleLogout';
 import axios from 'axios';
 
+import genericAvatar from '@/app/assets/avatar.png';
+
 export default function SingleTemplate({ recipe }) {
     const router = useRouter();
     const [data, setData] = useState(null);
@@ -141,12 +143,12 @@ export default function SingleTemplate({ recipe }) {
                 <article class="media comment-style card-content">
                     <figure class="media-left">
                         <p class="image is-64x64">
-                            <img src="https://bulma.io/images/placeholders/128x128.png" />
+                            <img src={comments[i].createdBy[0].avatar ? comments[i].createdBy[0].avatar : genericAvatar.src} />
                         </p>
                     </figure>
                     <div key={comments[i]._id} className='media-content card'>
                         <div className='content card-content'>
-                            <h2 key={comments[i].title}>{comments[i].createdBy ? comments[i].createdBy[0].username : null} - {comments[i].title}</h2>
+                            <h2 key={comments[i].createdBy[0]._id}>{comments[i].createdBy ? comments[i].createdBy[0].username : null}</h2>
                             <p key={comments[i].body}>{comments[i].body}</p>
                             {data._id === comments[i].createdBy[0]._id ? <a className='button login-btn' onClick={() => presentEditCommentForm(comments[i]._id)}>Edit</a> : null}
                             {data._id === comments[i].createdBy[0]._id ? <a className='button signup-btn' onClick={() => handleDeleteComment(comments[i]._id)}>Delete</a> : null}
@@ -160,11 +162,13 @@ export default function SingleTemplate({ recipe }) {
 
     const renderAddCommentForm = () => {
         return (
-            <article class="media card-content">
-                <form onSubmit={handleComment}>
+            <>
+            <hr />
+            <form onSubmit={handleComment}>
+                <article class="media card-content mb-0">
                     <figure class="media-left">
                         <p class="image is-64x64">
-                            <img src="https://bulma.io/images/placeholders/128x128.png" />
+                            <img src={data.avatar ? data.avatar : genericAvatar.src} />
                         </p>
                     </figure>
                     <div class="media-content">
@@ -174,33 +178,52 @@ export default function SingleTemplate({ recipe }) {
                             </div>
                         </div>
                     </div>
-                    <div className='field'>
-                        <div className='control'>
-                            <button className='button login-btn' type='submit'>Submit</button>
-                        </div>
-                    </div>
-                </form>
-            </article>
+                </article>
+                <article class="media card-content mt-0 pt-0">
+                    <figure class="media-left">
+                        <p class="image is-64x64" />
+                    </figure>
+                    <button className='button login-btn' type='submit'>Submit</button>
+                </article>
+            </form>
+            </>
         );
     }
 
     const renderEditCommentForm = () => {
         return (
+            <>
+            <hr />
             <form onSubmit={handleEditComment}>
-                <div className='field'>
-                    <div className='control'>
-                        <textarea className='textarea' name='body' value={commentBody} placeholder='Leave a Comment' onChange={handleChange} />
+                <article class="media card-content mb-0">
+                    <figure class="media-left">
+                        <p class="image is-64x64">
+                            <img src={data.avatar ? data.avatar : genericAvatar.src} />
+                        </p>
+                    </figure>
+                    <div class="media-content">
+                        <div className='field'>
+                            <div className='control'>
+                                <textarea className='textarea' name='body' value={commentBody} placeholder='Leave a Comment' onChange={handleChange} />
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className='is-grouped field'>
-                    <div className='control'>
-                        <button className='button is-link' type='submit'>Submit</button>
+                </article>
+                <article class="media card-content mt-0 pt-0">
+                    <figure class="media-left">
+                        <p class="image is-64x64" />
+                    </figure>
+                    <div className='is-grouped field'>
+                        <div className='control'>
+                            <button className='button login-btn' type='submit'>Save</button>
+                        </div>
+                        <div className='control'>
+                            <button className='button logout-btn' type='cancel' onClick={cancelEditComment}>Cancel</button>
+                        </div>
                     </div>
-                    <div className='control'>
-                        <button className='button is-link' type='cancel' onClick={cancelEditComment}>Cancel</button>
-                    </div>
-                </div>
+                </article>
             </form>
+            </>
         );
     }
 
