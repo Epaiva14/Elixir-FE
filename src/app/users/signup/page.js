@@ -1,7 +1,9 @@
-"use client";
+'use client';
+
 import { useState } from 'react';
-import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
+
 import Layout from '@/app/components/layout';
 
 const Signup = () => {
@@ -66,7 +68,7 @@ const Signup = () => {
 	}
 
 	const handleSubmit = (e) => {
-		e.preventDefault(); // at the beginning of a submit function
+		e.preventDefault();
 
 		const newUser = {
 			fullName,
@@ -76,17 +78,17 @@ const Signup = () => {
 			email,
 			password
 		};
-		axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/signup`, newUser)
-			.then(response => {
-				setRedirect(true);
-			})
-			.catch(error => {
-				if (error.response.data.message === 'Email already exists') {
-					console.log('===> Error in Signup', error.response.data.message);
-					setError(true);
-				}
-			});
 
+		axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/signup`, newUser)
+		.then(response => {
+			setRedirect(true);
+		})
+		.catch(error => {
+			if (error.response.data.message === 'Email already exists') {
+				console.log('===> Error in Signup', error.response.data.message);
+				setError(true);
+			}
+		});
 	};
 
 	if (redirect) { router.push('/users/login'); }

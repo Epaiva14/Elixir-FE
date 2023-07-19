@@ -6,10 +6,8 @@ import jwtDecode from 'jwt-decode';
 import setAuthToken from '@/app/utils/setAuthToken';
 import handleLogout from '@/app/utils/handleLogout';
 import axios from 'axios';
-import Link from 'next/link';
 
-import '../css/bulma.css';
-import '../css/index.css';
+import Link from 'next/link';
 import Layout from "@/app/components/layout";
 import SingleTemplate from "./singleTemplate";
 
@@ -28,10 +26,8 @@ export default function Recipe() {
         const expirationTime = new Date(localStorage.getItem('expiration') * 1000);
         let currentTime = Date.now();
 
-        // make a condition that compares exp and current time
         if (currentTime >= expirationTime) {
             handleLogout();
-            alert('Please login to continue.');
             router.push('/users/login');
         }
     }

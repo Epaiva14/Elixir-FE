@@ -7,9 +7,6 @@ import setAuthToken from '@/app/utils/setAuthToken';
 import handleLogout from '@/app/utils/handleLogout';
 import axios from 'axios';
 
-import '../css/bulma.css';
-import '../css/index.css';
-
 export default function SingleTemplate({ recipe }) {
     const router = useRouter();
     const [data, setData] = useState(null);
@@ -26,10 +23,8 @@ export default function SingleTemplate({ recipe }) {
         const expirationTime = new Date(localStorage.getItem('expiration') * 1000);
         let currentTime = Date.now();
 
-        // make a condition that compares exp and current time
         if (currentTime >= expirationTime) {
             handleLogout();
-            alert('Session has ended. Please login to continue.');
             router.push('/users/login');
         }
     }
@@ -131,11 +126,9 @@ export default function SingleTemplate({ recipe }) {
         const rows = [];
         for (let i = 0; i < recipe.ingredients.length; i++) {
             rows.push(
-
                 <li key={recipe.ingredients[i]._id}>
                     <strong>{recipe.measures[i]}</strong> {recipe.ingredients[i].name}
                 </li>
-
             );
         }
         return rows;
@@ -255,28 +248,20 @@ export default function SingleTemplate({ recipe }) {
                 <div className='card-content'>
                     <p>There are no instructions for this drink</p>
                 </div>
-
             )
-
         } else {
             return (
                 <div className='card-content'>
                     <p>{recipe.instructions}</p>
                 </div>
             )
-
         }
-
-
     }
 
     if (isLoading || commentsLoading) return <p>Loading ...</p>;
 
     return (
         <>
-
-
-
             <div className='column is-two-fifths'>
                 <div className='card comment-container'>
                     <div className='card-content'>
@@ -334,16 +319,12 @@ export default function SingleTemplate({ recipe }) {
 
             <div className='column is-full'>
                 <div className="comment-container card">
-                    {/* MIKEY HERE - MOVE THIS FORM SOMEWHERE ELSE AND GET RID OF commentStyle CLASS AT SOME POINT - I PUT IT HERE SO I COULD SEE IT AND USE IT WHILE DEVELOPING */}
                     <div className='card-content'>
                         {renderComments()}
-
                         {editingComment ? renderEditCommentForm() : renderAddCommentForm()}
                     </div>
                 </div>
             </div>
-
-
         </>
     );
 }

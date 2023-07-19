@@ -7,13 +7,11 @@ import setAuthToken from '@/app/utils/setAuthToken';
 import handleLogout from '@/app/utils/handleLogout';
 import axios from 'axios';
 
-import '../../css/bulma.css';
-import Layout from '../../components/layout';
+import Layout from '@/app/components/layout';
 import RecipeScrollTile from '@/app/components/recipes/recipeScrollTile';
 import genericAvatar from '@/app/assets/avatar.png';
 
 export default function Profile() {
-    // state is what the data is representing in realtime
     const router = useRouter();
     const [data, setData] = useState(null);
     const [isLoading, setLoading] = useState(true);
@@ -21,12 +19,9 @@ export default function Profile() {
     if (typeof window !== 'undefined') {
         const expirationTime = new Date(localStorage.getItem('expiration') * 1000);
         let currentTime = Date.now();
-        // console.log(expirationTime, localStorage);
 
-        // make a condition that compares exp and current time
         if (currentTime >= expirationTime) {
             handleLogout();
-            alert('Please login to continue.');
             router.push('/users/login');
         }
     }
@@ -36,8 +31,6 @@ export default function Profile() {
         if (localStorage.getItem('jwtToken')) {
             axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/email/${localStorage.getItem('email')}`)
                 .then((response) => {
-                    // console.log(response.data);
-                    // data is an object
                     let userData = jwtDecode(localStorage.getItem('jwtToken'));
                     if (userData.email === localStorage.getItem('email')) {
                         setData(response.data.users[0]);
@@ -79,10 +72,6 @@ export default function Profile() {
                             <a className="button card-footer-item signup-btn" onClick={handleLogout} href="/users/login">Logout</a>
                         </div>
                     </div>
-
-
-                  
-
                 </div>
                 <div className='column is-5'>
                     <RecipeScrollTile type='my' number='all' id='my-tile' />
@@ -91,99 +80,3 @@ export default function Profile() {
         </>
     );
 }
-
-
-
-
-// <div className="container">
-//                     <div className="main-body">
-//                       
-//                         <div className="row gutters-sm">
-//                             <div className="col-md-4 mb-3">
-//                                 <div className="card">
-//                                     <div className="card-body">
-//                                         <div className="d-flex flex-column align-items-center text-center">
-//                                             {/* <Image 
-//                                     src="https://bootdey.com/img/Content/avatar/avatar7.png"
-//                                     alt="Admin"
-//                                     className="rounded-circle"
-//                                     width="150"
-//                                     height={"150"}
-//                                     /> */}
-//                                             
-//                                             </div>
-//                                         </div>
-//                                     </div>
-//                                 </div>
-//                             </div>
-//                             <div className="col-md-8">
-//                                 <div className="card mb-3">
-//                                     <div className="card-body">
-//                                         <div className="row">
-//                                             <div className="col-sm-3">
-//                                                 <h6 className="mb-0">Full Name</h6>
-//                                             </div>
-//                                             <div className="col-sm-9 text-secondary">
-//                                                 {data.fullName}
-//                                             </div>
-//                                         </div>
-//                                         <hr />
-//                                         <div className="row">
-//                                             <div className="col-sm-3">
-//                                                 <h6 className="mb-0">Email</h6>
-//                                             </div>
-//                                             <div className="col-sm-9 text-secondary">
-//                                                 {data.email}
-//                                             </div>
-//                                         </div>
-//                                         <hr />
-//                                         <div className="row">
-//                                             <div className="col-sm-3">
-//                                                 <h6 className="mb-0">Location</h6>
-//                                             </div>
-//                                             <div className="col-sm-9 text-secondary">
-//                                                 {data.location}
-//                                                 <br />
-//                                             </div>
-//                                         </div>
-//                                         <hr />
-//                                         <div className="row">
-//                                             <div className="col-sm-3">
-//                                                 <h6 className="mb-0">Birthdate</h6>
-//                                             </div>
-//                                             <div className="col-sm-9 text-secondary">
-//                                                 {data.birthdate}
-//                                                 <br />
-//                                             </div>
-//                                         </div>
-//                                         <hr />
-//                                         <div className="row">
-//                                             <div className="col-sm-12">
-//                                                 <a className="btn btn-info " target="__blank" href="/users/edit">Edit</a>
-//                                             </div>
-//                                         </div>
-//                                     </div>
-//                                 </div>
-//                                 <div className="row gutters-sm">
-//                                     <div className="col-sm-6 mb-3">
-//                                         <div className="card h-100">
-//                                             <div className="card-body">
-//                                                 <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Recipe</i>Project Status</h6>
-
-//                                             </div>
-//                                         </div>
-//                                     </div>
-//                                     <div className="col-sm-6 mb-3">
-//                                         <div className="card h-100">
-//                                             <div className="card-body">
-//                                                 <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">Recipe</i>Project Status</h6>
-
-//                                             </div>
-//                                         </div>
-//                                     </div>
-//                                 </div>
-//                             </div>
-//                         </div>
-
-//                     </div>
-//                 </div >

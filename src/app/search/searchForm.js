@@ -1,10 +1,12 @@
 'use client';
+
 import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import Link from 'next/link';
 
 import './search.css';
+import Link from 'next/link';
+
 
 export default function Search() {
     const router = useRouter();
@@ -201,13 +203,13 @@ export default function Search() {
         <>
             <div>
                 <form onSubmit={handleSubmit}>
-                    <div class="field has-addons search-bar">
-                        <div class="control is-expanded">
+                    <div className="field has-addons search-bar">
+                        <div className="control is-expanded">
                             <span><h2 className='title search-title'>Search for a drink</h2></span>
-                            <input className="input is-rounded is-large " type="search" value={query} onChange={handleChange} />
+                            <input className="input is-rounded is-large " type="search" value={query} onChange={handleChange} placeholder='Find drinks by name or list of ingredients' />
                         </div>
-                        <div class="control">
-                            <a class="button search-btn is-rounded is-large" onClick={handleSubmit}>
+                        <div className="control">
+                            <a className="button search-btn is-rounded is-large" onClick={handleSubmit}>
                                 Search
                             </a>
                         </div>

@@ -1,8 +1,8 @@
 'use client';
-import '../css/bulma.css';
-import '../css/index.css';
+
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
+
 import handleLogout from '@/app/utils/handleLogout';
 import BackgroundImage from './backgroundImage';
 
