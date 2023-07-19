@@ -239,13 +239,13 @@ export default function SingleTemplate({ recipe }) {
 
     const renderRemoveFavoriteButton = () => {
         return (
-            <a className='button card-footer-item login-btn' onClick={handleRemoveFavorite}>Favorite -</a>
+            <a className='button card-footer-item signup-btn' onClick={handleRemoveFavorite}>Favorite -</a>
         );
     }
 
     const renderAddFavoriteButton = () => {
         return (
-            <a className='button card-footer-item login-btn' onClick={handleAddFavorite}>Favorite +</a>
+            <a className='button card-footer-item signup-btn' onClick={handleAddFavorite}>Favorite +</a>
         );
     }
 
@@ -282,7 +282,7 @@ export default function SingleTemplate({ recipe }) {
                     <div className='card-content'>
                         <h2 className='title is-2 recipe-name'>{recipe.name}</h2>
                         <h3 className='subtitle is-3 recipe-name'><em>From {recipe.createdBy.length ? recipe.createdBy[0].username : 'Elixir'}</em></h3>
-                        <div className='card '>
+                        <div className='card main-recipe-container'>
                             <div className='card-content image-card'>
                                 <img className='image imageSize' src={recipe.image ? recipe.image : 'https://i.imgur.com/xkynjld.png'} />
                             </div>
@@ -302,7 +302,7 @@ export default function SingleTemplate({ recipe }) {
                             <p className='recipe-types'>{recipe.alcoholic ? 'Alcoholic' : 'Non-Alcoholic'} {recipe.category} In A {recipe.glassType}</p>
                         </div>
                         <br />
-                        <div className='card'>
+                        <div className='card recipe-content-container'>
                             <div className='card-content'>
                                 <ul>
                                     {renderIngredients()}
@@ -321,7 +321,7 @@ export default function SingleTemplate({ recipe }) {
                         <div className='card comment-container'>
                             <div className='card-content'>
                                 <h2 className='title is-5'>Instructions</h2>
-                                <div className='card'>
+                                <div className='card recipe-content-container'>
                                 <div className='card-content'>
                                 {renderInstructions()}
                                 </div>

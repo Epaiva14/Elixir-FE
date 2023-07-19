@@ -13487,6 +13487,20 @@ print {
     position: relative;
 }
 
+.main-recipe-container {
+    margin-right: 3%;
+    margin-top: 5%;
+    position: relative;
+    background: linear-gradient(45deg, #E8BA9E, #FFFFFF 30%);
+}
+
+.recipe-content-container {
+
+    background: linear-gradient(-135deg, #E8BA9E, #FFFFFF 40%);
+}
+
+
+
 .instructions-title {
     position: relative;
     z-index: 3;
