@@ -128,9 +128,16 @@ export default function SingleTemplate({ recipe }) {
         const rows = [];
         for (let i = 0; i < recipe.ingredients.length; i++) {
             rows.push(
-                <li key={recipe.ingredients[i]._id}>
+                <ul className='ingredient-div'>
+                <li className='ingredient-hover' key={recipe.ingredients[i]._id}>
                     <strong>{recipe.measures[i]}</strong> {recipe.ingredients[i].name}
+                    <div className='ingredient-hover-content card'>
+                        <div className='card-content'>
+                        <p>{recipe.ingredients[i].description}</p>
+                            </div>
+                    </div>
                 </li>
+                </ul>
             );
         }
         return rows;

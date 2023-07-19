@@ -13533,6 +13533,38 @@ print {
     z-index: 3;
 }
 
+ .ingredient-hover .ingredient-hover-content .ingredient-div {
+transition: opacity .5s ease-in-out;
+ }
+
+.ingredient-hover-content {
+    position: absolute;
+    background: linear-gradient(#E8BA9E, #f0d7cf);
+    z-index: 5;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll: auto;
+    transition: opacity .5s ease-in-out;
+    max-height: 250px;
+    color: white;
+    font-weight: 500px;
+    text-decoration: italic;
+    
+
+}
+
+  .ingredient-hover .ingredient-hover-content {
+      visibility: hidden;
+    transition: opacity .5s ease-in-out;
+      
+  }
+
+  .ingredient-hover:hover .ingredient-hover-content {
+      visibility: visible;
+      opacity: 1;
+    transition: opacity .5s ease-in-out;
+  }
+
 .fav-title {
     transform: translate(30%, 9.5vh);
     z-index: 3;
