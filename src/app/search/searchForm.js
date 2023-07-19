@@ -1,8 +1,7 @@
 'use client';
 import { useEffect, useState, useCallback } from 'react';
-import axios from 'axios';
 import { useRouter } from 'next/navigation';
-
+import axios from 'axios';
 import Link from 'next/link';
 
 export default function Search() {
@@ -20,8 +19,6 @@ export default function Search() {
         color: ' #636261',
 
     }
-
-   
 
     const router = useRouter();
     const [error, setError] = useState(false);
@@ -216,12 +213,6 @@ export default function Search() {
     return (
         <>
             <div>
-
-
-                {/* <form onSubmit={handleSubmit}>
-                    <span><h2 className='title search-title'>Search for a drink</h2></span>
-                    <input className="input is-rounded is-large search-bar" type="search" value={query} onChange={handleChange} />
-                </form> */}
                 <form onSubmit={handleSubmit}>
                     <div class="field has-addons search-bar">
                         <div class="control is-expanded">
@@ -252,23 +243,12 @@ export default function Search() {
                         <ul style={ingredientStyle}>
                             {(query ? <li className='search-item subtitle mb-0' style={paramStyle}>Ingredients</li> : null)}
                             {(query === '' ? '' : ingredientsList[0] === 'Loading...' ? <li key='loading'>Ingredients Loading...</li> : renderIngredients())}
-                            {/* {(query === '' ? '' : ingredientsList.map(ingredient => {
-                                return (ingredient === 'Loading...') ? <li key='loading'>Ingredients Loading...</li> : <li className='search-item' key={ingredient._id} onClick={() => {
-                                    addParam(ingredient);
-                                    updateIngredientOptions();
-                                }}>{ingredient.name}</li>
-                            }))} */}
                         </ul>
                    
                    
                         <ul style={recipeStyle}>
                             {(query ? <li className='search-item subtitle mb-0' style={paramStyle}>Recipes</li> : null)}
                             {(query === '' ? '' : recipesList[0] === 'Loading...' ? <li key='loading'>Recipes Loading...</li> : renderRecipes())}
-                            {/* {(query === '' ? '' : recipesList.map(recipe => {
-                                return (recipe === 'Loading...') ? <li key='loading'>Recipes Loading...</li> : <li className='search-item' key={recipe._id} onClick={() => {
-                                    setRecipeRedirect(recipe._id);
-                                }}>{recipe.name}</li>
-                            }))} */}
                         </ul>
                     </div>
                 </div>

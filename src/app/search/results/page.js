@@ -1,10 +1,10 @@
 'use client';
-import '../../css/bulma.css';
-import Layout from '../../components/layout';
-import BackgroundImage from '../../components/backgroundImage';
-import RecipeScrollTile from '@/app/components/recipes/recipeScrollTile';
+
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+
+import Layout from '../../components/layout';
+import RecipeScrollTile from '@/app/components/recipes/recipeScrollTile';
 
 export default function SearchResults() {
     const router = useRouter();
@@ -27,9 +27,6 @@ export default function SearchResults() {
     return (
         <>
             <Layout>
-                {/* {searchResults ? searchResults.map(recipe => {
-                    return <div key={recipe._id} onClick={() => setRecipeRedirect(recipe._id)}>{recipe.name}</div>
-                }) : ''} */}
                 <div className='column'>
                 </div>
                 <div className='column is-5'>
