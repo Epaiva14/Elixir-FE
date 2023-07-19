@@ -13257,6 +13257,7 @@ print {
 .body-content {
     transform: translate(0, 20vh);
     justify-content: space-evenly;
+    margin-left: 1.5vw;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10rem;
@@ -13459,9 +13460,15 @@ print {
 
 .favorite {
 
-    transform: translate(16%, 0);
+    transform: translate(16%, 10vh);
     position: relative;
+    max-height: 420px;
 
+}
+
+.trending {
+
+   transform: translate(0, 13vh);
 }
 
 .ingredient-list {
@@ -13470,8 +13477,9 @@ print {
 }
 
 .trending-title {
-    transform: translate(2%, 10%);
-    position: relative;
+    transform: translate(2%, .5vh);
+    margin-top: 5%;
+    position: absolute;
     z-index: 3;
 }
 
@@ -13488,7 +13496,7 @@ print {
 .fav-title {
     transform: translate(15%, 9vh);
     z-index: 3;
-    position: relative;
+    position: absolute;
 }
 
 .my-title {

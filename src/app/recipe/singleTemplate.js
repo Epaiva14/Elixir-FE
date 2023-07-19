@@ -230,6 +230,25 @@ export default function SingleTemplate({ recipe }) {
         );
     }
 
+    const renderInstructions = () => {
+        if (!recipe.instructions) {
+            return (
+                <div className='column bulmaColumnStyle1'>
+                    <h3 className='title is-2 instructions-title'>Instructions:</h3>
+                    <div className='descriptionStyle column is-11'>There are no instructions for this drink</div>
+                </div>
+
+            )
+        } else {
+            <div className='column bulmaColumnStyle1'>
+                <h3 className='title is-2 instructions-title'>Instructions:</h3>
+                <div className='descriptionStyle column is-11'>{recipe.instructions}</div>
+            </div>
+        }
+
+
+    }
+
     if (isLoading || commentsLoading) return <p>Loading ...</p>;
 
     return (
@@ -238,7 +257,7 @@ export default function SingleTemplate({ recipe }) {
 
                 <div className='column bulmaColumnStyle is-12'>
                     <div className='column is-3 is-offset-0'>
-                        <img className='imageSize' src={recipe.image ? recipe.image : ''} />
+                        <img className='imageSize' src={recipe.image ? recipe.image : 'https://i.imgur.com/xkynjld.png'} />
                     </div>
                     <div className='column is-3 is-offset-0 card recipeBox'>
                         <div><strong>{recipe.name}</strong></div>
@@ -270,10 +289,11 @@ export default function SingleTemplate({ recipe }) {
 
                 </div>
 
-                <div className='column bulmaColumnStyle1'>
+                {renderInstructions()}
+                {/* <div className='column bulmaColumnStyle1'> }
                     <h3 className='title is-2 instructions-title'>Instructions:</h3>
                     <div className='descriptionStyle column is-11'>{recipe.instructions}</div>
-                </div>
+                </div> */}
 
                 {/* MIKEY HERE - MOVE THIS BUTTON AND DITCH THE DIV WHEN STYLING, ONLY PUT HERE SO I COULD FIND IT AND CLICK ON IT */}
 
