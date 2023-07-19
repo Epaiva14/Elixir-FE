@@ -58,7 +58,7 @@ export default function Home() {
                 <div className='column is-5 is-responsive'>
                     <RecipeScrollTile type='trending' number='20' />
                 </div>
-                <div className='column is-responsive'>
+                <div className='column is-responsive main-right-div'>
                     <SearchForm />
                     <div className='columns is-responsive'>
                         <div className='column is-three-fourths is-responsive'>
