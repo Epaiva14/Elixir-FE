@@ -13256,6 +13256,7 @@ print {
 
 .body-content {
     transform: translate(0, 20vh);
+    justify-content: space-evenly;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10rem;
@@ -13411,6 +13412,12 @@ print {
 
 }
 
+.recipe-row {
+    min-width: 250px;
+    justify-content: center;
+    
+}
+
 #user-recipe {
 
     height: 10vh;
@@ -13458,6 +13465,18 @@ print {
     font-size: 2em;
 }
 
+.favorite {
+    
+    transform: translate(15%, 0);
+    position: relative;
+   
+}
+
+.ingredient-list {
+    text-align: left;
+    padding-left: 3vw;
+}
+
 .trending-title {
     transform: translate(2%, 10%);
     position: relative;
@@ -13474,6 +13493,12 @@ print {
     transform: translate(-231%, 126%);
     position: relative;
     z-index: 3;
+}
+
+.fav-title {
+    transform: translate(15%, 9vh);
+    z-index: 6;
+    position: relative;
 }
 
 .my-title {
@@ -13684,7 +13709,7 @@ print {
         height: 100px;
     }
 
-    /* .commentStyle {
+    .commentStyle {
         margin: 87% 3% 0% 2%;
         font-size: small;
 
@@ -13712,7 +13737,7 @@ print {
     .createdBy {
         margin-left: 38%;
         margin-top: 18%;
-    } */
+    }
 
 }
 
