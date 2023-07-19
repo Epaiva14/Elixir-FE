@@ -259,8 +259,13 @@ export default function SingleTemplate({ recipe }) {
                             {recipe.createdBy.length ? recipe.createdBy[0].username : 'Elixir'}
                         </div>
                     </div>
+
                     <div className='column is-1 is-offset-0 favoriteButton'>
                         {checkFavorite() ? renderRemoveFavoriteButton() : renderAddFavoriteButton()}
+                    </div>
+
+                    <div className='column is-1 is-offset-1 editCommentButton'>
+                        {recipe.createdBy.length && data._id === recipe.createdBy[0]._id ? <a className='button specialEditStyle' onClick={handleEdit}>Edit</a> : null}
                     </div>
 
                 </div>
@@ -271,12 +276,7 @@ export default function SingleTemplate({ recipe }) {
                 </div>
 
                 {/* MIKEY HERE - MOVE THIS BUTTON AND DITCH THE DIV WHEN STYLING, ONLY PUT HERE SO I COULD FIND IT AND CLICK ON IT */}
-                <div className='column bulmaColumnStyle2'>
-                    <div className='editCommentButton'>
-                        {recipe.createdBy.length && data._id === recipe.createdBy[0]._id ? <a className='button' onClick={handleEdit}>Edit</a> : null}
-                    </div>
 
-                </div>
                 <div className='column is-11 bulmaColumnStyle3'>
                     <h2 className='title is-2 comment-title'>Comments:</h2>
                     <div className='column commentStyle'>

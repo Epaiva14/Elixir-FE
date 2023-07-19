@@ -13668,13 +13668,24 @@ print {
 
 .bulmaColumnStyle3 {
     margin-top: 10%;
-    margin-top: 0rem;
+    margin-top: 3rem;
 }
-
-
 
 .specialColumn {
     margin-top: -10rem;
+}
+
+.editCommentButton {
+    margin-top: 0%;
+    margin-left: 0rem;
+}
+
+.specialEditStyle {
+    background-color: #E8BA9E;
+    color: #fff;
+    margin-top: -5.5rem;
+    position: absolute;
+    margin-left: 1rem;
 }
 
 @media (max-width: 414px) {
