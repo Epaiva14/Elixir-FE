@@ -281,7 +281,7 @@ export default function EditRecipeTemplate() {
     const renderIngredients = () => {
         let rows = [];
         for (let i = 0; i < 10 && i < ingredientsList.length; i++) {
-            rows.push(<li className='search-item' key={ingredientsList[i]._id} onClick={() => {
+            rows.push(<li className='recipe-search-item' key={ingredientsList[i]._id} onClick={() => {
                 addParam(ingredientsList[i]);
                 updateIngredientOptions();
             }}>{ingredientsList[i].name}</li>);
@@ -354,10 +354,10 @@ export default function EditRecipeTemplate() {
 
         <ul style={paramStyle}>
             {(selectedParams === '' ? '' : selectedParams.map(param => {
-                return <li key={param._id}>{param.name} <a onClick={() => {
+                return <li className='recipe-search-item' key={param._id}>{param.name} <span className='remove-item' onClick={() => {
                     removeParam(param);
                     updateIngredientOptions();
-                }}>X</a></li>
+                }}>X</span></li>
             }))}
         </ul>
         <ul>
