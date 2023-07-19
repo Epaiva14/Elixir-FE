@@ -13443,13 +13443,14 @@ print {
 .content1 {
 
     justify-content: center;
+    display: block;
     margin: 0 auto;
     color: white;
     font-weight: bold;
     font-size: 1.25em;
     max-width: 100%;
     z-index: 1;
-    text-align: justify;
+    text-align: center;
 }
 
 .overlay-text-heading {
