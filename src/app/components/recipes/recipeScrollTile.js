@@ -34,11 +34,6 @@ export default function RecipeScrollTile({ type, number, id, searchResults }) {
     }, [number, type, searchResults])
 
 
-
-
-
-
-
     const renderScrollTile = () => {
         if (recipes) {
             const recipeTiles = recipes.map((recipe, i) => (
