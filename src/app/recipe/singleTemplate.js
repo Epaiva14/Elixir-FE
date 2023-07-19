@@ -220,13 +220,13 @@ export default function SingleTemplate({ recipe }) {
 
     const renderRemoveFavoriteButton = () => {
         return (
-            <a className='button' onClick={handleRemoveFavorite}>Favorite -</a>
+            <a className='button favoriteButtonStyle' onClick={handleRemoveFavorite}>Favorite -</a>
         );
     }
 
     const renderAddFavoriteButton = () => {
         return (
-            <a className='button' onClick={handleAddFavorite}>Favorite +</a>
+            <a className='button favoriteButtonStyle' onClick={handleAddFavorite}>Favorite +</a>
         );
     }
 
@@ -234,54 +234,59 @@ export default function SingleTemplate({ recipe }) {
 
     return (
         <>
-            <div className='column'>
-                <img className='imageSize' src={recipe.image ? recipe.image : ''} />
-                <div className='recipeBox'>
-                    <div><strong>{recipe.name}</strong></div>
-                    <br />
-                    <ul>
-                        {renderIngredients()}
-                    </ul>
-                    <div>{recipe.description}</div>
-                    <br />
-                </div>
-                <div className='recipeCategory'>
-                    <div>{recipe.alcoholic ? 'Alcoholic' : 'Non-Alcoholic'}</div>
-                    <div>{recipe.glassType}</div>
-                    <div>{recipe.category}</div>
-                </div>
-                <div className='favoriteButton'>
-                    {checkFavorite() ? renderRemoveFavoriteButton() : renderAddFavoriteButton()}
-                </div>
-                <div className='createdBy'>
-                    <div>
-                        Recipe By:
+            <div className='column specialColumn'>
+
+                <div className='column bulmaColumnStyle is-12'>
+                    <div className='column is-3 is-offset-0'>
+                        <img className='imageSize' src={recipe.image ? recipe.image : ''} />
+                    </div>
+                    <div className='column is-3 is-offset-0 card recipeBox'>
+                        <div><strong>{recipe.name}</strong></div>
                         <br />
-                        {recipe.createdBy.length ? recipe.createdBy[0].username : 'Elixir'}
+                        <ul>
+                            {renderIngredients()}
+                        </ul>
+                        <div>{recipe.description}</div>
+                        <br />
                     </div>
-                </div>
-            </div>
-            <h3 className='title is-1 instructions-title'>Instructions:</h3>
-            <div className='column is-full'>
-                <div className='descriptionStyle'>{recipe.instructions}</div>
-            </div>
+                    <div className='column is-3 is-offset-8  card recipeCategory'>
+                        <div><strong>Alcohol?: </strong>{recipe.alcoholic ? 'Alcoholic' : 'Non-Alcoholic'}</div>
+                        <div><strong>Glass type: </strong>{recipe.glassType}</div>
+                        <div><strong>Category: </strong>{recipe.category}</div>
+                        <div className='createdBy'>
+                            Recipe By:
+                            <br />
+                            {recipe.createdBy.length ? recipe.createdBy[0].username : 'Elixir'}
+                        </div>
+                    </div>
+                    <div className='column is-1 is-offset-0 favoriteButton'>
+                        {checkFavorite() ? renderRemoveFavoriteButton() : renderAddFavoriteButton()}
+                    </div>
 
-            {/* MIKEY HERE - MOVE THIS BUTTON AND DITCH THE DIV WHEN STYLING, ONLY PUT HERE SO I COULD FIND IT AND CLICK ON IT */}
-            <div className='column'>
-                <div className='editCommentButton'>
-                    {recipe.createdBy.length && data._id === recipe.createdBy[0]._id ? <a className='button' onClick={handleEdit}>Edit</a> : null}
                 </div>
 
-            </div>
-            <h2 className='title is-1 comment-title'>Comments:</h2>
-            <div className='column is-full'>
-                <div className='commentStyle'>
-                    {/* MIKEY HERE - MOVE THIS FORM SOMEWHERE ELSE AND GET RID OF commentStyle CLASS AT SOME POINT - I PUT IT HERE SO I COULD SEE IT AND USE IT WHILE DEVELOPING */}
-                    <div className='column'>
+                <div className='column bulmaColumnStyle1'>
+                    <h3 className='title is-2 instructions-title'>Instructions:</h3>
+                    <div className='descriptionStyle column is-11'>{recipe.instructions}</div>
+                </div>
+
+                {/* MIKEY HERE - MOVE THIS BUTTON AND DITCH THE DIV WHEN STYLING, ONLY PUT HERE SO I COULD FIND IT AND CLICK ON IT */}
+                <div className='column bulmaColumnStyle2'>
+                    <div className='editCommentButton'>
+                        {recipe.createdBy.length && data._id === recipe.createdBy[0]._id ? <a className='button' onClick={handleEdit}>Edit</a> : null}
+                    </div>
+
+                </div>
+                <div className='column is-11 bulmaColumnStyle3'>
+                    <h2 className='title is-2 comment-title'>Comments:</h2>
+                    <div className='column commentStyle'>
+                        {/* MIKEY HERE - MOVE THIS FORM SOMEWHERE ELSE AND GET RID OF commentStyle CLASS AT SOME POINT - I PUT IT HERE SO I COULD SEE IT AND USE IT WHILE DEVELOPING */}
+
                         {renderComments()}
-                    </div>
-                    {editingComment ? renderEditCommentForm() : renderAddCommentForm()}
 
+                        {editingComment ? renderEditCommentForm() : renderAddCommentForm()}
+
+                    </div>
                 </div>
             </div>
 

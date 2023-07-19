@@ -13223,7 +13223,6 @@ print {
 
 }
 
-
 .divStyle {
     background-image: url('https://i.imgur.com/QuJqHP1.jpg');
     background-size: cover;
@@ -13257,7 +13256,6 @@ print {
 
 .body-content {
     transform: translate(0, 20vh);
-    justify-content: space-evenly;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10rem;
@@ -13361,8 +13359,6 @@ print {
 }
 
 .scroll-tile {
-
-
     width: 620px;
     background-color: rgba(0, 0, 0, 0);
     position: relative;
@@ -13372,16 +13368,12 @@ print {
     height: 80vh;
     justify-content: space-between;
     padding: 5%;
-
-
 }
 
 .scroll-func {
-
     overflow-x: hidden;
     overflow-y: auto;
     background-color: #E3E0DE;
-
 }
 
 #my-tile {
@@ -13394,7 +13386,6 @@ print {
 
 
 .recipe-style {
-
     transition: transform(-10%, 0);
     flex-wrap: wrap;
     flex-direction: row;
@@ -13409,14 +13400,7 @@ print {
     max-width: 250px;
     height: 320px;
     transition: .5s ease-in-out;
-    white-space: normal;
 
-}
-
-.recipe-row {
-    min-width: 250px;
-    justify-content: center;
-    
 }
 
 #user-recipe {
@@ -13451,31 +13435,18 @@ print {
 .content1 {
 
     justify-content: center;
-    display: block;
     margin: 0 auto;
     color: white;
     font-weight: bold;
     font-size: 1.25em;
     max-width: 100%;
     z-index: 1;
-    text-align: center;
+    text-align: justify;
 }
 
 .overlay-text-heading {
     transform: translate(0, -20%);
     font-size: 2em;
-}
-
-.favorite {
-    
-    transform: translate(16%, 0);
-    position: relative;
-   
-}
-
-.ingredient-list {
-    text-align: left;
-    padding-left: 3vw;
 }
 
 .trending-title {
@@ -13485,21 +13456,13 @@ print {
 }
 
 .comment-title {
-    transform: translate(-46rem, 304%);
     position: relative;
     z-index: 3;
 }
 
 .instructions-title {
-    transform: translate(-231%, 126%);
     position: relative;
     z-index: 3;
-}
-
-.fav-title {
-    transform: translate(15%, 9vh);
-    z-index: 3;
-    position: relative;
 }
 
 .my-title {
@@ -13510,10 +13473,9 @@ print {
 }
 
 .search-title {
-    transform: translate(2%, 20%);
+    transform: translate(5%, 78%);
     position: relative;
     z-index: 3;
-    transform: .5s ease-in-out;
 
 }
 
@@ -13537,44 +13499,6 @@ print {
     padding: 10px;
 }
 
-.results-container {
-
-    position: absolute;
-    z-index: 4;
-    background-color: white;
-    font-weight: 500;
-    font-size: 1.25em;
-    width: max-content;
-    min-width: 30vw;
-    transform: translate(23%, 0);
-    max-height: 30vh;
-    display: flex;
-    overflow-x: auto;
-    overflow-y: auto;
-    border-radius: 8px;
-    transition: .5s ease-in-out;
-
-    
-}
-
-.ul-div {
-    margin-left: 2%;
-    margin-right: 2%;
-    padding-left: 2%;
-    padding-right: 2%;
-    white-space: nowrap;
-}
-
-.search-item {
-    padding-top: 2%;
-    padding-bottom: 2%;
-}
-
-.remove-item {
-
-    color: #636261;
-
-}
 
 
 .imageSize {
@@ -13586,7 +13510,6 @@ print {
     border-style: ridge;
     border-width: thick;
     border-color: #E8BA9E;
-    margin-top: -2rem;
 }
 
 /* .singleRecipe {
@@ -13604,28 +13527,27 @@ print {
 .recipeBox {
     margin-left: 10%;
     position: absolute;
-    border-top: #E8BA9E;
-    border-left: #E8BA9E;
+    border-color: #E8BA9E;
     border-width: thick;
-    border-left-style: ridge;
-    border-top-style: ridge;
+    border-style: ridge;
     border-radius: 15px;
-    font-size: large;
+    font-size: 24px;
     padding-right: 5px;
+    background-color: #E3E0DE;
 }
 
 .recipeCategory {
     position: absolute;
-    margin-left: 70%;
-    font-size: large;
-    border-top: #E8BA9E;
-    border-right: #E8BA9E;
-    border-right-style: ridge;
-    border-top-style: ridge;
+    margin-left: 65%;
+    font-size: 26px;
+    border-color: #E8BA9E;
+    border-style: ridge;
     border-width: thick;
     border-radius: 15px;
     padding-left: 10px;
     padding-right: 100px;
+    background-color: #E3E0DE;
+
 }
 
 .commentStyle {
@@ -13633,27 +13555,20 @@ print {
     border-width: thick;
     border-radius: 15px;
     position: absolute;
-    margin: 10% 10% 0% 10%;
     font-size: larger;
     background-color: #BAB8B6;
-
+    margin-right: 6%;
 }
 
 .createdBy {
-
-    margin-left: 65%;
-    margin-top: -6%;
     position: absolute;
-
-    font-size: xx-small;
+    font-size: x-small;
+    margin-top: -1rem;
+    margin-left: 17rem;
 }
 
 .descriptionStyle {
-
     position: absolute;
-
-    margin-left: 10%;
-    margin-top: 5rem;
     border-style: outset;
     border-width: thick;
     border-radius: 15px;
@@ -13661,15 +13576,43 @@ print {
 }
 
 .favoriteButton {
-    margin-left: 65%;
-    margin-top: 30%;
+    margin-left: 45%;
+}
 
+.favoriteButtonStyle {
+    position: absolute;
+    margin-top: -4rem;
+
+    background-color: #E8BA9E;
+    color: #fff;
 }
 
 .commentTextArea {
     padding: 0rem 0rem 0rem 0rem;
 }
 
+.bulmaColumnStyle {
+    margin-top: 10%;
+}
+
+.bulmaColumnStyle1 {
+    margin-top: 18%;
+}
+
+.bulmaColumnStyle2 {
+    margin-top: 5%;
+}
+
+.bulmaColumnStyle3 {
+    margin-top: 10%;
+    margin-top: 0rem;
+}
+
+
+
+.specialColumn {
+    margin-top: -10rem;
+}
 
 @media (max-width: 414px) {
 
@@ -13710,34 +13653,64 @@ print {
         height: 100px;
     }
 
-    .commentStyle {
-        margin: 87% 3% 0% 2%;
-        font-size: small;
+    .specialColumn {
+        margin-top: 1rem;
+    }
 
+    .bulmaColumnStyle {
+        margin-top: -18%;
+    }
+
+    .bulmaColumnStyle1 {
+        margin-top: 70%;
+    }
+
+    .bulmaColumnStyle {
+        margin-top: -18%;
+    }
+
+    .bulmaColumnStyle {
+        margin-top: -18%;
     }
 
     .imageSize {
         max-width: 200px;
         max-height: 200px;
-        margin-left: 0%;
-        margin-top: 23%;
-    }
-
-    .recipeCategory {
-        margin-left: 56%;
-        margin-top: 65%;
-        font-size: small;
+        margin-left: -8%;
+        margin-top: -17%;
+        z-index: 2;
     }
 
     .recipeBox {
         font-size: small;
-        margin-left: 56%;
-        margin-top: 26%;
+        margin-left: 47%;
+        margin-top: -5rem;
+    }
+
+    .recipeCategory {
+        margin-left: 47%;
+        margin-top: 19%;
+        font-size: small;
+        padding-right: 88px;
+    }
+
+    .commentStyle {
+        font-size: small;
+
     }
 
     .createdBy {
-        margin-left: 38%;
-        margin-top: 18%;
+        margin-left: -130%;
+        margin-top: -5%;
+    }
+
+    .comment-title {
+        margin-top: 2rem;
+    }
+
+    .favoriteButtonStyle {
+        margin-top: 7rem;
+        margin-left: -11rem;
     }
 
 }
@@ -13783,21 +13756,62 @@ print {
     img {
         max-width: 50%;
     }
-}
 
-@media (min-width:916px) and (max-width:1024px) {
-
-    .navItemsStyle {
-        background-color: transparent;
-        box-shadow: none;
-        /* margin-top: -7%; */
-        margin-left: 32rem;
+    .imageSize {
+        max-width: 300px;
+        max-height: 200px;
+        margin-left: 18rem;
+        margin-top: -8%;
+        z-index: 2;
     }
 
-    img {
-        max-width: 50%;
+    .recipeBox {
+        font-size: small;
+        margin-left: 47%;
+        margin-top: -5rem;
+    }
+
+    .recipeCategory {
+        margin-left: 47%;
+        margin-top: -9%;
+        font-size: small;
+        padding-right: 88px;
+    }
+
+    .commentStyle {
+        font-size: small;
+
+    }
+
+    .createdBy {
+        margin-left: -2rem;
+        margin-top: 5rem;
+    }
+
+    .comment-title {
+        margin-top: 2rem;
+    }
+
+    .favoriteButtonStyle {
+        margin-top: 7rem;
+        margin-left: 23rem;
+    }
+
+    .specialColumn {
+        margin-top: 11rem;
+    }
+
+    .bulmaColumnStyle {
+        margin-top: -18%;
+    }
+
+    .bulmaColumnStyle1 {
+        margin-top: 15%;
+    }
+
+    .column.is-offset-8 {
+        margin-left: 69.66667%;
     }
 }
-
 
 /*# sourceMappingURL=bulma.css.map */
