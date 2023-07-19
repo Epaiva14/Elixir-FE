@@ -3,11 +3,9 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import '../../css/bulma.css';
-import '../../css/index.css';
 import RecipePreviewContainer from './recipePreviewContainer';
 
-export default function RecipeScrollTile({ type, number, id, searchResults }) {
+export default function RecipeScrollTile({ type, number, searchResults }) {
     const [recipes, setRecipes] = useState(null);
     const [recipesLoading, setRecipesLoading] = useState(true);
 
@@ -36,7 +34,7 @@ export default function RecipeScrollTile({ type, number, id, searchResults }) {
 
     const renderScrollTile = () => {
         if (recipes) {
-            const recipeTiles = recipes.map((recipe, i) => (
+            const recipeTiles = recipes.map((recipe) => (
                 <RecipePreviewContainer key={recipe._id} recipe={recipe} />
             ));
             const rows = [];
@@ -56,20 +54,20 @@ export default function RecipeScrollTile({ type, number, id, searchResults }) {
 
     return (
         <>
-
-        <div>
-            {type === 'favorite' ? <h2 className='title is-1 fav-title'>Favorite Recipes</h2> : null}
-            {type === 'trending' ? <h2 className='title is-1 trending-title'>What&apos;s shakin</h2> : null}
-            {type === 'my' ? <h2 className='title is-1 my-title'>My Bar</h2> : null}
-            {type === 'search' ? <h2 className='title is-1 search-title'>Search Results</h2> : null}
-            <div className={typeClass}>
-                <div className='tile is-parent box is-vertical scroll-func'>
-                    {renderScrollTile()}
-                    {!recipes && type === 'my' ? <p className='subtitle'>Your bar is looking a little empty...</p> : null}
+            <div>
+                {type === 'favorite' ? <h2 className='title is-1 fav-title'>Favorite Recipes</h2> : null}
+                {type === 'trending' ? <h2 className='title is-1 trending-title'>What&apos;s shakin</h2> : null}
+                {type === 'my' ? <h2 className='title is-1 my-title'>My Bar</h2> : null}
+                {type === 'search' ? <h2 className='title is-1 search-title'>Search Results</h2> : null}
+                <div className={typeClass}>
+                    <div className='tile is-parent box is-vertical scroll-func'>
+                        {renderScrollTile()}
+                        {recipes.length < 1 && type === 'my' ? <p className='subtitle remove-item'>Your bar is looking a little empty...</p> : null}
+                        {recipes.length < 1 && type === 'search' ? <p className='subtitle remove-item'>No recipes match your query...</p> : null}
+                        {recipes.length < 1 && type === 'favorite' ? <p className='subtitle remove-item'>You haven&apos;t added any favorite recipes yet...</p> : null}
+                    </div>
                 </div>
             </div>
-        </div>
-
         </>
     )
 } 

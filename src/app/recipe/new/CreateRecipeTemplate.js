@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import jwtDecode from 'jwt-decode';
@@ -217,10 +218,8 @@ export default function CreateRecipeTemplate() {
         category 
     }
 
-    // console.log(newRecipe);
     axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/recipes/new`, newRecipe)
     .then(response => {
-      // console.log('recipe created', response.data);
       setRecipeRedirect(response.data.recipe._id);
     })
     .catch(error => {
@@ -318,12 +317,6 @@ export default function CreateRecipeTemplate() {
         </ul>
         <ul>
             {(query === '' ? '' : ingredientsList[0] === 'Loading...' ? <li key='loading'>Ingredients Loading...</li> : renderIngredients())}
-            {/* {(query === '' ? '' : ingredientsList.map(ingredient => {
-                return (ingredient === 'Loading...') ? <li key='loading'>Ingredients Loading...</li> : <li key={ingredient._id} onClick={() => {
-                    addParam(ingredient);
-                    updateIngredientOptions();
-                }}>{ingredient.name}</li>
-            }))} */}
         </ul>
 
         <div className="field">

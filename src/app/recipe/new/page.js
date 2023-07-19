@@ -1,6 +1,5 @@
 'use client';
 
-import '../../css/bulma.css';
 import Layout from '@/app/components/layout';
 import CreateRecipeTemplate from './CreateRecipeTemplate';
 

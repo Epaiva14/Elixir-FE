@@ -1,5 +1,3 @@
-import elixirBG from '../assets/elixirBG.jpg'
-
 export default function BackgroundImage() {
     const divStyle = {
 
@@ -15,9 +13,5 @@ export default function BackgroundImage() {
 
     };
 
-    return <div style={divStyle}>
-
-
-
-    </div>;
+    return <div style={divStyle} />;
 };

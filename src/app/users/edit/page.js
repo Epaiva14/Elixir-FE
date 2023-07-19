@@ -1,10 +1,12 @@
-"use client";
+'use client';
+
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import jwtDecode from 'jwt-decode';
 import handleLogout from '@/app/utils/handleLogout';
 import setAuthToken from '@/app/utils/setAuthToken';
+import axios from 'axios';
+
 import Layout from '@/app/components/layout';
 
 export default function EditUser() {  
@@ -27,7 +29,6 @@ export default function EditUser() {
 	const [isLoading, setLoading] = useState(true);
 	const [redirect, setRedirect] = useState(false);
 
-	// TODO - Add state for email, number, streetAddress, city
 	const [email, setEmail] = useState('');
 	const [fullName, setFullName] = useState('');
 	const [username, setUsername] = useState('');
@@ -35,23 +36,15 @@ export default function EditUser() {
 	const [avatar, setAvatar] = useState('');
 	const [birthdate, setBirthdate] = useState('');
 
-	// console.log(localStorage);
 	if (typeof window !== 'undefined') {
 		const expirationTime = new Date(localStorage.getItem('expiration') * 1000);
 		let currentTime = Date.now();
-		// console.log(expirationTime, localStorage);
 
-		// make a condition that compares exp and current time
 		if (currentTime >= expirationTime) {
 			handleLogout();
-			// alert('Session has ended. Please login to continue.');
 			router.push('/users/login');
 		}
 	}
-
-	// const handleEmail = (e) => {
-	// 	setEmail(e.target.value);
-	// };
 
 	const handleFullName = (e) => {
 		setFullName(e.target.value);
@@ -96,7 +89,6 @@ export default function EditUser() {
 
 		axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/${data._id}`, updateUserObject)
 		.then(response => {
-			// update email in localStorage
 			localStorage.setItem('email', email);
 			setRedirect(true);
 		})

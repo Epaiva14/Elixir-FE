@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import jwtDecode from 'jwt-decode';
@@ -152,9 +153,6 @@ export default function EditRecipeTemplate() {
         setCategory(data.recipe.category);
         setRecipeLoading(false);
         addParam(data.recipe.ingredients);
-        // data.recipe.ingredients.forEach(ingredient => {
-        //   addParam(ingredient);
-        // });
       })
     }
   }, []);
@@ -364,12 +362,6 @@ export default function EditRecipeTemplate() {
         </ul>
         <ul>
             {(query === '' ? '' : ingredientsList[0] === 'Loading...' ? <li key='loading'>Ingredients Loading...</li> : renderIngredients())}
-            {/* {(query === '' ? '' : ingredientsList.map(ingredient => {
-                return (ingredient === 'Loading...') ? <li key='loading'>Ingredients Loading...</li> : <li key={ingredient._id} onClick={() => {
-                    addParam(ingredient);
-                    updateIngredientOptions();
-                }}>{ingredient.name}</li>
-            }))} */}
         </ul>
 
         <div className="field">

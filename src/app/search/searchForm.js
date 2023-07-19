@@ -1,28 +1,14 @@
 'use client';
-import { useEffect, useState, useCallback } from 'react';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
 
+import { useEffect, useState, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
+
+import './search.css';
 import Link from 'next/link';
 
+
 export default function Search() {
-    const paramStyle = {
-        color: '#E8BA9E',
-
-    }
-
-    const ingredientStyle = {
-        color: '#BAB8B6',
-
-    }
-
-    const recipeStyle = {
-        color: ' #636261',
-
-    }
-
-   
-
     const router = useRouter();
     const [error, setError] = useState(false);
     const [query, setQuery] = useState('');
@@ -216,20 +202,14 @@ export default function Search() {
     return (
         <>
             <div>
-
-
-                {/* <form onSubmit={handleSubmit}>
-                    <span><h2 className='title search-title'>Search for a drink</h2></span>
-                    <input className="input is-rounded is-large search-bar" type="search" value={query} onChange={handleChange} />
-                </form> */}
                 <form onSubmit={handleSubmit}>
-                    <div class="field has-addons search-bar">
-                        <div class="control is-expanded">
+                    <div className="field has-addons search-bar">
+                        <div className="control is-expanded">
                             <span><h2 className='title search-title'>Search for a drink</h2></span>
-                            <input className="input is-rounded is-large " type="search" value={query} onChange={handleChange} />
+                            <input className="input is-rounded is-large " type="search" value={query} onChange={handleChange} placeholder='Find drinks by name or list of ingredients' />
                         </div>
-                        <div class="control">
-                            <a class="button search-btn is-rounded is-large" onClick={handleSubmit}>
+                        <div className="control">
+                            <a className="button search-btn is-rounded is-large" onClick={handleSubmit}>
                                 Search
                             </a>
                         </div>
@@ -239,7 +219,7 @@ export default function Search() {
 
                 <div className="results-container">
                     <div className='ul-div'>
-                        <ul style={paramStyle}>
+                        <ul className='paramStyle'>
                             {(selectedParams === '' ? '' : selectedParams.map(param => {
                                 return <li className='search-item' key={param._id}>{param.name} <a className='remove-item' onClick={() => {
                                     removeParam(param);
@@ -249,26 +229,15 @@ export default function Search() {
                         </ul>
                     </div>
                     <div className='ul-div'>
-                        <ul style={ingredientStyle}>
-                            {(query ? <li className='search-item subtitle mb-0' style={paramStyle}>Ingredients</li> : null)}
+                        <ul className='ingredientStyle'>
+                            {(query ? <li className='search-item subtitle mb-0 paramStyle'>Ingredients</li> : null)}
                             {(query === '' ? '' : ingredientsList[0] === 'Loading...' ? <li key='loading'>Ingredients Loading...</li> : renderIngredients())}
-                            {/* {(query === '' ? '' : ingredientsList.map(ingredient => {
-                                return (ingredient === 'Loading...') ? <li key='loading'>Ingredients Loading...</li> : <li className='search-item' key={ingredient._id} onClick={() => {
-                                    addParam(ingredient);
-                                    updateIngredientOptions();
-                                }}>{ingredient.name}</li>
-                            }))} */}
                         </ul>
                    
                    
-                        <ul style={recipeStyle}>
-                            {(query ? <li className='search-item subtitle mb-0' style={paramStyle}>Recipes</li> : null)}
+                        <ul className='recipeStyle'>
+                            {(query ? <li className='search-item subtitle mb-0 paramStyle'>Recipes</li> : null)}
                             {(query === '' ? '' : recipesList[0] === 'Loading...' ? <li key='loading'>Recipes Loading...</li> : renderRecipes())}
-                            {/* {(query === '' ? '' : recipesList.map(recipe => {
-                                return (recipe === 'Loading...') ? <li key='loading'>Recipes Loading...</li> : <li className='search-item' key={recipe._id} onClick={() => {
-                                    setRecipeRedirect(recipe._id);
-                                }}>{recipe.name}</li>
-                            }))} */}
                         </ul>
                     </div>
                 </div>

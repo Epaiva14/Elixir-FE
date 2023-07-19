@@ -7,10 +7,9 @@ import setAuthToken from '@/app/utils/setAuthToken';
 import handleLogout from '@/app/utils/handleLogout';
 import axios from 'axios';
 
-import './css/bulma.css';
-import Layout from './components/layout';
-import RecipeScrollTile from './components/recipes/recipeScrollTile';
-import SearchForm from './search/searchForm';
+import Layout from '@/app/components/layout';
+import RecipeScrollTile from '@/app/components/recipes/recipeScrollTile';
+import SearchForm from '@/app/search/searchForm';
 
 
 export default function Home() {
@@ -23,10 +22,8 @@ export default function Home() {
         const expirationTime = new Date(localStorage.getItem('expiration') * 1000);
         let currentTime = Date.now();
 
-        // make a condition that compares exp and current time
         if (currentTime >= expirationTime) {
             handleLogout();
-            alert('Please login to continue.');
             router.push('/users/login');
         }
     }
@@ -58,7 +55,6 @@ export default function Home() {
     return (
         <>
             <Layout>
-
                 <div className='column is-5 is-responsive'>
                     <RecipeScrollTile type='trending' number='20' />
                 </div>
@@ -70,8 +66,6 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-
-
             </Layout>
         </>
     )

@@ -1,6 +1,5 @@
 'use client';
-import '../../css/bulma.css';
-import '../../css/index.css';
+
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -14,10 +13,6 @@ export default function RecipePreviewContainer({ recipe }) {
             router.push('/recipe');
         }
     }, [recipeRedirect, router]);
-
-    // console.log(recipe);
-
-    // declaring variables
 
     const getGlassType = (recipe) => {
         const vowels = ['a', 'e', 'i', 'o', 'u'];
