@@ -4,22 +4,9 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Link from 'next/link';
 
+import './search.css';
+
 export default function Search() {
-    const paramStyle = {
-        color: '#E8BA9E',
-
-    }
-
-    const ingredientStyle = {
-        color: '#BAB8B6',
-
-    }
-
-    const recipeStyle = {
-        color: ' #636261',
-
-    }
-
     const router = useRouter();
     const [error, setError] = useState(false);
     const [query, setQuery] = useState('');
@@ -241,13 +228,13 @@ export default function Search() {
                     </div>
                     <div className='ul-div'>
                         <ul style={ingredientStyle}>
-                            {(query ? <li className='search-item subtitle mb-0' style={paramStyle}>Ingredients</li> : null)}
+                            {(query ? <li className='search-item subtitle mb-0 paramStyle'>Ingredients</li> : null)}
                             {(query === '' ? '' : ingredientsList[0] === 'Loading...' ? <li key='loading'>Ingredients Loading...</li> : renderIngredients())}
                         </ul>
                    
                    
                         <ul style={recipeStyle}>
-                            {(query ? <li className='search-item subtitle mb-0' style={paramStyle}>Recipes</li> : null)}
+                            {(query ? <li className='search-item subtitle mb-0 paramStyle'>Recipes</li> : null)}
                             {(query === '' ? '' : recipesList[0] === 'Loading...' ? <li key='loading'>Recipes Loading...</li> : renderRecipes())}
                         </ul>
                     </div>
