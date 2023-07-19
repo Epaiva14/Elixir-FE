@@ -2,7 +2,9 @@
 import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+
 import Link from 'next/link';
+import '../css/searchForm.css';
 
 export default function Search() {
     const paramStyle = {
@@ -191,6 +193,27 @@ export default function Search() {
         );
     }
 
+    const renderIngredients = () => {
+        let rows = [];
+        for (let i = 0; i < 5 && i < ingredientsList.length; i++) {
+            rows.push(<li className='search-item' key={ingredientsList[i]._id} onClick={() => {
+                addParam(ingredientsList[i]);
+                updateIngredientOptions();
+            }}>{ingredientsList[i].name}</li>);
+        }
+        return rows;
+    }
+
+    const renderRecipes = () => {
+        let rows = [];
+        for (let i = 0; i < 5 && i < recipesList.length; i++) {
+            rows.push(<li className='search-item' key={recipesList[i]._id} onClick={() => {
+                setRecipeRedirect(recipesList[i]._id);
+            }}>{recipesList[i].name}</li>);
+        }
+        return rows;
+    }
+
     return (
         <>
             <div>
@@ -228,21 +251,25 @@ export default function Search() {
                     </div>
                     <div className='ul-div'>
                         <ul style={ingredientStyle}>
-                            {(query === '' ? '' : ingredientsList.map(ingredient => {
+                            {(query ? <li className='search-item subtitle mb-0' style={paramStyle}>Ingredients</li> : null)}
+                            {(query === '' ? '' : ingredientsList[0] === 'Loading...' ? <li key='loading'>Ingredients Loading...</li> : renderIngredients())}
+                            {/* {(query === '' ? '' : ingredientsList.map(ingredient => {
                                 return (ingredient === 'Loading...') ? <li key='loading'>Ingredients Loading...</li> : <li className='search-item' key={ingredient._id} onClick={() => {
                                     addParam(ingredient);
                                     updateIngredientOptions();
                                 }}>{ingredient.name}</li>
-                            }))}
+                            }))} */}
                         </ul>
                    
                    
                         <ul style={recipeStyle}>
-                            {(query === '' ? '' : recipesList.map(recipe => {
+                            {(query ? <li className='search-item subtitle mb-0' style={paramStyle}>Recipes</li> : null)}
+                            {(query === '' ? '' : recipesList[0] === 'Loading...' ? <li key='loading'>Recipes Loading...</li> : renderRecipes())}
+                            {/* {(query === '' ? '' : recipesList.map(recipe => {
                                 return (recipe === 'Loading...') ? <li key='loading'>Recipes Loading...</li> : <li className='search-item' key={recipe._id} onClick={() => {
                                     setRecipeRedirect(recipe._id);
                                 }}>{recipe.name}</li>
-                            }))}
+                            }))} */}
                         </ul>
                     </div>
                 </div>

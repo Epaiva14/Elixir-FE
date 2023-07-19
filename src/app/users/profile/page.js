@@ -80,7 +80,7 @@ export default function Profile() {
                         <p className="text-muted font-size-sm"><strong>Residence: </strong>{data.location}</p>
                     </div>
                 </div>
-                <div className='column'>
+                <div className='column is-5'>
                     <RecipeScrollTile type='my' number='all' id='my-tile' />
                 </div>
             </Layout >
