@@ -217,7 +217,7 @@ export default function Search() {
 
                 <div className="results-container">
                     <div className='ul-div'>
-                        <ul style={paramStyle}>
+                        <ul className='paramStyle'>
                             {(selectedParams === '' ? '' : selectedParams.map(param => {
                                 return <li className='search-item' key={param._id}>{param.name} <a className='remove-item' onClick={() => {
                                     removeParam(param);
@@ -227,13 +227,13 @@ export default function Search() {
                         </ul>
                     </div>
                     <div className='ul-div'>
-                        <ul style={ingredientStyle}>
+                        <ul className='ingredientStyle'>
                             {(query ? <li className='search-item subtitle mb-0 paramStyle'>Ingredients</li> : null)}
                             {(query === '' ? '' : ingredientsList[0] === 'Loading...' ? <li key='loading'>Ingredients Loading...</li> : renderIngredients())}
                         </ul>
                    
                    
-                        <ul style={recipeStyle}>
+                        <ul className='recipeStyle'>
                             {(query ? <li className='search-item subtitle mb-0 paramStyle'>Recipes</li> : null)}
                             {(query === '' ? '' : recipesList[0] === 'Loading...' ? <li key='loading'>Recipes Loading...</li> : renderRecipes())}
                         </ul>
