@@ -13128,17 +13128,7 @@ print {
 
     background-color: #E8BA9E;
     color: white;
-    border-radius: 5px;
-    border: none;
-    padding: 1%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    margin-right: 10%;
-    width: 100%;
-    font-size: 100%;
     font-weight: 900;
-    font-family: inherit;
-    transform: translate(0, 25%);
     transition: .4s ease-in-out;
 
 
@@ -13176,8 +13166,6 @@ print {
 
 .signup-btn {
 
-    transform: translate(-13%, 20%);
-    scale: .8;
     font-weight: 500;
     background-color: #636261;
     color: #e3e0de;
@@ -13488,13 +13476,20 @@ print {
     z-index: 3;
 }
 
+.comment-container {
+    background-color: #E3E0DE;
+    margin-right: 3%;
+    margin-top: 5%;
+    position: relative;
+}
+
 .instructions-title {
     position: relative;
     z-index: 3;
 }
 
 .fav-title {
-    transform: translate(15%, 9vh);
+    transform: translate(30%, 9vh);
     z-index: 3;
     position: absolute;
 }
@@ -13572,15 +13567,37 @@ print {
 
 }
 
+.recipe-types {
+
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* .details-div {
+
+    margin-top: 5%;
+} */
+
+.image-card {
+    display: flex;
+}
+
 .imageSize {
-    position: absolute;
-    max-width: 350px;
+    /* position: absolute; */
+    max-width: 400px;
     max-height: 400px;
-    margin-left: 35%;
+    background-color: white;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: auto auto;
+    /* margin-left: 35%;
     border-radius: 15px;
     border-style: ridge;
     border-width: thick;
-    border-color: #E8BA9E;
+    border-color: #E8BA9E; */
 }
 
 /* .singleRecipe {
