@@ -1,104 +1,142 @@
-# Elixir
+<img src='./screenshots/drink_peach.png' width='200' />
 
-## Description
-Elixir is a web app that provides an approachable entrance to creating mixed drinks and cocktails. Elixir also provides a platform to stay up to date with the latest and most innovative recipes that people are posting.
-Users are calling it the `Twitter of Alcoholism`.
- a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Elixir 
+## The Twitter of Alcoholism
+Elixir is a web app that provides an approachable entrance to creating mixed drinks and cocktails, as well as a platform to stay up to date with the latest and most innovative recipes posted by mixologists.
+
+To use online, visit: {link here}
 
 ### Features 
-* Predictive search feature to allow ease of browsing 
+* Predictive search feature to allow for ease of browsing 
 * Instructional guide to creating mixed drinks and cocktails
-* Communicative Platform to stay up to date with the latest and most innovative recipes
-* Intuitive styling that allows consitent flow to navigating
-* Built a cloud based API to allow responsive access to database both in development and deployment 
-* Ability to share your own recipes
-* Incorporated authorization to protect user data using JWT, Passport and bcrypt
-* NextJs implementation to create a responsive web app
+* Communicative platform to stay up to date with the latest and most innovative recipes
+* Ability to share custom recipes and receive community feedback
+* Lists of most popular recipes and user's favorites
 
+***
 
-## Wireframes
-### Initial Wireframes 
-![Initial Wireframes](src/app/assets/WireFrames.png)
+## Installation
 
-### Deployment
+### Prerequisites
+* Node.js
+* MongoDB database - local install or [Mongo Atlas](http://mongodb.com/atlas)
+* [The Cocktail DB API Key](https://www.thecocktaildb.com/api.php)
 
-## Getting Started
-
-### Frontend specific
-* `Fork` and `Clone` this repository.
+### Backend
+* `fork` and `clone` the [Elixir-backend](https://github.com/darkartaudio/elixir-backend) repository.
 * Install the needed dependencies with `npm install`.
-* Add a .env file globally and declare your `NEXT_PUBLIC_SERVER_URL` and it's value for the frontend.
-* To access the web app, `npm run dev` in your terminal, then open [http://localhost:3000](http://localhost:3000) in your browser.
-* Explore the App in your browser. 
-
-### Backend specific
-* `Fork` and `Clone` the [Elixir-backend](https://github.com/darkartaudio/elixir-backend) repository.
-* Install the needed dependencies with `npm install`.
+* Create a .env file in the repository root and add the following environment variables:
+    * `MONGO_URI=insert-your-database-uri-here`
+    * `API=http://www.thecocktaildb.com/api/json/v2/your-api-key`
+    * `JWT_SECRET=secret-key-of-your-choice`
 * Add a .env file globally and declare your `MONGO_URI` and `JWT_SECRET` values for the backend.
-* To start the backend server, `npm run dev` in your terminal.
+* Run `npm run dev` in a terminal.
 
+### Database seeding
+* Using the command `node seeders/file-name`, seed in this order:
+    * `ingredients.js`
+    * `recipes.js`
+    * `users.js` (optional)
+    * `custom-recipes.js` (optional)
+    * `comments.js` (optional)
+    * `favorites.js` (optional)
 
-## File Structure 
-Elixir was built on the NextJs framework while implementing express, MongoDB, Mongoose, Javascript and Bulma's CSS library. 
-The backend involved implemented CRUD operations when creating our API and routing for our frontend logic. 
-Tests were created to allow for scalability and future enhancements.
-- See `test` folder on the backend.
+### Frontend
+* `fork` and `clone` this repository.
+* Install the needed dependencies with `npm install`.
+* Create a .env file in the repository root and add the following environment variable:
+    * `NEXT_PUBLIC_SERVER_URL=http://localhost:8000`
+* Run `npm run dev` in a terminal.
+* Open [http://localhost:3000](http://localhost:3000) in a web browser.
 
-### Backend structure
-Our API incorporates referencing instead of embedded documents to demonstrate associations. This allowed for future scalability and reduced possible redundancy in the code.
-We also seeded our database wiht information from the [Cocktail-DB](https://www.thecocktaildb.com/api.php). For our needs we had to seed our database asynchronously to avoid API throttling when accessing the `Cocktail API`. This would have became a concern on the front end and our time cost would have increased. 
+***
+
+## File Structure
+
+### Tech Stack
+Elixir is built on a MERN ([MongoDB](https://www.mongodb.com/), [Express](https://expressjs.com/), [React](https://react.dev/), [Node](https://nodejs.org/)) stack, with [Next.js](https://nextjs.org/) and [Bulma](https://bulma.io/).
+
+### API
+Elixir-backend implements CRUD operations, bridging the gaps between The Cocktail DB API, our database, and the frontend. 
+* Routes were tested using [Mocha](https://mochajs.org/)
+
+### Database
+Due to our data's highly-relational nature, our MongoDB database implements associations via document referencing rather than embedded documents.
+
+### Styling
+We leveraged the Bulma CSS library for responsive styling
+
+***
+## Screenshots
+
+### Home / Search
+![Search Bar](./screenshots/image-2.png)
+
+### Single Recipe
+![Single Recipe](./screenshots/image.png)
+
+### Comments
+![Comments](./screenshots/image-1.png)
+
+### Profile
+![Profile](./screenshots/image-1.png)
+
+***
+
+## Code Snippets
+
+### Seeding
+Seeding our database with ingredient and recipe information from The Cocktail DB required pacing of API calls to avoid throttling.
 
 ```javascript
+function wait(time) {
+    return new Promise(resolve => {
+        setTimeout(resolve, time);
+    });
+}
+```
+
+```javascript
+// Get list of all alcoholic drink IDs from API 
 axios.get(`${process.env.API}/filter.php?a=Alcoholic`)
-.then(response => {
-    let drinkIds = [];
+...
+axios.get(`${process.env.API}/filter.php?a=Non_Alcoholic`)
+...
+.then(async response => {
     let drinks = response.data.drinks;
     let numDrinks = drinks.length;
     for (let i = 0; i < numDrinks; i++) {
         drinkIds.push(drinks[i].idDrink);
     }
-
-    // Get list of all non-alcoholic drink IDs from API
-    axios.get(`${process.env.API}/filter.php?a=Non_Alcoholic`)
-    .then(async response => {
-        let drinks = response.data.drinks;
-        let numDrinks = drinks.length;
-        for (let i = 0; i < numDrinks; i++) {
-            drinkIds.push(drinks[i].idDrink);
-        }
-        for (let i = 0; i < drinkIds.length; i++) {
-            axios.get(`${process.env.API}/lookup.php?i=${drinkIds[i]}`)
-            .then(response => {
-                let drink = response.data.drinks[0];
-                let newDrink = {...}
-                Recipe.create(newDrink)
-                .then(async createdDrink => {     
-                    for (let i = 1; i <= 15; i++) {
-                        let ingredient = drink[`strIngredient${i}`];
-                        if (ingredient) {                           
-                            await Ingredient.findOne({ name: firstLettersCapitalized(drink[`strIngredient${i}`])})
-                            .then(ingredient => {
-                                createdDrink.ingredients.push(ingredient);
-                                createdDrink.measures.push(drink[`strMeasure${i}`]);
-                            })
-                            .catch(err => console.log(err.message));
-                        }}
-                    createdDrink.save()
-                    .then(savedDrink => console.log(savedDrink.name))
-                    .catch(err => console.log(err.message));
-                })})
-            .catch(err => console.log(err.message));
-            // Wait half a second to avoid API throttling
-            await wait(500);
-        }
-    })
-    .catch(err => console.log(err.message));
+    for (let i = 0; i < drinkIds.length; i++) {
+        axios.get(`${process.env.API}/lookup.php?i=${drinkIds[i]}`)
+        .then(response => {
+            let drink = response.data.drinks[0];
+            let newDrink = {...}
+            Recipe.create(newDrink)
+            .then(async createdDrink => {     
+                for (let i = 1; i <= 15; i++) {
+                    let ingredient = drink[`strIngredient${i}`];
+                    if (ingredient) {                           
+                        await Ingredient.findOne({ name: firstLettersCapitalized(drink[`strIngredient${i}`])})
+                        .then(ingredient => {
+                            createdDrink.ingredients.push(ingredient);
+                            createdDrink.measures.push(drink[`strMeasure${i}`]);
+                        })
+                        .catch(err => console.log(err.message));
+                    }}
+                createdDrink.save()
+                .then(savedDrink => console.log(savedDrink.name))
+                .catch(err => console.log(err.message));
+            })})
+        .catch(err => console.log(err.message));
+        // Wait half a second to avoid API throttling
+        await wait(500);
+    }
 })
-.catch(err => console.log(err.message));
-
 ```
-
-Our recipe schema demonstrates the associations between models
+### Database Configuration
+Our recipe schema demonstrates the associations between models.
 ```javascript
 const recipeSchema = new mongoose.Schema({
     name: {type: String, required: true},
@@ -116,26 +154,9 @@ const recipeSchema = new mongoose.Schema({
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
 ```
-We presented a trending board that began on the backend. This allowed us to send our recipes to the front end based on the amount of times they have been favorited. Specifically we chose to send the only the ingredients and creator of the recipe to boost processing speeds.
 
-```javascript
-router.get('/trending/:num', (req, res) => {
-    Recipe.find({})
-    .sort({ favoriteCount: -1 })
-    .limit(parseInt(req.params.num))
-    .populate('ingredients createdBy')
-    .then((recipes) => {
-        return res.json({ recipes: recipes });
-    })
-    .catch(error => {
-        console.log('error', error);
-        return res.json({ message: 'There was an issue please try again...'});
-    });
-});
-```
-
-### Frontend structure 
-On the front end we presented our unique styling and layout built using Bulma. Our home page demonstrated our created scroll tile as well as our predictive search feature. 
+### Scroll Tile 
+The `recipeScrollTile` component is a reusable widget used to display different collections of recipes in different parts of the app.
 ```jsx
  const renderScrollTile = () => {
         if(recipes) {
@@ -156,12 +177,12 @@ On the front end we presented our unique styling and layout built using Bulma. O
     }
 ```
 
-Our predictive search allows the ability to search for a user, recipe, or recipe using specific selected ingredients. This feature has also been implemented when a user wants to share their own recipe. This allows for ease of recipe creation and promotes sharing a user sharing their creation. 
+### Search Bar
+
+Our predictive search allows the user to search for a drink recipe by name, or for all recipes matching a list of ingredients. 
+
 ```jsx
 export default function Search() {
-    const paramStyle = {
-        color: 'green'
-    }
 ...
     const updateIngredientOptions = useCallback((newQuery) => {
         if(newQuery) {
@@ -179,14 +200,9 @@ export default function Search() {
                 
                 return ingredient.name.toLowerCase().includes(newQuery.toLowerCase());
             });
-
             setIngredientsList(results);
         }
     }, [ingredients, selectedParams, ingredientsLoading]);
-
-    const updateRecipeOptions ...
-
-    const updateUserOptions ...
     
     const handleChange = (e) => {
         const newQuery = e.target.value;
@@ -204,17 +220,6 @@ export default function Search() {
     }
 
     const removeParam = (ingredient) => { ... }
-
-    useEffect(() => { ... }, [router, searchResults, searchRedirect, recipeRedirect, userRedirect]);
-    
-    useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ingredients`)
-        .then((res) => res.json())
-        .then((result) => {
-            setIngredients(result.ingredients);
-            setIngredientsLoading(false);
-        });
-    }, []);
 
 
     useEffect(() => {
@@ -245,18 +250,23 @@ export default function Search() {
 }
 ```
 
+## Wireframes
+![Initial Wireframes](src/app/assets/WireFrames.png)
+
 ## Deployed on Heroku and Netlify
+[](link here)
 
 # Future Enhancements
 * Incorporate ability to follow other users
-* Allow for users to include their own ingredients 
-* Update User UI
-* Allow users to view all Ingredients
-* Incorporate AI based on User interaction to imporve user experience 
+* Direct messaging system
+* Allow users to create custom ingredients
+* Implement single ingredient route with connectivity to recipes incorporating ingredient
+* Incorporate AI based on user interaction to improve user experience 
 
 ## Contributing 
 Pull requests are welcome. For major changes, please open an issue first to discuss the potential implementations.
 
+## Attribution
+Built using [The Cocktail DB](https://www.thecocktaildb.com/api.php).
 
-
-
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
