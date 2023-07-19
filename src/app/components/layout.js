@@ -24,6 +24,9 @@ export default function Layout({ children }) {
         if (typeof window !== 'undefined') {
             const handleScroll = () => {
                 const currentScrollPos = window.scrollY;
+
+                if(document.getElementById("navbar") == null) return;
+                
                 if (prevScrollPos > currentScrollPos) {
                     document.getElementById("navbar").style.top = "0px";
                 } else {
