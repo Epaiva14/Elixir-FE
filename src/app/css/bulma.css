@@ -1228,7 +1228,7 @@ fieldset[disabled] .button.is-dark.is-inverted.is-outlined {
 
 .button.is-primary:active,
 .button.is-primary.is-active {
-    background-color: #00b89c;
+    background-color: #E8BA9E;
     border-color: transparent;
     color: #fff;
 }
