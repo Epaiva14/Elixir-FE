@@ -13088,6 +13088,7 @@ print {
 
 
 .signup-card {
+    margin-bottom: 3vh;
     scale: 1.5;
     transform: translate(35%, 30vh);
     width: fit-content;
@@ -13113,11 +13114,11 @@ print {
 
     background-color: rgba(227, 224, 222, .8);
     position: absolute;
-    font-size: 120%;
-    font-weight: 700;
+    font-size: 110%;
+    font-weight: 600;
     color: #636261;
     top: -30%;
-    left: 6%;
+    left: 12%;
     border-radius: 3px;
     padding: .75%;
 
@@ -13467,7 +13468,7 @@ print {
 
 .favorite {
     
-    transform: translate(15%, 0);
+    transform: translate(16%, 0);
     position: relative;
    
 }
@@ -13497,7 +13498,7 @@ print {
 
 .fav-title {
     transform: translate(15%, 9vh);
-    z-index: 6;
+    z-index: 3;
     position: relative;
 }
 

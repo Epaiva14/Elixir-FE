@@ -20,9 +20,7 @@ export default function Search() {
 
     }
 
-    // const userStyle = {
-    //     color: 'purple'
-    // }
+   
 
     const router = useRouter();
     const [error, setError] = useState(false);
