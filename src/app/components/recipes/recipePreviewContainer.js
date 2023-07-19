@@ -64,8 +64,8 @@ export default function RecipePreviewContainer({ recipe }) {
                             <div className="content1">
                                 <h1 className='overlay-text-heading'>{recipe.category}</h1>
                                 <em><h2>{recipe.glassType ? getGlassType(recipe) : null}</h2></em>
-                                <hr />
-                                <p>
+                                <hr className='recipe-row'/>
+                                <p className='ingredient-list'>
                                     {ingredients}
                                     <span className='read-more'>...read more</span>
                                 </p>

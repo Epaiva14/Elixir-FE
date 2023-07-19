@@ -59,13 +59,13 @@ export default function Home() {
         <>
             <Layout>
 
-                <div className='column is-5'>
+                <div className='column is-5 is-responsive'>
                     <RecipeScrollTile type='trending' number='20' />
                 </div>
-                <div className='column'>
+                <div className='column is-responsive'>
                     <SearchForm />
-                    <div className='columns'>
-                        <div className='column is-three-fourths'>
+                    <div className='columns is-responsive'>
+                        <div className='column is-three-fourths is-responsive'>
                             <RecipeScrollTile type='favorite' number='all' id='my-tile' />
                         </div>
                     </div>
