@@ -6,10 +6,11 @@ import jwtDecode from 'jwt-decode';
 import setAuthToken from '@/app/utils/setAuthToken';
 import handleLogout from '@/app/utils/handleLogout';
 import axios from 'axios';
-import RecipeScrollTile from '@/app/components/recipes/recipeScrollTile';
+
 import '../../css/bulma.css';
 import Layout from '../../components/layout';
-import BackgroundImage from '../../components/backgroundImage';
+import RecipeScrollTile from '@/app/components/recipes/recipeScrollTile';
+import genericAvatar from '@/app/assets/avatar.png';
 
 export default function Profile() {
     // state is what the data is representing in realtime
@@ -54,7 +55,6 @@ export default function Profile() {
         }
     }, [router]);
 
-
     if (isLoading) return <p>Loading...</p>;
     if (!data) return <p>No data shown...</p>;
     return (
@@ -62,7 +62,7 @@ export default function Profile() {
             <Layout>
                 <div className='column is-half'>
                     <div className='profileSection'>
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
+                        <img src={data.avatar ? data.avatar : genericAvatar.src} alt="avatar" width="150" /> 
                         <h2 className='username'>{data.username}</h2>
                         <button className="btn btn-primary">Follow</button>
                         <button className="btn btn-outline-primary">Message</button>
