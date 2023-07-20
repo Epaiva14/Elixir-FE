@@ -73,10 +73,8 @@ export default function CreateRecipeTemplate() {
     const expirationTime = new Date(localStorage.getItem('expiration') * 1000);
     let currentTime = Date.now();
 
-    // make a condition that compares exp and current time
     if (currentTime >= expirationTime) {
       handleLogout();
-      alert('Session has ended. Please login to continue.');
       router.push('/users/login');
     }
   }

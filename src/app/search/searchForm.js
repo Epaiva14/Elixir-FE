@@ -17,19 +17,15 @@ export default function Search() {
 
     const [searchRedirect, setSearchRedirect] = useState(false);
     const [recipeRedirect, setRecipeRedirect] = useState(false);
-    // const [userRedirect, setUserRedirect] = useState(false);
 
     const [recipesLoading, setRecipesLoading] = useState(true);
     const [ingredientsLoading, setIngredientsLoading] = useState(true);
-    // const [usersLoading, setUsersLoading] = useState(true);
 
     const [ingredientsList, setIngredientsList] = useState([]);
     const [recipesList, setRecipesList] = useState([]);
-    // const [usersList, setUsersList] = useState([]);
 
     const [ingredients, setIngredients] = useState();
     const [recipes, setRecipes] = useState();
-    // const [users, setUsers] = useState();
 
     const updateIngredientOptions = useCallback((newQuery) => {
         if (newQuery) {
@@ -66,26 +62,11 @@ export default function Search() {
         }
     }, [recipes, recipesLoading]);
 
-    // const updateUserOptions = useCallback((newQuery) => {
-    //     if (newQuery) {
-    //         if (usersLoading) {
-    //             return setUsersList(['Loading...']);
-    //         }
-    //         const results = users.filter(user => {
-    //             if (newQuery === '') return true;
-    //             return user.username.toLowerCase().includes(newQuery.toLowerCase());
-    //         });
-
-    //         setUsersList(results);
-    //     }
-    // }, [users, usersLoading]);
-
     const handleChange = (e) => {
         const newQuery = e.target.value;
         setQuery(newQuery);
         updateIngredientOptions(newQuery);
         updateRecipeOptions(newQuery);
-        // updateUserOptions(newQuery);
     }
 
     const addParam = (ingredient) => {
@@ -126,12 +107,6 @@ export default function Search() {
             localStorage.setItem('recipeId', JSON.stringify(recipeRedirect));
             router.push('/recipe');
         }
-
-        // if (userRedirect) {
-        //     localStorage.setItem('userId', JSON.stringify(userRedirect));
-        //     router.push('/user');
-        // }
-        // }, [router, searchResults, searchRedirect, recipeRedirect, userRedirect]);
     }, [router, searchResults, searchRedirect, recipeRedirect]);
 
     useEffect(() => {
@@ -152,20 +127,9 @@ export default function Search() {
             });
     }, []);
 
-    // useEffect(() => {
-    //     fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`)
-    //         .then((res) => res.json())
-    //         .then((result) => {
-    //             setUsers(result.users);
-    //             setUsersLoading(false);
-    //         });
-    // }, []);
-
     useEffect(() => {
         updateIngredientOptions(query);
         updateRecipeOptions(query);
-        // updateUserOptions(query);
-        // }, [selectedParams, query, updateIngredientOptions, updateRecipeOptions, updateUserOptions]);
     }, [selectedParams, query, updateIngredientOptions, updateRecipeOptions]);
 
 
@@ -241,13 +205,6 @@ export default function Search() {
                         </ul>
                     </div>
                 </div>
-                {/* <ul style={userStyle}>
-                    {(query === '' ? '' : usersList.map(user => {
-                        return (user === 'Loading...') ? <li key='loading'>Users Loading...</li> : <li key={user._id} onClick={() => {
-                            setUserRedirect(user._id);
-                        }}>{user.username}</li>
-                    }))}
-                </ul> */}
             </div>
         </>
     );
