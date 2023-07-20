@@ -1,17 +1,22 @@
-<img src='./screenshots/drink_peach.png' width='200' />
+<img src='https://i.imgur.com/E9RlsOw.png' width='200' />
 
-# Elixir 
-## The Twitter of Alcoholism
-Elixir is a web app that provides an approachable entrance to creating mixed drinks and cocktails, as well as a platform to stay up to date with the latest and most innovative recipes posted by mixologists.
+## "The Twitter of Alcoholism"
 
-To use online, visit: {link here}
+Elixir is a place for mixologists to mix together. It's designed to provide an approachable place for people to share, whether it's a new spin on their favorite cocktail or the story of why they'll never take another sip of tequila. 
+
+
+ Stay up to date with the latest and most innovative recipes posted by mixologists on Elixir. 
+
+To use online, visit: https://twitter-of-alcoholism.netlify.app/
 
 ### Features 
-* Predictive search feature to allow for ease of browsing 
-* Instructional guide to creating mixed drinks and cocktails
-* Communicative platform to stay up to date with the latest and most innovative recipes
+* A comprehensive database of alcoholic and non-alcoholic cocktails 
+* Predictive search features that allow users to quickly find drinks of their choice or a discover new favorite. 
+* Detailed descriptions of drinks, their ingredients and accurate measurements. 
+* Communicative platform to stay up to date with the hottest (or coldest) beverages
 * Ability to share custom recipes and receive community feedback
-* Lists of most popular recipes and user's favorites
+* Discover the most liked recipes on the platform 
+* Save drinks you want to try to make yourself for later
 
 ***
 
@@ -73,13 +78,13 @@ We leveraged the Bulma CSS library for responsive styling
 ![Search Bar](./screenshots/image-2.png)
 
 ### Single Recipe
-![Single Recipe](./screenshots/image.png)
+![Single Recipe](./screenshots/image-4.png)
 
 ### Comments
 ![Comments](./screenshots/image-1.png)
 
 ### Profile
-![Profile](./screenshots/image-1.png)
+![Profile](./screenshots/image-3.png)
 
 ***
 
