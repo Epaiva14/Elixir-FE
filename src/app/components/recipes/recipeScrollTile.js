@@ -40,7 +40,7 @@ export default function RecipeScrollTile({ type, number, searchResults }) {
             const rows = [];
             for (let i = 0; i < recipeTiles.length; i += 2) {
                 rows.push(
-                    <div className='tile is-parent'>
+                    <div key={`row${i}`} className='tile is-parent'>
                         {recipeTiles[i]}
                         {i + 1 < recipeTiles.length ? recipeTiles[i + 1] : null}
                     </div>
