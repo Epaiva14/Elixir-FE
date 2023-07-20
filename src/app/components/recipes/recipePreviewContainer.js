@@ -33,7 +33,7 @@ export default function RecipePreviewContainer({ recipe }) {
     for (let i = 0; i < 3; i++) {
         if (i < recipe.ingredients.length) {
             ingredients.push(`${i + 1}. ${recipe.ingredients[i].name}`);
-            ingredients.push(<br />);
+            ingredients.push(<br key={`break${i}`} />);
         }
     }
 

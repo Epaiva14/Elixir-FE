@@ -55,8 +55,8 @@ export default function Profile() {
             <Layout>
                 <div className='column is-4'>
                     <div className='card comment-conatiner'>
-                        <div class="card-image">
-                            <figure class="image is-square">
+                        <div className="card-image">
+                            <figure className="image is-square">
                                 <img src={data.avatar ? data.avatar : genericAvatar.src} alt="avatar" width="150" />
                             </figure>
                         </div>

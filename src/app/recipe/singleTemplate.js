@@ -151,7 +151,7 @@ export default function SingleTemplate({ recipe }) {
             let ingredient = recipe.ingredients[i];
             let measure = recipe.measures[i];
             rows.push(
-                <div className='ingredient-div'>
+                <div key={`ingdiv${i}`}className='ingredient-div'>
                 <ul >
                     {checkDescription(ingredient, measure)}
                 </ul>
@@ -165,18 +165,18 @@ export default function SingleTemplate({ recipe }) {
         const rows = [];
         for (let i = 0; i < comments.length; i++) {
             rows.push(
-                <article class="media comment-style card-content ">
-                    <figure class="media-left">
-                        <p class="image is-64x64">
-                            <img src={comments[i].createdBy[0].avatar ? comments[i].createdBy[0].avatar : genericAvatar.src} />
+                <article key={`article${i}`} className="media comment-style card-content ">
+                    <figure key={`figure${i}`} className="media-left">
+                        <p key={`p1${i}`} className="image is-64x64">
+                            <img key={`img${i}`} src={comments[i].createdBy[0].avatar ? comments[i].createdBy[0].avatar : genericAvatar.src} />
                         </p>
                     </figure>
                     <div key={comments[i]._id} className='media-content card'>
-                        <div className='content card-content comment-content-container'>
+                        <div key={`div1${i}`} className='content card-content comment-content-container'>
                             <h2 key={comments[i].createdBy[0]._id}>{comments[i].createdBy ? comments[i].createdBy[0].username : null}</h2>
                             <p key={comments[i].body}>{comments[i].body}</p>
-                            {data._id === comments[i].createdBy[0]._id ? <a className='button login-btn' onClick={() => presentEditCommentForm(comments[i]._id)}>Edit</a> : null}
-                            {data._id === comments[i].createdBy[0]._id ? <a className='button signup-btn' onClick={() => handleDeleteComment(comments[i]._id)}>Delete</a> : null}
+                            {data._id === comments[i].createdBy[0]._id ? <a key={`edit${i}`} className='button login-btn' onClick={() => presentEditCommentForm(comments[i]._id)}>Edit</a> : null}
+                            {data._id === comments[i].createdBy[0]._id ? <a key={`delete${i}`} className='button signup-btn' onClick={() => handleDeleteComment(comments[i]._id)}>Delete</a> : null}
                         </div>
                     </div>
                 </article>
@@ -190,13 +190,13 @@ export default function SingleTemplate({ recipe }) {
             <>
             <hr />
             <form onSubmit={handleComment}>
-                <article class="media card-content mb-0">
-                    <figure class="media-left">
-                        <p class="image is-64x64">
+                <article className="media card-content mb-0">
+                    <figure className="media-left">
+                        <p className="image is-64x64">
                             <img src={data.avatar ? data.avatar : genericAvatar.src} />
                         </p>
                     </figure>
-                    <div class="media-content">
+                    <div className="media-content">
                         <div className='field'>
                             <div className='control'>
                                 <textarea className='textarea' name='body' value={commentBody} placeholder='Leave a Comment' onChange={handleChange} />
@@ -204,9 +204,9 @@ export default function SingleTemplate({ recipe }) {
                         </div>
                     </div>
                 </article>
-                <article class="media card-content mt-0 pt-0">
-                    <figure class="media-left">
-                        <p class="image is-64x64" />
+                <article className="media card-content mt-0 pt-0">
+                    <figure className="media-left">
+                        <p className="image is-64x64" />
                     </figure>
                     <button className='button login-btn' type='submit'>Submit</button>
                 </article>
@@ -220,13 +220,13 @@ export default function SingleTemplate({ recipe }) {
             <>
             <hr />
             <form onSubmit={handleEditComment}>
-                <article class="media card-content mb-0">
-                    <figure class="media-left">
-                        <p class="image is-64x64">
+                <article className="media card-content mb-0">
+                    <figure className="media-left">
+                        <p className="image is-64x64">
                             <img src={data.avatar ? data.avatar : genericAvatar.src} />
                         </p>
                     </figure>
-                    <div class="media-content">
+                    <div className="media-content">
                         <div className='field'>
                             <div className='control'>
                                 <textarea className='textarea' name='body' value={commentBody} placeholder='Leave a Comment' onChange={handleChange} />
@@ -234,9 +234,9 @@ export default function SingleTemplate({ recipe }) {
                         </div>
                     </div>
                 </article>
-                <article class="media card-content mt-0 pt-0">
-                    <figure class="media-left">
-                        <p class="image is-64x64" />
+                <article className="media card-content mt-0 pt-0">
+                    <figure className="media-left">
+                        <p className="image is-64x64" />
                     </figure>
                     <div className='is-grouped field'>
                         <div className='control'>
@@ -321,7 +321,7 @@ export default function SingleTemplate({ recipe }) {
                             </div>
                         </div>
                     </div>
-                    <footer class="card-footer">
+                    <footer className="card-footer">
                         {checkFavorite() ? renderRemoveFavoriteButton() : renderAddFavoriteButton()}
                         {recipe.createdBy.length && data._id === recipe.createdBy[0]._id ? <a className='button card-footer-item signup-btn' onClick={handleEdit}>Edit</a> : null}
                     </footer>
