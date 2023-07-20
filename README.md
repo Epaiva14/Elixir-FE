@@ -20,6 +20,12 @@ To use online, visit: https://twitter-of-alcoholism.netlify.app/
 
 ***
 
+## Deployment
+* Frontend deployed on [Netlify](https://twitter-of-alcoholism.netlify.app/)
+* Backend deployed on [Heroku](https://twitter-of-alcoholism-31257f401d94.herokuapp.com/)
+
+***
+
 ## Installation
 
 ### Prerequisites
@@ -254,12 +260,12 @@ export default function Search() {
     );
 }
 ```
+***
 
 ## Wireframes
 ![Initial Wireframes](src/app/assets/WireFrames.png)
 
-## Deployed on Heroku and Netlify
-[](link here)
+***
 
 # Future Enhancements
 * Incorporate ability to follow other users
