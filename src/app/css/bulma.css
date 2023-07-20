@@ -480,9 +480,6 @@ pre {
 }
 
 body {
-    /* background-image: url('https://i.imgur.com/QuJqHP1.jpg');
-    background-size: cover;
-    background-position: center; */
     color: #4a4a4a;
     font-size: .85em;
     font-weight: 500;
@@ -13665,17 +13662,11 @@ print {
     font-size: 1rem;
 }
 
-/* .details-div {
-
-    margin-top: 5%;
-} */
-
 .image-card {
     display: flex;
 }
 
 .imageSize {
-    /* position: absolute; */
     max-width: 400px;
     max-height: 400px;
     background-color: white;
@@ -13684,24 +13675,7 @@ print {
     align-items: center;
     position: relative;
     margin: auto auto;
-    /* margin-left: 35%;
-    border-radius: 15px;
-    border-style: ridge;
-    border-width: thick;
-    border-color: #E8BA9E; */
 }
-
-/* .singleRecipe {
-    position: absolute;
-    border-width: thick;
-    border-style: solid;
-    border-radius: 15px;
-    margin-top: 10%;
-    font-size: x-large;
-    color: #E8BA9E;
-    padding-right: 65%;
-    padding-bottom: 2px;
-} */
 
 .recipeBox {
     margin-left: 10%;
